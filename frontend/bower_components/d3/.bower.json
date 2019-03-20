@@ -5,14 +5,14 @@
   "license": "BSD-3-Clause",
   "ignore": [],
   "homepage": "https://github.com/mbostock-bower/d3-bower",
-  "version": "3.5.17",
-  "_release": "3.5.17",
+  "version": "5.9.1",
+  "_release": "5.9.1",
   "_resolution": {
     "type": "version",
-    "tag": "v3.5.17",
-    "commit": "abe0262a205c9f3755c3a757de4dfd1d49f34b24"
+    "tag": "v5.9.1",
+    "commit": "d2efaef4686d77ef3a441cac6e1f096d0e1c0cbf"
   },
   "_source": "https://github.com/mbostock-bower/d3-bower.git",
-  "_target": "^3.5.5",
+  "_target": "5.9.1",
   "_originalSource": "d3"
 }

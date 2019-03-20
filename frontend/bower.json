@@ -2,8 +2,7 @@
   "name": "dataviz5",
   "version": "0.0.0",
   "dependencies": {
-    "d3": "~3.4.1",
-    "d3-tip": "~0.6.4",
+    "d3": "5.9.1",
     "underscore": "~1.6.0",
     "moment": "~2.6.0",
     "es6-shim": "~0.10.1",
