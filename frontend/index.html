@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link href='styles/main.css' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+    <div class="full-width header">
+        <div class="full-width header-inner">
+            <div class="container">
+                <h1>Visualizing Quora Duplicate Question</h1>
+                <h2>An interactive visualization</h2>
+                <p class="authors">
+                    Anak Agung Ngurah Bagus Trihatmaja, Shishir Kurhade, Somya Bhargava, Sriram Jayaraman
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="full-width section-intro">
+        <div class="container">
+            <form class="form-inline">
+                <div class="container">
+                <div class="col-lg-6">
+                    <label for="q1FormInput">First Question</label>
+                    <textarea class="form-control mb-3" id="q1FormInput" rows="4" cols="50"></textarea>
+                </div>
+                <div class="col-lg-6">
+                    <label for="q2FormInput">Second Question</label>
+                    <textarea type="text" class="form-control mb-4 mr-sm-2" id="q2FormInput" rows="4" cols="60"></textarea>
+                </div>
+                </div>
+                <div class="container" style="width: 100px;">
+                    <input type="button" class="btn btn-primary mx-auto mt-20" value="Start"></input>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    </body>
+</html>
