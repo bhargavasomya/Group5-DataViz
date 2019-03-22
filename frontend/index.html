@@ -37,17 +37,37 @@
     </div>
     <div class="full-width">
         <div class="container">
-            <div class="col-lg-4">
-                <div class="histogram-q1"></div>
-                <div class="histogram-q2"></div>
+            <div class="col-lg-6">
+                <div class="scatterplot-cosine"></div>
             </div>
-            <div class="col-lg-8">
-
+            <div class="col-lg-3">
+                <label for="histogram-q1">First Question</label>
+                <div class="histogram-q1" id="histogram-q1"></div>
+            </div>
+            <div class="col-lg-3">
+                <label for="histogram-q2">Second Question</label>
+                <div class="histogram-q2" id="histogram-q2"></div>
             </div>
         </div>
     </div>
+    <!--<div class="full-width mt-20">-->
+        <!--<div class="container">-->
+            <!--<div class="col-lg-6">-->
+                <!--<div class="scatterplot-prob"></div>-->
+            <!--</div>-->
+            <!--<div class="col-lg-3">-->
+                <!--<label for="histogram-q3">First Question</label>-->
+                <!--<div class="histogram-q3" id="histogram-q3"></div>-->
+            <!--</div>-->
+            <!--<div class="col-lg-3">-->
+                <!--<label for="histogram-q4">Second Question</label>-->
+                <!--<div class="histogram-q4" id="histogram-q4"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
     <script src="bower_components/d3/d3.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="scripts/histogram.js"></script>
+    <script src="scripts/scatterplot.js"></script>
     </body>
 </html>

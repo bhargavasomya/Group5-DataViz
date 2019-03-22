@@ -15,22 +15,18 @@ class Sentences(object):
         self.data["p1"] = _points[:,0]
         self.data["p2"] = _points[:,1]
 
-    def get_all_sentences(self):
-        return self.data
+    @classmethod
+    def get_all_sentences(cls):
+        return cls.data[:700]
 
     @classmethod
-    def get_closest_sentences(cls, points, k):
+    def get_closest_sentences(cls, points, k = None):
         cls.data["distance"] = [distance.euclidean(points, [row["p1"], row["p2"]]) for index, row in cls.data.iterrows()]
-        return cls.data.sort_values(by="distance")[:k]
+        return cls.data.sort_values(by="distance")[:k] if k != None else cls.data.sort_values(by="distance")
 
     @classmethod
-    def get_histogram(cls, q1, q2):
-        print(cls.distance)
-        closest_to_q1 = Sentences.get_closest_sentences(q1, 100)
-        closest_to_q2 = Sentences.get_closest_sentences(q2, 100)
-
-        # Somehow append this
-
-        return np.histogram(cls.data["distance"]) if "distance" in cls.data.columns else []
+    def get_histogram(cls, q):
+        closest_to_q = Sentences.get_closest_sentences(q, 100)
+        return np.histogram(cls.data["distance"], bins=20)
 
 

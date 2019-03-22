@@ -6,12 +6,28 @@ d3.json("../dummies/histogram.json").then(function(data) {
     histogramQ2(data);
 });
 
+d3.json("../dummies/histogram.json").then(function(data) {
+    histogramQ3(data);
+});
+
+d3.json("../dummies/histogram.json").then(function(data) {
+    histogramQ4(data);
+});
+
 function histogramQ1(data) {
     processData(data, ".histogram-q1");
 }
 
 function histogramQ2(data) {
     processData(data, ".histogram-q2");
+}
+
+function histogramQ3(data) {
+    processData(data, ".histogram-q3");
+}
+
+function histogramQ4(data) {
+    processData(data, ".histogram-q4");
 }
 
 function processData(data, klass) {
@@ -25,7 +41,7 @@ function processData(data, klass) {
     //anything inside bracket will be selected
     var q1 = d3.select(klass);
 
-    var width = 350;
+    var width = 250;
     var height = 150;
 
     console.log(width);
@@ -68,6 +84,7 @@ function processData(data, klass) {
         .attr("width", xScale.bandwidth())
         .attr("height", function(d){ return height - margin.bottom - yScale(d.y);})
         .attr("fill", "orange")
+        .on('click', function (d, i) {console.log(d);})
         .on('mouseover', function (d, i) {
             d3.select(this).transition()
                 .duration('50')
