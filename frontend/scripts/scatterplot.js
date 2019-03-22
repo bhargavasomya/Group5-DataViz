@@ -1,8 +1,5 @@
-d3.json("./dummies/points.json").then(function(data) {
-    processScatterData(data)
-});
 
-function processScatterData(data) {
+function setupScatterPlot(data) {
     var width = 540;
     var height = 570;
     var margin = {
@@ -44,5 +41,33 @@ function processScatterData(data) {
         .attr("cy", function(d){return yScale(d.p2);})
         .attr("r", 3)
         .attr("fill", "blue");
-
 }
+
+var storedData;
+var firstHistogramDisplayed = new Set();
+var secondHistogramDisplayed = new Set();
+
+dispatch.on("dataLoaded.scatterplot", function(data) {
+    storedData = data;
+    setupScatterPlot(data);
+});
+
+dispatch.on("disablePoints.scatterplot", function (data, histogramNumber) {
+    if (histogramNumber === ".histogram-q1") {
+        firstHistogramDisplayed.add(data);
+    } else if (histogramNumber === ".histogram-q2") {
+        secondHistogramDisplayed.add(data);
+    }
+    console.log(firstHistogramDisplayed);
+    console.log(secondHistogramDisplayed);
+});
+
+dispatch.on("enablePoints.scatterplot", function (data, histogramNumber) {
+    if (histogramNumber === ".histogram-q1") {
+        firstHistogramDisplayed.delete(data);
+    } else if (histogramNumber === ".histogram-q2") {
+        secondHistogramDisplayed.delete(data);
+    }
+    console.log(firstHistogramDisplayed);
+    console.log(secondHistogramDisplayed);
+});
