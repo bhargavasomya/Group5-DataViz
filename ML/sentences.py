@@ -2,6 +2,7 @@ import pickle
 import pandas as pd
 import numpy as np
 import scipy.spatial.distance as distance
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 class Sentences(object):
@@ -21,7 +22,7 @@ class Sentences(object):
 
     @classmethod
     def get_closest_sentences(cls, points, k = None):
-        cls.data["distance"] = [distance.euclidean(points, [row["p1"], row["p2"]]) for index, row in cls.data.iterrows()]
+        cls.data["distance"] = [cosine_similarity([points], [[row["p1"], row["p2"]]])[0][0] for index, row in cls.data.iterrows()]
         return cls.data.sort_values(by="distance")[:k] if k != None else cls.data.sort_values(by="distance")
 
     @classmethod
