@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01c258cc-1de8-4984-915b-a90a21370ccc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/data.js" afterDir="false" />
+    <list default="true" id="01c258cc-1de8-4984-915b-a90a21370ccc" name="Default Changelist" comment="WIP: Link scatterplot">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ML/sentences.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ML/sentences.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/lsa_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/../data/lsa_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/points.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/../data/points.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/bootstrap/less/forms.less" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/bootstrap/less/forms.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/bootstrap/less/grid.less" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/bootstrap/less/grid.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/bootstrap/less/mixins.less" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/bootstrap/less/mixins.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/bootstrap/less/modals.less" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/bootstrap/less/modals.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/bootstrap/less/navbar.less" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/bootstrap/less/navbar.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/bootstrap/less/normalize.less" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/bootstrap/less/normalize.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/bootstrap/less/panels.less" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/bootstrap/less/panels.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/bootstrap/less/variables.less" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/bootstrap/less/variables.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/d3/d3.js" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/d3/d3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/jquery/dist/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/jquery/dist/jquery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/jquery/dist/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/jquery/dist/jquery.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/jquery/src/css/curCSS.js" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/curCSS.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/jquery/src/css/defaultDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/defaultDisplay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/jquery/src/css/support.js" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/jquery/src/css/support.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/jquery/src/dimensions.js" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/jquery/src/dimensions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/jquery/src/effects.js" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/jquery/src/effects.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/jquery/src/sizzle/dist/sizzle.js" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/jquery/src/sizzle/dist/sizzle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower_components/jquery/src/sizzle/dist/sizzle.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bower_components/jquery/src/sizzle/dist/sizzle.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dummies/points.json" beforeDir="false" afterPath="$PROJECT_DIR$/dummies/points.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/histogram.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/histogram.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/scatterplot.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scatterplot.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -35,8 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="841">
-              <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
+            <state relative-caret-position="232">
+              <caret line="41" column="42" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -53,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/scatterplot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="754">
-              <caret line="67" column="31" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
+            <state>
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
             </state>
           </provider>
         </entry>
@@ -66,16 +86,16 @@
         <entry file="file://$PROJECT_DIR$/dummies/points.json">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="17218" selection-start-column="17218" selection-end-column="17218" />
+              <caret column="17503" selection-start-column="17503" selection-end-column="17503" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/histogram.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+            <state relative-caret-position="899">
+              <caret line="68" column="40" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -149,10 +169,10 @@
         <option value="$PROJECT_DIR$/bower.json" />
         <option value="$PROJECT_DIR$/dummies/histogram.json" />
         <option value="$PROJECT_DIR$/styles/common.less" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/scripts/data.js" />
-        <option value="$PROJECT_DIR$/scripts/scatterplot.js" />
         <option value="$PROJECT_DIR$/scripts/histogram.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/scripts/scatterplot.js" />
       </list>
     </option>
   </component>
@@ -225,7 +245,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553102940707</updated>
-      <workItem from="1553102941842" duration="35993000" />
+      <workItem from="1553102941842" duration="45711000" />
     </task>
     <task id="LOCAL-00001" summary="First page (Form)">
       <created>1553109836761</created>
@@ -241,24 +261,46 @@
       <option name="project" value="LOCAL" />
       <updated>1553280811440</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="WIP: Link scatterplot">
+      <created>1553290255844</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1553290255844</updated>
+    </task>
+    <task id="LOCAL-00004" summary="WIP: Link scatterplot">
+      <created>1553290289353</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1553290289353</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add filtering to scatterplot">
+      <created>1553302447186</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1553302447186</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35993000" />
+    <option name="totallyTimeSpent" value="45711000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="39" width="3200" height="1761" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" sideWeight="0.50050557" side_tool="true" visible="true" weight="0.24976228" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49949443" visible="true" weight="0.24976228" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info active="true" anchor="bottom" id="Terminal" sideWeight="0.49952456" visible="true" weight="0.3299458" />
-      <window_info anchor="bottom" id="Event Log" sideWeight="0.5004754" side_tool="true" visible="true" weight="0.3299458" />
+      <window_info active="true" anchor="bottom" id="Terminal" sideWeight="0.49920762" visible="true" weight="0.3299458" />
+      <window_info anchor="bottom" id="Event Log" sideWeight="0.5007924" side_tool="true" visible="true" weight="0.3299458" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4998415" weight="0.3299458" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49952456" weight="0.3299458" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -275,7 +317,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First page (Form)" />
     <MESSAGE value="Hardcode the scatterplot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hardcode the scatterplot" />
+    <MESSAGE value="WIP: Link scatterplot" />
+    <MESSAGE value="Add filtering to scatterplot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add filtering to scatterplot" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/styles/header.less">
@@ -362,23 +406,6 @@
     <entry file="file://$PROJECT_DIR$/dummies/scatterplot.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/dummies/points.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17218" selection-start-column="17218" selection-end-column="17218" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="841">
-          <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/data.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -386,17 +413,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/scatterplot.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="67" column="31" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
+        <state relative-caret-position="232">
+          <caret line="41" column="42" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dummies/points.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17503" selection-start-column="17503" selection-end-column="17503" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/histogram.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="899">
+          <caret line="68" column="40" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/scatterplot.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
         </state>
       </provider>
     </entry>

@@ -11,10 +11,15 @@ class Sentences(object):
     def __init__(self):
         # _sentences = pickle.load(open("./data/words.p", "rb"))
         _points = pickle.load(open("./data/points.pkl", "rb"))
+        _q1 = pickle.load(open("./data/question1.pkl", "rb"))
+        _q2 = pickle.load(open("./data/question2.pkl", "rb"))
+        q = _q1.append(_q2, ignore_index=True)
 
         # self.data["sentences"] = _sentences
         self.data["p1"] = _points[:,0]
         self.data["p2"] = _points[:,1]
+        self.data["q"] = q
+
 
     @classmethod
     def get_all_sentences(cls):

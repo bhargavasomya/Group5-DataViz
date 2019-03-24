@@ -5652,7 +5652,7 @@ function density() {
       r = 20, // blur radius
       k = 2, // log2(grid cell size)
       o = r * 3, // grid offset, to pad for blur
-      n = (dx + o * 2) >> k, // grid width
+      n = (dx + o * 2) >> k, // grid scatterPlotWidth
       m = (dy + o * 2) >> k, // grid height
       threshold$$1 = constant$6(20);
 
@@ -7135,7 +7135,7 @@ function formatNumerals(numerals) {
   };
 }
 
-// [[fill]align][sign][symbol][0][width][,][.precision][~][type]
+// [[fill]align][sign][symbol][0][scatterPlotWidth][,][.precision][~][type]
 var re = /^(?:(.)?([<>=^]))?([+\-( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?(~)?([a-z%])?$/i;
 
 function formatSpecifier(specifier) {

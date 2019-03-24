@@ -30,6 +30,8 @@ function setupScatterPlot(data) {
         .attr("transform", `translate(${scatterPlotMargin.left},0)`)
         .call(d3.axisLeft().scale(scatterPlotScale));
 
+    var selectedText = d3.select(".selected-text").style("opacity", 0);
+
     scatterPlotSvg.selectAll("circle")//empty selection
         .data(data)
         .enter() //empty placeholder
@@ -37,7 +39,20 @@ function setupScatterPlot(data) {
         .attr("cx", function(d){return scatterPlotXScale(d.p1);})
         .attr("cy", function(d){return scatterPlotScale(d.p2);})
         .attr("r", 3)
-        .attr("fill", "blue");
+        .attr("fill", "blue")
+        .on('mouseover', function (d, i) {
+            selectedText.transition()
+                .duration(50)
+                .style('opacity', 1)
+
+            let q = d.q;
+            selectedText.html(q);
+        })
+        .on('mouseout', function (d, i) {
+            selectedText.transition()
+                .duration(50)
+                .style('opacity', 0);
+        });
 }
 
 var storedData;

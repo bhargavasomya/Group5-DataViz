@@ -19,7 +19,7 @@ define([
 	div.cloneNode( true ).style.backgroundClip = "";
 	support.clearCloneStyle = div.style.backgroundClip === "content-box";
 
-	container.style.cssText = "border:0;width:0;height:0;top:0;left:-9999px;margin-top:1px;" +
+	container.style.cssText = "border:0;scatterPlotWidth:0;height:0;top:0;left:-9999px;margin-top:1px;" +
 		"position:absolute";
 	container.appendChild( div );
 
@@ -31,7 +31,7 @@ define([
 			// Vendor-prefix box-sizing
 			"-webkit-box-sizing:border-box;-moz-box-sizing:border-box;" +
 			"box-sizing:border-box;display:block;margin-top:1%;top:1%;" +
-			"border:1px;padding:1px;width:4px;position:absolute";
+			"border:1px;padding:1px;scatterPlotWidth:4px;position:absolute";
 		div.innerHTML = "";
 		docElem.appendChild( container );
 
@@ -63,8 +63,8 @@ define([
 			reliableMarginRight: function() {
 
 				// Support: Android 2.3
-				// Check if div with explicit width and no margin-right incorrectly
-				// gets computed margin-right based on width of container. (#3333)
+				// Check if div with explicit scatterPlotWidth and no margin-right incorrectly
+				// gets computed margin-right based on scatterPlotWidth of container. (#3333)
 				// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
 				// This support function is only executed once so no memoizing is needed.
 				var ret,
