@@ -19,3 +19,17 @@ function processHistogram(data) {
 function processScatterPlot(data) {
     dispatch.call('dataLoaded', null, data);
 }
+
+
+
+var q1 = $('#q1FormInput').val();
+var q2 = $('#21FormInput').val();
+$.ajax({
+  type: 'POST',
+  url: "http://127.0.0.1:5000/parse_data/",
+  data: JSON.stringify(q1+"\t\t"+q2),
+  contentType: 'application/json',
+  success: function(data){
+    // received data
+  }
+});
