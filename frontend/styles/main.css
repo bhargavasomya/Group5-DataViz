@@ -22,21 +22,56 @@
  * See readme for more information.
  */
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+
+#intro {
+    height:100vh;
+    width: 100%;
+
+}
+
+#intro {
+    background: url("../assets/quora_background.png")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 html {
-  font-family: sans-serif;
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
 body {
   margin: 0;
 }
+* {box-sizing: border-box;}
+
+.form-container {
+  align: center;
+  padding: 70px 0;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  width: auto;
+  margin-left: 12%;
+  margin-top: 12%;
+  margin-right: 12%;
+  display: inline-block;
+  color: #949494;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#scatter-viz {
+  position: relative;
+  height:100vh;
+  width: 100%;
+}
+
 article,
 aside,
 details,
 figcaption,
 figure,
 footer,
-header,
 hgroup,
 main,
 nav,
@@ -290,10 +325,8 @@ hr {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
-h1,
-h2,
+
 h3,
-h4,
 h5,
 h6,
 .h1,
@@ -3243,6 +3276,8 @@ h3:hover a.anchor {
 .header .addthis_toolbox .addthis_pill_style {
   width: 50px !important;
 }
+
+
 /**
  * variables.less
  *

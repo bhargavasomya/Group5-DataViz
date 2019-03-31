@@ -5,37 +5,56 @@
         <link href='styles/main.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
-    <div class="full-width header">
-        <div class="full-width header-inner">
-            <div class="container">
-                <h1>Visualizing Quora Duplicate Question</h1>
-                <h2>An interactive visualization</h2>
-                <p class="authors">
-                    Anak Agung Ngurah Bagus Trihatmaja, Shishir Kurhade, Somya Bhargava, Sriram Jayaraman
-                </p>
+    <header>
+        <!--Mask-->
+        <div id="intro" class="view">
+
+            <div class="mask rgba-black-strong">
+
+                <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+
+                    <div class="row d-flex justify-content-center text-center">
+
+                        <div class="col-md-10">
+
+                            <!-- Heading -->
+
+                            <!-- Description -->
+                                <div class="form-container", style="align: center">
+                                    <img src="./assets/quora-logo-png-new-latest-red.png" alt="Quora Logo" style="width:224px;height:60px;">
+                                    <h2 class="display-4 font-weight-bold white-text pt-5 mb-2" style="color: #B92B27">Visualizing Quora Duplicate Questions</h2>
+                                    <h4 class="white-text my-4"> An Interactive Visualization</h4>
+                                    <br/>
+                                    <p>
+                                    <center> <b>Enter two questions to check if they are duplicate </b></center>
+                                    <br/>
+                                </p>
+                                    <form class="form-inline">
+                                        <div class="container">
+                                            <div class="col-lg-6">
+                                                <textarea class="form-control mb-3" id="q1FormInput" rows="4" cols="50", placeholder="Question 1"></textarea>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <textarea type="text" class="form-control mb-4 mr-sm-2" id="q2FormInput" rows="4" cols="50", placeholder="Question 2"></textarea>
+                                            </div>
+                                            <input type="button" onClick="document.getElementById('scatter-viz').scrollIntoView();" class="btn btn-primary mx-auto mt-20" value="Start" style="background: #3e78ad"/>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </div>
-    </div>
-    <div class="full-width section-intro">
-        <div class="container">
-            <form class="form-inline">
-                <div class="container">
-                <div class="col-lg-6">
-                    <label for="q1FormInput">First Question</label>
-                    <textarea class="form-control mb-3" id="q1FormInput" rows="4" cols="50"></textarea>
-                </div>
-                <div class="col-lg-6">
-                    <label for="q2FormInput">Second Question</label>
-                    <textarea type="text" class="form-control mb-4 mr-sm-2" id="q2FormInput" rows="4" cols="50"></textarea>
-                </div>
-                </div>
-                <div class="container" style="width: 100px;">
-                    <input type="button" class="btn btn-primary mx-auto mt-20" value="Start"></input>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="full-width">
+        <!--/.Mask-->
+    </header>
+    <div class="full-width" id = "scatter-viz">
         <div class="container">
             <div class="col-lg-6">
                 <div class="scatterplot-cosine"></div>
