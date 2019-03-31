@@ -29,7 +29,7 @@
                                     <center> <b>Enter two questions to check if they are duplicate </b></center>
                                     <br/>
                                 </p>
-                                    <form class="form-inline">
+                                    <form class="form-inline" method="POST">
                                         <div class="container">
                                             <div class="col-lg-6">
                                                 <textarea class="form-control mb-3" id="q1FormInput" rows="4" cols="50", placeholder="Question 1"></textarea>
@@ -37,9 +37,19 @@
                                             <div class="col-lg-6">
                                                 <textarea type="text" class="form-control mb-4 mr-sm-2" id="q2FormInput" rows="4" cols="50", placeholder="Question 2"></textarea>
                                             </div>
-                                            <input type="button" onClick="document.getElementById('scatter-viz').scrollIntoView();" class="btn btn-primary mx-auto mt-20" value="Start" style="background: #3e78ad"/>
+                                            <input class="btn btn-primary mx-auto mt-20"
+                                                   id="Submit"
+                                                   name="Submit" onclick="myFunction()"
+                                                   style="background: #3e78ad"
+                                                   type="button" value="Start"/>
                                         </div>
                                     </form>
+                                    <script>
+                                        function myFunction() {
+                                                var elmnt = document.getElementById("scatter-viz");
+                                                elmnt.scrollIntoView();
+                                                 }
+                                    </script>
                                 </div>
 
 
@@ -54,7 +64,7 @@
         </div>
         <!--/.Mask-->
     </header>
-    <div class="full-width" id = "scatter-viz">
+    <div class="full-width" id="scatter-viz">
         <div class="container">
             <div class="col-lg-6">
                 <div class="scatterplot-cosine"></div>
