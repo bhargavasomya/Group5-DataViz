@@ -42,33 +42,5 @@ class Sentences(object):
         cls.data["distance"] = [cosine_similarity([points], [[row["p1"], row["p2"]]])[0][0] for index, row in cls.data.iterrows()]
         return cls.data.sort_values(by="distance")[:k] if k != None else cls.data.sort_values(by="distance")
 
-    @classmethod
-    def get_histogram(cls, q):
-        closest_to_q = Sentences.get_closest_sentences(q, 100)
-        return np.histogram(cls.data["distance"], bins=20)
-
-    @staticmethod
-    def clean_for_keras(q1, q2, embeddings_index):
-        questions = q1 + q2
-        tokenizer = Tokenizer(num_words = MAX_NB_WORDS)
-        tokenizer.fit_on_texts(questions)
-
-        question1_word_sequences = tokenizer.texts_to_sequences(q1)
-        question2_word_sequences = tokenizer.texts_to_sequences(q2)
-        word_index = tokenizer.word_index
-
-        nb_words = min(MAX_NB_WORDS, len(word_index))
-        word_embedding_matrix = np.zeros((nb_words + 1, EMBEDDING_DIM))
-        for word, i in word_index.items():
-            if i > MAX_NB_WORDS:
-                continue
-            embedding_vector = embeddings_index.get(word)
-            if embedding_vector is not None:
-                word_embedding_matrix[i] = embedding_vector
-
-        q1_data = pad_sequences(question1_word_sequences, maxlen=MAX_SEQUENCE_LENGTH)
-        q2_data = pad_sequences(question2_word_sequences, maxlen=MAX_SEQUENCE_LENGTH)
-
-        return q1_data, q2_data
 
 
