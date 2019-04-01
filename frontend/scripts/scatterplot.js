@@ -1,8 +1,8 @@
 var scatterPlotWidth = 540;
-var scatterPlotHeight = 570;
+var scatterPlotHeight = 540;
 var scatterPlotMargin = {
     top: 50,
-    left: 50,
+    left: 25,
     right: 25,
     bottom: 50
 };
@@ -10,7 +10,7 @@ var scatterPlotMargin = {
 //anything inside bracket will be selected
 var scatterPlotSvg = d3.select(".scatterplot-cosine")
     .append("svg")
-    .attr("scatterPlotWidth", scatterPlotWidth)
+    .attr("width", scatterPlotWidth)
     .attr("height", scatterPlotHeight);
 
 var scatterPlotXScale = d3.scaleLinear()
@@ -39,7 +39,7 @@ function setupScatterPlot(data) {
         .attr("cx", function(d){return scatterPlotXScale(d.p1);})
         .attr("cy", function(d){return scatterPlotScale(d.p2);})
         .attr("r", 3)
-        .attr("fill", "blue")
+        .attr("fill", "#9B59B6")
         .on('mouseover', function (d, i) {
             selectedText.transition()
                 .duration(50)

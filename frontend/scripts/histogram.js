@@ -34,6 +34,8 @@ function setupHistogram(data, klass) {
 
     var flags = Array(20).fill(0);
 
+    var colors = klass === ".histogram-q1" ? "#B92B27" : "#2b6dad"
+
     svg.selectAll("rect")
         .data(data)
         .enter()
@@ -42,7 +44,7 @@ function setupHistogram(data, klass) {
         .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + yScale(d.length) + ")"; })
         .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) -1 ; })
         .attr("height", function(d) { return height - yScale(d.length); })
-        .style("fill", "#69b3a2")
+        .style("fill", colors)
         .on('click', function (d, i) {
             if (flags[i] == 0)
             {
@@ -56,7 +58,7 @@ function setupHistogram(data, klass) {
 
                 d3.select(this).transition()
                     .duration('50')
-                    .attr('style', 'fill: #69b3a2');
+                    .attr('style', 'fill: ' + colors);
 
                 dispatch.call("enablePoints", null, d, klass);
                 flags[i] = 0;

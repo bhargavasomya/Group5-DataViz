@@ -66,21 +66,35 @@
     </header>
     <div class="full-width" id="scatter-viz">
         <div class="container">
-            <div class="col-lg-6">
+            <center> <h3>Exploring similar words by cosine distance </h3> </center>
+            <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
+                The histograms on the right have bins of cosine distance between input questions and the above mentioned sentences.
+                The height of each bins represents the number of questions lying in that particular range. You can click on them to see
+                those sentences on the scatter plot.
+            </p>
+<br/>
+
+            <div class="col-lg-8">
                 <div class="scatterplot-cosine"></div>
                 <div class="selected-text"></div>
             </div>
-            <label for="histograms-cosine">Histogram of the distance</label>
+           <center> <label for="histograms-cosine">Histograms of the cosine distance</label>
             <div id="histograms-cosine" class="mt-10">
-            <div class="col-lg-3">
+            <div class="col-lg-4">
+                <br/>
                 <label for="histogram-q1">First Question</label>
                 <div class="histogram-q1" id="histogram-q1"></div>
             </div>
-            <div class="col-lg-3">
+
+            <div class="col-lg-4">
+                <br/>
+                <br/>
                 <label for="histogram-q2">Second Question</label>
                 <div class="histogram-q2" id="histogram-q2"></div>
             </div>
+
             </div>
+               </center>
         </div>
     </div>
     <!--<div class="full-scatterPlotWidth mt-20">-->
