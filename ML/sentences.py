@@ -72,5 +72,3 @@ class Sentences(object):
         return q1_data, q2_data
 
 
-
-
