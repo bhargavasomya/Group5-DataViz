@@ -4,16 +4,19 @@ import pickle
 import json
 from keras.models import Model
 from keras.layers import Input, TimeDistributed, Dense, Lambda, concatenate, Dropout, BatchNormalization
+from keras.preprocessing.text import Tokenizer
 from keras.layers.embeddings import Embedding
 from keras import backend as K
 import keras
 from keras.preprocessing.sequence import pad_sequences
 
+from ML.lsa import LSA
 
 WORD_EMBEDDING_MATRIX_FILE = './data/word_embedding_matrix.npy'
 NB_WORDS_DATA_FILE = './data/nb_words.json'
 FIRST_MODEL_WEIGHTS_FILE = './data/question_pairs_weights_network1.h5'
 SECOND_MODEL_WEIGHTS_FILE = './data/question_pairs_weights_network2.h5'
+MAX_NB_WORDS = 200000
 MAX_SEQUENCE_LENGTH = 25
 EMBEDDING_DIM = 300
 RNG_SEED = 13371447
@@ -28,11 +31,13 @@ class NeuralNetwork(object):
     word_indices = None
     word_embedding_matrix = None
     nb_words = None
+    embedding_index = None
 
-    def __init__(self):
+    def __init__(self, embedding_index):
         self.load_prerequisite()
         self.load_first_model()
         self.load_second_model()
+        self.embedding_index = embedding_index
 
     def word2vec(self, question):
         word_seq = keras.preprocessing.text.text_to_word_sequence(question)
@@ -48,6 +53,14 @@ class NeuralNetwork(object):
 
         with open('./data/word_index.pickle', 'rb') as handle:
             self.word_indices = pickle.load(handle)
+
+    def convert_to_points(self, question):
+        tokenizer = Tokenizer(num_words=MAX_NB_WORDS)
+        tokenizer.fit_on_texts(question)
+        question_word_sequences = tokenizer.texts_to_sequences(question)
+        lsa = LSA()
+
+        return lsa.transform(question_word_sequences)
 
     def predict_with_first_model(self, q1, q2):
         return self.first_model.predict([self.word2vec(q1), self.word2vec(q2)], verbose=0)

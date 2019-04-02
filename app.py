@@ -4,13 +4,15 @@ from flask_cors import CORS
 from flask import jsonify
 from ML.sentences import Sentences
 from ML.neural_network import NeuralNetwork
+from ML.init_server import create_embedding_index
 
 app = Flask(__name__)
 api = Api(app)
 CORS(app)
 
 sentence = Sentences()
-nn = NeuralNetwork()
+embedding_index = create_embedding_index()
+nn = NeuralNetwork(embedding_index)
 
 
 @app.route('/getdata', methods=['POST'])
@@ -21,7 +23,7 @@ def get_data():
         names = request.get_json()
         q1 = names['q1']
         q2 = names['q2']
-
+    print(nn.convert_to_points(q1))
     return sentence.get_sentences(nn, q1, q2, k = 10)
 
 

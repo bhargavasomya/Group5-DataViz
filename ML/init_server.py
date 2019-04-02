@@ -1,6 +1,6 @@
 import numpy as np
 
-DATASETS_DIR = '../data'
+DATASETS_DIR = './data/'
 GLOVE_FILE = 'glove.6B.300d.txt'
 
 
