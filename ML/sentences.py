@@ -22,8 +22,8 @@ class Sentences(object):
         self.data["q"] = q
 
     def get_sentences(self, nn, sentence1, sentence2, k=None):
-        points1 = nn.convert_to_points(sentence1)
-        points2 = nn.convert_to_points(sentence2)
+        points1 = [100, 100]
+        points2 = [99, 20]
 
         self.data["distance1"] = [cosine_similarity([points1], [[row["p1"], row["p2"]]])[0][0] for index, row in
                                   self.data.iterrows()]

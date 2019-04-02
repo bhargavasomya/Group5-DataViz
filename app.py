@@ -23,7 +23,6 @@ def get_data():
         names = request.get_json()
         q1 = names['q1']
         q2 = names['q2']
-    print(nn.convert_to_points(q1))
     return sentence.get_sentences(nn, q1, q2, k = 10)
 
 

@@ -55,9 +55,8 @@ class NeuralNetwork(object):
             self.word_indices = pickle.load(handle)
 
     def convert_to_points(self, question):
-        tokenizer = Tokenizer(num_words=MAX_NB_WORDS)
-        tokenizer.fit_on_texts(question)
-        question_word_sequences = tokenizer.texts_to_sequences(question)
+        question_word_sequences = self.word2vec(question)
+        print(question_word_sequences)
         lsa = LSA()
 
         return lsa.transform(question_word_sequences)
