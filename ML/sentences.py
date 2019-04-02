@@ -21,7 +21,10 @@ class Sentences(object):
         self.data["p2"] = _points[:, 1]
         self.data["q"] = q
 
-    def get_sentences(self, nn, sentence1, sentence2, points1, points2, k=None):
+    def get_sentences(self, nn, sentence1, sentence2, k=None):
+        points1 = None
+        points2 = None
+
         self.data["distance1"] = [cosine_similarity([points1], [[row["p1"], row["p2"]]])[0][0] for index, row in
                                   self.data.iterrows()]
         self.data["distance2"] = [cosine_similarity([points2], [[row["p1"], row["p2"]]])[0][0] for index, row in
@@ -36,4 +39,4 @@ class Sentences(object):
         self.data["model2_probs_2"] = [nn.predict_with_first_model(sentence2, row["q"]) for index, row in
                                        self.data.iterrows()]
 
-        return self.data.sort_values(by="distance1")[:k] if k is not None else self.data.sort_values(by="distance")
+        return self.data[:k] if k is not None else self.data
