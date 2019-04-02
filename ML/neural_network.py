@@ -10,10 +10,10 @@ import keras
 from keras.preprocessing.sequence import pad_sequences
 
 
-WORD_EMBEDDING_MATRIX_FILE = '../data/word_embedding_matrix.npy'
-NB_WORDS_DATA_FILE = '../data/nb_words.json'
-FIRST_MODEL_WEIGHTS_FILE = '../data/question_pairs_weights_network1.h5'
-SECOND_MODEL_WEIGHTS_FILE = '../data/question_pairs_weights_network2.h5'
+WORD_EMBEDDING_MATRIX_FILE = './data/word_embedding_matrix.npy'
+NB_WORDS_DATA_FILE = './data/nb_words.json'
+FIRST_MODEL_WEIGHTS_FILE = './data/question_pairs_weights_network1.h5'
+SECOND_MODEL_WEIGHTS_FILE = './data/question_pairs_weights_network2.h5'
 MAX_SEQUENCE_LENGTH = 25
 EMBEDDING_DIM = 300
 RNG_SEED = 13371447
@@ -46,7 +46,7 @@ class NeuralNetwork(object):
 
         self.word_embedding_matrix = np.load(open(WORD_EMBEDDING_MATRIX_FILE, 'rb'))
 
-        with open('word_index.pickle', 'rb') as handle:
+        with open('./data/word_index.pickle', 'rb') as handle:
             self.word_indices = pickle.load(handle)
 
     def predict_with_first_model(self, q1, q2):
