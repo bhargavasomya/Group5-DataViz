@@ -22,22 +22,24 @@ function processScatterPlot(data) {
 
 
 $('#Submit').click(function() {
-	var q1 = $('#q1FormInput').val();
-	var q2 = $('#q2FormInput').val();
+    var q1 = $('#q1FormInput').val();
+    var q2 = $('#q2FormInput').val();
 
-        $.ajax({
-          type: "POST",
-          contentType: "application/json;charset=utf-8",
-          url: "http://127.0.0.1:5000/getdata",
-          traditional: "true",
-          data: JSON.stringify({ q1: q1, q2: q2 }),
-          dataType: "json",
-	  success: function (e) {
-                    console.log(e);
-                    //window.location = "http://127.0.0.1:5000/";
-                },
-                error: function(error) {
+    $.ajax({
+      type: "POST",
+      contentType: "application/json;charset=utf-8",
+      url: "http://127.0.0.1:5000/getdata",
+      traditional: "true",
+      data: JSON.stringify({ q1: q1, q2: q2 }),
+      dataType: "json",
+        success: function (e) {
+                console.log(e);
+                //window.location = "http://127.0.0.1:5000/";
+            },
+            error: function(error) {
                 console.log(error);
-            }
-          });
-    });
+        }
+      });
+    document.getElementById("scatter-viz").scrollIntoView();
+
+});
