@@ -18,8 +18,21 @@ function setupHistogram(data, klass) {
         .attr("width", width)
         .attr("height", height);
 
+    var range = function(klass) {
+        switch(klass) {
+            case ".histogram-q1":
+                return [-1,1];
+            case ".histogram-q2":
+                return [-1,1];
+            case ".histogram-q3":
+                return [0,1];
+            case ".histogram-q4":
+                return [0,1];
+        }
+    }(klass);
+
     var xScale = d3.scaleLinear() //Discrete Scale
-        .domain([-1,1])
+        .domain(range)
         .range([margin.left, width-margin.right]) //Rounds values of
     svg.append("g")
         .attr("transform", `translate(0,${height-margin.bottom})`)
@@ -34,7 +47,18 @@ function setupHistogram(data, klass) {
 
     var flags = Array(20).fill(0);
 
-    var colors = klass === ".histogram-q1" ? "#B92B27" : "#2b6dad";
+    var colors = function(klass) {
+        switch(klass) {
+            case ".histogram-q1":
+                return "#B92B27";
+            case ".histogram-q2":
+                return "#2b6dad";
+            case ".histogram-q3":
+                return "#7a7fad";
+            case ".histogram-q4":
+                return "#1b622d";
+        }
+    }(klass);
 
     var div = d3.select(klass).append("div")
         .attr("class", "tooltip")
@@ -96,4 +120,12 @@ dispatch.on("firstHistogramDataLoaded.histogram", function(data) {
 
 dispatch.on("secondHistogramDataLoaded.histogram", function(data) {
     setupHistogram(data, ".histogram-q2");
+});
+
+dispatch.on("thirdHistogramDataLoaded.histogram", function(data) {
+    setupHistogram(data, ".histogram-q3");
+});
+
+dispatch.on("forthHistogramDataLoaded.histogram", function(data) {
+    setupHistogram(data, ".histogram-q4");
 });

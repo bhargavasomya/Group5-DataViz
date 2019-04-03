@@ -1,23 +1,42 @@
 const dispatch = d3.dispatch("dataLoaded",
-    "firstHistogramDataLoaded", "secondHistogramDataLoaded", "enablePoints", "disablePoints");
+    "firstHistogramDataLoaded", "secondHistogramDataLoaded",
+    "thirdHistogramDataLoaded", "forthHistogramDataLoaded",
+    "enablePoints", "disablePoints");
 
 
 function processHistogram(data) {
-    var histogram = d3.histogram()
+    var firstHistogram = d3.histogram()
         .value(function(d) { return d.distance1 })
         .domain([-1,1])
         .thresholds(20);
 
-    var bins = histogram(data);
-    dispatch.call('firstHistogramDataLoaded', null, bins);
+    var firstBins = firstHistogram(data);
+    dispatch.call('firstHistogramDataLoaded', null, firstBins);
 
-    histogram = d3.histogram()
+    var secondHistogram = d3.histogram()
         .value(function(d) { return d.distance2 })
         .domain([-1,1])
         .thresholds(20);
 
-    bins = histogram(data);
-    dispatch.call('secondHistogramDataLoaded', null, bins);
+    var secondBins = secondHistogram(data);
+    dispatch.call('secondHistogramDataLoaded', null, secondBins);
+
+
+    var thirdHistogram = d3.histogram()
+        .value(function(d) { return d.distance1 })
+        .domain([-1,1])
+        .thresholds(20);
+
+    var thirdBins = thirdHistogram(data);
+    dispatch.call('thirdHistogramDataLoaded', null, thirdBins);
+
+    var forthHistogram = d3.histogram()
+        .value(function(d) { return d.distance1 })
+        .domain([-1,1])
+        .thresholds(20);
+
+    var forthBins = forthHistogram(data);
+    dispatch.call('forthHistogramDataLoaded', null, forthBins);
 }
 
 function processScatterPlot(data) {
