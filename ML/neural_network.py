@@ -61,6 +61,11 @@ class NeuralNetwork(object):
         vec_sequence = pad_sequences([vec_sequence], maxlen=25)
         return vec_sequence
 
+    def word2vec2(self, question):
+        word_seq = keras.preprocessing.text.text_to_word_sequence(question)
+        vec_sequence = [self.word_indices[w] for w in word_seq if w in self.word_indices]
+        return vec_sequence
+
     def load_prerequisite(self):
         with open(NB_WORDS_DATA_FILE, 'r') as f:
             self.nb_words = json.load(f)['nb_words']
@@ -69,13 +74,6 @@ class NeuralNetwork(object):
 
         with open('./data/word_index.pickle', 'rb') as handle:
             self.word_indices = pickle.load(handle)
-
-    def convert_to_points(self, question):
-        question_word_sequences = self.word2vec(question)
-        print(question_word_sequences)
-        lsa = LSA()
-
-        return lsa.transform(question_word_sequences)
 
     def predict_with_first_model(self, q1, q2):
         with self.first_graph.as_default():
