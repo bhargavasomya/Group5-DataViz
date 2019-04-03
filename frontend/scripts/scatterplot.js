@@ -14,11 +14,11 @@ var scatterPlotSvg = d3.select(".scatterplot-cosine")
     .attr("height", scatterPlotHeight);
 
 var scatterPlotXScale = d3.scaleLinear()
-    .domain([-5,10])
+    .domain([-20,20])
     .range([scatterPlotMargin.left, scatterPlotWidth-scatterPlotMargin.right]);
 
 var scatterPlotScale = d3.scaleLinear()
-    .domain([-5,5])
+    .domain([-20,20])
     .range([scatterPlotHeight-scatterPlotMargin.bottom, scatterPlotMargin.top]);
 
 function setupScatterPlot(data) {
@@ -36,19 +36,21 @@ function setupScatterPlot(data) {
         .data(data)
         .enter() //empty placeholder
         .append("circle")
-        .attr("cx", function(d){return scatterPlotXScale(d.p1);})
-        .attr("cy", function(d){return scatterPlotScale(d.p2);})
+        .attr("cx", function(d){return scatterPlotXScale(d.x);})
+        .attr("cy", function(d){return scatterPlotScale(d.y);})
         .attr("r", 3)
         .attr("fill", "#9B59B6")
         .on('mouseover', function (d, i) {
+            d3.select(this).attr("fill", 'orange');
             selectedText.transition()
                 .duration(50)
                 .style('opacity', 1)
 
-            let q = d.q;
+            let q = d.question;
             selectedText.html(q);
         })
         .on('mouseout', function (d, i) {
+            d3.select(this).attr("fill", '#9B59B6');
             selectedText.transition()
                 .duration(50)
                 .style('opacity', 0);

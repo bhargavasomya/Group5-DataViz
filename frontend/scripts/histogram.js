@@ -66,7 +66,10 @@ function setupHistogram(data, klass) {
         });
 }
 
-dispatch.on("histogramDataLoaded.histogram", function(data) {
+dispatch.on("firstHistogramDataLoaded.histogram", function(data) {
     setupHistogram(data, ".histogram-q1");
+});
+
+dispatch.on("secondHistogramDataLoaded.histogram", function(data) {
     setupHistogram(data, ".histogram-q2");
 });

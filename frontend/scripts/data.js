@@ -1,19 +1,23 @@
 const dispatch = d3.dispatch("dataLoaded",
-    "histogramDataLoaded", "enablePoints", "disablePoints");
+    "firstHistogramDataLoaded", "secondHistogramDataLoaded", "enablePoints", "disablePoints");
 
-d3.json("./dummies/points.json").then(function(data) {
-    processHistogram(data);
-    processScatterPlot(data);
-});
 
 function processHistogram(data) {
     var histogram = d3.histogram()
-        .value(function(d) { return d.distance })
+        .value(function(d) { return d.distance1 })
         .domain([-1,1])
         .thresholds(20);
 
     var bins = histogram(data);
-    dispatch.call('histogramDataLoaded', null, bins);
+    dispatch.call('firstHistogramDataLoaded', null, bins);
+
+    histogram = d3.histogram()
+        .value(function(d) { return d.distance2 })
+        .domain([-1,1])
+        .thresholds(20);
+
+    bins = histogram(data);
+    dispatch.call('secondHistogramDataLoaded', null, bins);
 }
 
 function processScatterPlot(data) {
@@ -32,14 +36,16 @@ $('#Submit').click(function() {
       traditional: "true",
       data: JSON.stringify({ q1: q1, q2: q2 }),
       dataType: "json",
-        success: function (e) {
-                console.log(e);
-                //window.location = "http://127.0.0.1:5000/";
-            },
-            error: function(error) {
-                console.log(error);
+        success: function (json_data) {
+          console.log(json_data)
+            processHistogram(json_data);
+            processScatterPlot(json_data);
+            //window.location = "http://127.0.0.1:5000/";
+        },
+        error: function(error) {
+            console.log(error);
         }
-      });
+    });
     document.getElementById("scatter-viz").scrollIntoView();
 
 });
