@@ -31,6 +31,7 @@ function setupScatterPlot(data) {
         .call(d3.axisLeft().scale(scatterPlotScale));
 
     var selectedText = d3.select(".selected-text").style("opacity", 0);
+    var currentColor = "";
 
     scatterPlotSvg.selectAll("circle")//empty selection
         .data(data)
@@ -42,6 +43,7 @@ function setupScatterPlot(data) {
         .style("opacity", 0.7)
         .attr("fill", "#9B59B6")
         .on('mouseover', function (d, i) {
+            currentColor = d3.select(this).attr("fill");
             d3.select(this).attr("fill", 'orange');
             selectedText.transition()
                 .duration(50)
@@ -51,7 +53,7 @@ function setupScatterPlot(data) {
             selectedText.html(q);
         })
         .on('mouseout', function (d, i) {
-            d3.select(this).attr("fill", '#9B59B6');
+            d3.select(this).attr("fill", currentColor);
             selectedText.transition()
                 .duration(50)
                 .style('opacity', 0);
