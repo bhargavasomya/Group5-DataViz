@@ -39,6 +39,7 @@ function setupScatterPlot(data) {
         .attr("cx", function(d){return scatterPlotXScale(d.x);})
         .attr("cy", function(d){return scatterPlotScale(d.y);})
         .attr("r", 3)
+        .style("opacity", 0.7)
         .attr("fill", "#9B59B6")
         .on('mouseover', function (d, i) {
             d3.select(this).attr("fill", 'orange');
@@ -66,11 +67,12 @@ dispatch.on("dataLoaded.scatterplot", function(data) {
     setupScatterPlot(data);
 });
 
-function setOpacityForGroup(value, opacityValue) {
+function setOpacityAndColorForGroup(value, opacityValue, colorValue) {
     value.forEach(function(v) {
         scatterPlotSvg.selectAll("circle").filter(function (d) {
             return d === v;
-        }).attr("fill-opacity", opacityValue)
+        }).attr("fill-opacity", opacityValue).attr("fill", colorValue)
+
     });
 }
 
@@ -82,8 +84,8 @@ dispatch.on("disablePoints.scatterplot", function (data, histogramNumber) {
     }
 
     scatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
-    firstHistogramDisplayed.forEach(function(g) {setOpacityForGroup(g, 1)});
-    secondHistogramDisplayed.forEach(function(g) {setOpacityForGroup(g, 1)});
+    firstHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27")});
+    secondHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#2b6dad")});
 });
 
 
@@ -95,10 +97,10 @@ dispatch.on("enablePoints.scatterplot", function (data, histogramNumber) {
     }
 
     if (firstHistogramDisplayed.size == 0 && secondHistogramDisplayed.size == 0) {
-        scatterPlotSvg.selectAll("circle").attr("fill-opacity", 1.0);
+        scatterPlotSvg.selectAll("circle").attr("fill-opacity", .7);
     } else {
         scatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
-        firstHistogramDisplayed.forEach(function(g) {setOpacityForGroup(g, 1)});
-        secondHistogramDisplayed.forEach(function(g) {setOpacityForGroup(g, 1)});
+        firstHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27")});
+        secondHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#2b6dad")});
     }
 });

@@ -20,7 +20,7 @@ def get_data():
         names = request.get_json()
         q1 = names['q1']
         q2 = names['q2']
-    return sentence.get_sentences(q1, q2).to_json()
+    return sentence.get_sentences(q1, q2).to_json(orient='records')
 
 
 if __name__ == '__main__':
