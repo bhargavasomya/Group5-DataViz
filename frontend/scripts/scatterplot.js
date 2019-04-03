@@ -7,6 +7,8 @@ var scatterPlotMargin = {
     bottom: 50
 };
 
+var symbol = d3.symbol();
+
 //anything inside bracket will be selected
 var scatterPlotSvg = d3.select(".scatterplot-cosine")
     .append("svg")
@@ -63,6 +65,8 @@ function setupScatterPlot(data) {
 var storedData;
 var firstHistogramDisplayed = new Set();
 var secondHistogramDisplayed = new Set();
+var thirdHistogramDisplayed = new Set();
+var forthHistogramDisplayed = new Set();
 
 dispatch.on("dataLoaded.scatterplot", function(data) {
     storedData = data;
@@ -79,10 +83,15 @@ function setOpacityAndColorForGroup(value, opacityValue, colorValue) {
 }
 
 dispatch.on("disablePoints.scatterplot", function (data, histogramNumber) {
-    if (histogramNumber === ".histogram-q1") {
-        firstHistogramDisplayed.add(data);
-    } else if (histogramNumber === ".histogram-q2") {
-        secondHistogramDisplayed.add(data);
+    switch (histogramNumber) {
+        case ".histogram-q1":
+            firstHistogramDisplayed.add(data);
+        case ".histogram-q2":
+            secondHistogramDisplayed.add(data);
+        case ".histogram-q3":
+            thirdHistogramDisplayed.add(data);
+        case ".histogram-q4":
+            forthHistogramDisplayed.add(data);
     }
 
     scatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
@@ -92,10 +101,15 @@ dispatch.on("disablePoints.scatterplot", function (data, histogramNumber) {
 
 
 dispatch.on("enablePoints.scatterplot", function (data, histogramNumber) {
-    if (histogramNumber === ".histogram-q1") {
-        firstHistogramDisplayed.delete(data);
-    } else if (histogramNumber === ".histogram-q2") {
-        secondHistogramDisplayed.delete(data);
+    switch (histogramNumber) {
+        case ".histogram-q1":
+            firstHistogramDisplayed.delete(data);
+        case ".histogram-q2":
+            secondHistogramDisplayed.delete(data);
+        case ".histogram-q3":
+            thirdHistogramDisplayed.delete(data);
+        case ".histogram-q4":
+            forthHistogramDisplayed.delete(data);
     }
 
     if (firstHistogramDisplayed.size == 0 && secondHistogramDisplayed.size == 0) {
