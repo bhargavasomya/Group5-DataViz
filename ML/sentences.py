@@ -45,11 +45,14 @@ class Sentences(object):
         point1 = self.convert_to_points(sentence1)
         point2 = self.convert_to_points(sentence2)
 
+        # Append the question
+        local_data = self.data[:k]
+        local_data.append(pd.DataFrame([[point1[0], point1[1], sentence1], [point2[0], point2[1], sentence2]],
+                                       columns=['x', 'y', 'question']))
+
         # Removing punctuations from strings
         sentence1 = sentence1.translate(str.maketrans('', '', string.punctuation))
         sentence2 = sentence2.translate(str.maketrans('', '', string.punctuation))
-
-        local_data = self.data[:k]
 
         local_data["distance1"] = [cosine_similarity([point1], [[row["x"], row["y"]]])[0][0] for index, row in
                                    self.data[:k].iterrows()]
