@@ -99,7 +99,8 @@ dispatch.on("enablePoints.scatterplot", function (data, histogramNumber) {
     }
 
     if (firstHistogramDisplayed.size == 0 && secondHistogramDisplayed.size == 0) {
-        scatterPlotSvg.selectAll("circle").attr("fill-opacity", .7);
+        scatterPlotSvg.selectAll("circle").attr("fill-opacity", .7)
+            .attr("fill", "#9B59B6");
     } else {
         scatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
         firstHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27")});
