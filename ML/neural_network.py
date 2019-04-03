@@ -57,7 +57,7 @@ class NeuralNetwork(object):
 
     def word2vec(self, question):
         word_seq = keras.preprocessing.text.text_to_word_sequence(question)
-        vec_sequence = [self.word_indices[w] for w in word_seq]
+        vec_sequence = [self.word_indices[w] for w in word_seq if w in self.word_indices]
         vec_sequence = pad_sequences([vec_sequence], maxlen=25)
         return vec_sequence
 

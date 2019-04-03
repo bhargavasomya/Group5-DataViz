@@ -1,6 +1,7 @@
 import pickle
 import pandas as pd
 import numpy as np
+import string
 from sklearn.metrics.pairwise import cosine_similarity
 
 import pandas as pd
@@ -28,18 +29,22 @@ class Sentences(object):
         points1 = [100, 100]
         points2 = [99, 20]
 
+        #Removing punctuations from strings
+        sentence1 = sentence1.translate(str.maketrans('', '', string.punctuation))
+        sentence2 = sentence2.translate(str.maketrans('', '', string.punctuation))
+
         # self.data["distance1"] = [cosine_similarity([points1], [[row["p1"], row["p2"]]])[0][0] for index, row in
         #                           self.data.iterrows()]
         # self.data["distance2"] = [cosine_similarity([points2], [[row["p1"], row["p2"]]])[0][0] for index, row in
         #                           self.data.iterrows()]
 
-        self.data["model1_probs_1"] = [self.nn.predict_with_first_model(sentence1, row["q"]) for index, row in
+        self.data["model1_probs_1"] = [self.nn.predict_with_first_model(sentence1, row["q"].translate(str.maketrans('', '', string.punctuation))) for index, row in
                                        self.data.iterrows()]
-        self.data["model1_probs_2"] = [self.nn.predict_with_first_model(sentence2, row["q"]) for index, row in
+        self.data["model1_probs_2"] = [self.nn.predict_with_first_model(sentence2, row["q"].translate(str.maketrans('', '', string.punctuation))) for index, row in
                                        self.data.iterrows()]
-        self.data["model2_probs_1"] = [self.nn.predict_with_second_model(sentence1, row["q"]) for index, row in
+        self.data["model2_probs_1"] = [self.nn.predict_with_second_model(sentence1, row["q"].translate(str.maketrans('', '', string.punctuation))) for index, row in
                                        self.data.iterrows()]
-        self.data["model2_probs_2"] = [self.nn.predict_with_second_model(sentence2, row["q"]) for index, row in
+        self.data["model2_probs_2"] = [self.nn.predict_with_second_model(sentence2, row["q"].translate(str.maketrans('', '', string.punctuation))) for index, row in
                                        self.data.iterrows()]
 
         return self.data[:k] if k is not None else self.data
