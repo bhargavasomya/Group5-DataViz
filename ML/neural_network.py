@@ -4,8 +4,10 @@ import pickle
 import json
 from keras.models import Model
 from keras.layers import Input, TimeDistributed, Dense, Lambda, concatenate, Dropout, BatchNormalization
+from keras.models import load_model
 from keras.preprocessing.text import Tokenizer
 from keras.layers.embeddings import Embedding
+import tensorflow as tf
 from keras import backend as K
 import keras
 from keras.preprocessing.sequence import pad_sequences
@@ -35,8 +37,22 @@ class NeuralNetwork(object):
 
     def __init__(self, embedding_index):
         self.load_prerequisite()
-        self.load_first_model()
-        self.load_second_model()
+
+        self.first_session = tf.Session()
+        self.first_graph = tf.get_default_graph()
+        with self.first_graph.as_default():
+            with self.first_session.as_default():
+                self.load_first_model()
+                # self.load_second_model()
+                print("First neural network initialised")
+
+        self.second_session = tf.Session()
+        self.second_graph = tf.get_default_graph()
+        with self.second_graph.as_default():
+            with self.second_session.as_default():
+                self.load_second_model()
+                print("Second neural network initialised")
+
         self.embedding_index = embedding_index
 
     def word2vec(self, question):
@@ -62,13 +78,16 @@ class NeuralNetwork(object):
         return lsa.transform(question_word_sequences)
 
     def predict_with_first_model(self, q1, q2):
-        return self.first_model.predict([self.word2vec(q1), self.word2vec(q2)], verbose=0)
+        with self.first_graph.as_default():
+            with self.first_session.as_default():
+                return self.first_model.predict([self.word2vec(q1), self.word2vec(q2)], verbose=0)
 
     def predict_with_second_model(self, q1, q2):
-        return self.second_model.predict([self.word2vec(q1), self.word2vec(q2)], verbose=0)
+        with self.second_graph.as_default():
+            with self.second_session.as_default():
+                return self.second_model.predict([self.word2vec(q1), self.word2vec(q2)], verbose=0)
 
     def load_second_model(self):
-        K.clear_session()
         question1 = Input(shape=(MAX_SEQUENCE_LENGTH,))
         question2 = Input(shape=(MAX_SEQUENCE_LENGTH,))
 
@@ -139,8 +158,6 @@ class NeuralNetwork(object):
         self.second_model.load_weights(SECOND_MODEL_WEIGHTS_FILE)
 
     def load_first_model(self):
-        K.clear_session()
-
         question1 = Input(shape=(MAX_SEQUENCE_LENGTH,))
         question2 = Input(shape=(MAX_SEQUENCE_LENGTH,))
 
@@ -198,3 +215,4 @@ class NeuralNetwork(object):
         self.first_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
         self.first_model.load_weights(FIRST_MODEL_WEIGHTS_FILE)
+        # print(self.first_model.predict([self.word2vec(self.q1), self.word2vec(self.q2)], verbose=0))
