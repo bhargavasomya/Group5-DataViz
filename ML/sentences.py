@@ -31,18 +31,17 @@ class Sentences(object):
         self.word2vec_model = Sentences.load_glove_model('./data/glove.6B.50d.txt')
 
         # _sentences = pickle.load(open("./data/words.p", "rb"))
-        _points = pickle.load(open("./data/points.pkl", "rb"))
-        _q1 = pickle.load(open("./data/question1.pkl", "rb"))
-        _q2 = pickle.load(open("./data/question2.pkl", "rb"))
-        q = _q1.append(_q2, ignore_index=True)
+        points = pickle.load(open("./data/points.pkl", "rb"))
+        questions = pickle.load(open("./data/questions.pkl", "rb"))
 
         # self.data["sentences"] = _sentences
-        self.data["x"] = _points[:, 0]
-        self.data["y"] = _points[:, 1]
-        self.data["question"] = q
+        self.data["x"] = points[:, 0]
+        self.data["y"] = points[:, 1]
+        self.data["question"] = questions
         self.nn = NeuralNetwork(embedding_index)
+        self.lsa = LSA()
 
-    def get_sentences(self, sentence1, sentence2, k=None):
+    def get_sentences(self, sentence1, sentence2, k=1000):
         point1 = self.convert_to_points(sentence1)
         point2 = self.convert_to_points(sentence2)
 
@@ -50,33 +49,35 @@ class Sentences(object):
         sentence1 = sentence1.translate(str.maketrans('', '', string.punctuation))
         sentence2 = sentence2.translate(str.maketrans('', '', string.punctuation))
 
-        self.data["distance1"] = [cosine_similarity([point1], [[row["x"], row["y"]]])[0][0] for index, row in
-                                  self.data.iterrows()]
-        self.data["distance2"] = [cosine_similarity([point2], [[row["x"], row["y"]]])[0][0] for index, row in
-                                  self.data.iterrows()]
+        local_data = self.data[:k]
 
-        self.data["model1_probs_1"] = [
+        local_data["distance1"] = [cosine_similarity([point1], [[row["x"], row["y"]]])[0][0] for index, row in
+                                   self.data[:k].iterrows()]
+        local_data["distance2"] = [cosine_similarity([point2], [[row["x"], row["y"]]])[0][0] for index, row in
+                                   self.data[:k].iterrows()]
+
+        local_data["model1_probs_1"] = [
             self.nn.predict_with_first_model(sentence1,
-                                             row["question"].translate(str.maketrans('', '', string.punctuation)))
+                                             row["question"].translate(str.maketrans('', '', string.punctuation)))[0]
             for index, row in
-            self.data.iterrows()]
-        self.data["model1_probs_2"] = [
+            self.data[:k].iterrows()]
+        local_data["model1_probs_2"] = [
             self.nn.predict_with_first_model(sentence2,
-                                             row["question"].translate(str.maketrans('', '', string.punctuation)))
+                                             row["question"].translate(str.maketrans('', '', string.punctuation)))[0]
             for index, row in
-            self.data.iterrows()]
-        self.data["model2_probs_1"] = [
+            self.data[:k].iterrows()]
+        local_data["model2_probs_1"] = [
             self.nn.predict_with_second_model(sentence1,
-                                              row["question"].translate(str.maketrans('', '', string.punctuation)))
+                                              row["question"].translate(str.maketrans('', '', string.punctuation)))[0]
             for index, row in
-            self.data.iterrows()]
-        self.data["model2_probs_2"] = [
+            self.data[:k].iterrows()]
+        local_data["model2_probs_2"] = [
             self.nn.predict_with_second_model(sentence2,
-                                              row["question"].translate(str.maketrans('', '', string.punctuation)))
+                                              row["question"].translate(str.maketrans('', '', string.punctuation)))[0]
             for index, row in
-            self.data.iterrows()]
+            self.data[:k].iterrows()]
 
-        return self.data[:k] if k is not None else self.data
+        return local_data
 
     def convert_to_points(self, question):
         word_vec = np.array([0.0] * 5000)
@@ -89,9 +90,7 @@ class Sentences(object):
             offset += 50
         word_vec = sparse.csr_matrix(word_vec)
 
-        lsa = LSA()
-
-        return lsa.transform(word_vec)
+        return self.lsa.transform(word_vec)[0]
 
     def create_word2vec(self, text):
         vector_list = [self.word2vec_model[word] for word in text if word in self.word2vec_model]
