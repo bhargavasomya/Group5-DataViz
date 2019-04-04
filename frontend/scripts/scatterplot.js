@@ -65,8 +65,6 @@ function setupScatterPlot(data) {
 var storedData;
 var firstHistogramDisplayed = new Set();
 var secondHistogramDisplayed = new Set();
-var thirdHistogramDisplayed = new Set();
-var forthHistogramDisplayed = new Set();
 
 dispatch.on("dataLoaded.scatterplot", function(data) {
     storedData = data;
@@ -86,12 +84,10 @@ dispatch.on("disablePoints.scatterplot", function (data, histogramNumber) {
     switch (histogramNumber) {
         case ".histogram-q1":
             firstHistogramDisplayed.add(data);
+            break;
         case ".histogram-q2":
             secondHistogramDisplayed.add(data);
-        case ".histogram-q3":
-            thirdHistogramDisplayed.add(data);
-        case ".histogram-q4":
-            forthHistogramDisplayed.add(data);
+            break;
     }
 
     scatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
@@ -104,12 +100,10 @@ dispatch.on("enablePoints.scatterplot", function (data, histogramNumber) {
     switch (histogramNumber) {
         case ".histogram-q1":
             firstHistogramDisplayed.delete(data);
+            break;
         case ".histogram-q2":
             secondHistogramDisplayed.delete(data);
-        case ".histogram-q3":
-            thirdHistogramDisplayed.delete(data);
-        case ".histogram-q4":
-            forthHistogramDisplayed.delete(data);
+            break;
     }
 
     if (firstHistogramDisplayed.size == 0 && secondHistogramDisplayed.size == 0) {
