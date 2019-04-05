@@ -28,6 +28,10 @@ function setupHistogram(data, klass) {
                 return [0,1];
             case ".histogram-q4":
                 return [0,1];
+            case ".histogram-q5":
+                return [-1,1];
+            case ".histogram-q6":
+                return [-1,1];
         }
     }(klass);
 
@@ -57,6 +61,10 @@ function setupHistogram(data, klass) {
                 return "#7a7fad";
             case ".histogram-q4":
                 return "#1b622d";
+            case ".histogram-q5":
+                return "#B92B27";
+            case ".histogram-q6":
+                return "#2b6dad";
         }
     }(klass);
 
@@ -128,4 +136,12 @@ dispatch.on("thirdHistogramDataLoaded.histogram", function(data) {
 
 dispatch.on("forthHistogramDataLoaded.histogram", function(data) {
     setupHistogram(data, ".histogram-q4");
+});
+
+dispatch.on("fifthHistogramDataLoaded.histogram", function(data) {
+    setupHistogram(data, ".histogram-q5");
+});
+
+dispatch.on("sixthHistogramDataLoaded.histogram", function(data) {
+    setupHistogram(data, ".histogram-q6");
 });

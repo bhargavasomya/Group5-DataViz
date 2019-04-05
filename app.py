@@ -24,6 +24,29 @@ def get_data():
         k = int(names['k'])
     return sentence.get_sentences(q1, q2, k=k).to_json(orient='records')
 
+@app.route('/getmatrix', methods=['POST'])
+def get_pairs():
+    questions_array = None
+    model = ''
+
+    values = pd.DataFrame(columns=['x', 'y', 'value'])
+
+    if request.method == 'POST':
+        json = request.get_json()
+        questions_array = json['questions']
+        model = json['model']
+
+    for i in range(len(questions_array)):
+        for j in range(len(questions_array)):
+            q1 = questions_array[i]
+            q2 = questions_array[j]
+            val = sentence.predict_with_first_model(q1, q2) if model == "first" \
+                    else sentence.predict_with_second_model(q1, q2)
+            row = [q1, q2, val]
+            values.append(pd.DataFrame(row, columns=['x', 'y', 'value']))
+
+    return values.to_json(orient='records')
+
 
 if __name__ == '__main__':
     app.run()

@@ -61,22 +61,22 @@ class Sentences(object):
 
         local_data["model1_probs_1"] = [
             self.nn.predict_with_first_model(sentence1,
-                                             row["question"].translate(str.maketrans('', '', string.punctuation)))[0]
+                                             row["question"].translate(str.maketrans('', '', string.punctuation)))[0][0]
             for index, row in
             self.data[:k].iterrows()]
         local_data["model1_probs_2"] = [
             self.nn.predict_with_first_model(sentence2,
-                                             row["question"].translate(str.maketrans('', '', string.punctuation)))[0]
+                                             row["question"].translate(str.maketrans('', '', string.punctuation)))[0][0]
             for index, row in
             self.data[:k].iterrows()]
         local_data["model2_probs_1"] = [
             self.nn.predict_with_second_model(sentence1,
-                                              row["question"].translate(str.maketrans('', '', string.punctuation)))[0]
+                                              row["question"].translate(str.maketrans('', '', string.punctuation)))[0][0]
             for index, row in
             self.data[:k].iterrows()]
         local_data["model2_probs_2"] = [
             self.nn.predict_with_second_model(sentence2,
-                                              row["question"].translate(str.maketrans('', '', string.punctuation)))[0]
+                                              row["question"].translate(str.maketrans('', '', string.punctuation)))[0][0]
             for index, row in
             self.data[:k].iterrows()]
 
@@ -98,6 +98,12 @@ class Sentences(object):
     def create_word2vec(self, text):
         vector_list = [self.word2vec_model[word] for word in text if word in self.word2vec_model]
         return vector_list
+
+    def predict_with_first_model(self, q1, q2):
+        return self.nn.predict_with_first_model(q1, q2)
+
+    def predict_with_second_model(self, q1, q2):
+        return self.nn.predict_with_second_model(q1, q2)
 
     @staticmethod
     def clean_data(text):

@@ -1,10 +1,11 @@
 const dispatch = d3.dispatch("dataLoaded",
     "firstHistogramDataLoaded", "secondHistogramDataLoaded",
     "thirdHistogramDataLoaded", "forthHistogramDataLoaded",
+    "fifthHistogramDataLoaded", "sixthHistogramDataLoaded",
     "enablePoints", "disablePoints");
 
 
-function processHistogram(data) {
+function processHistogram(data, model = "model1") {
     var firstHistogram = d3.histogram()
         .value(function(d) { return d.distance1 })
         .domain([-1,1])
@@ -12,6 +13,7 @@ function processHistogram(data) {
 
     var firstBins = firstHistogram(data);
     dispatch.call('firstHistogramDataLoaded', null, firstBins);
+    dispatch.call('fifthHistogramDataLoaded', null, firstBins);
 
     var secondHistogram = d3.histogram()
         .value(function(d) { return d.distance2 })
@@ -20,19 +22,30 @@ function processHistogram(data) {
 
     var secondBins = secondHistogram(data);
     dispatch.call('secondHistogramDataLoaded', null, secondBins);
+    dispatch.call('sixthHistogramDataLoaded', null, secondBins);
 
+    var functions = {
+      model1_probs_1: function(d) { return d.model1_probs_1 },
+      model1_probs_2: function(d) { return d.model1_probs_2 },
+      model2_probs_1: function(d) { return d.model2_probs_1 },
+      model2_probs_2: function(d) { return d.model2_probs_2 }
+    };
 
-    var thirdHistogram = d3.histogram()
-        .value(function(d) { return d.distance1 })
-        .domain([-1,1])
-        .thresholds(20);
+  var thirdHistogram = d3.histogram()
+    .value(function(d) { 
+      return model === "model1" ? functions.model1_probs_1(d) : functions.model2_probs_1(d);
+    })
+    .domain([0,1])
+    .thresholds(10);
 
     var thirdBins = thirdHistogram(data);
     dispatch.call('thirdHistogramDataLoaded', null, thirdBins);
 
     var forthHistogram = d3.histogram()
-        .value(function(d) { return d.distance1 })
-        .domain([-1,1])
+        .value(function(d) { 
+          return model === "model1" ? functions.model1_probs_2(d) : functions.model2_probs_2(d);
+        })
+        .domain([0,1])
         .thresholds(20);
 
     var forthBins = forthHistogram(data);
