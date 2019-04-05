@@ -1,3 +1,5 @@
+var allData;
+
 const dispatch = d3.dispatch("dataLoaded",
     "firstHistogramDataLoaded", "secondHistogramDataLoaded",
     "thirdHistogramDataLoaded", "forthHistogramDataLoaded",
@@ -66,6 +68,7 @@ function getData(q1, q2, k) {
     dataType: "json",
     success: function (json_data) {
       console.log(json_data)
+      allData = json_data;
       processHistogram(json_data);
       processScatterPlot(json_data);
     },
@@ -92,4 +95,16 @@ $('#Submit').click(function() {
 
     getData(q1, q2, 1000);
     document.getElementById("scatter-viz").scrollIntoView();
+});
+
+$('.first-radio-model').click(function() {
+  var firstHistogram = "";
+
+  if (document.getElementById('first-model-option1').checked) {
+    firstHistogram = "model1";
+  } else {
+    firstHistogram = "model2";
+  }
+
+  processHistogram(allData, firstHistogram);
 });
