@@ -9,8 +9,12 @@ var scatterPlotMargin = {
 
 var symbol = d3.symbol();
 
-//anything inside bracket will be selected
-var scatterPlotSvg = d3.select(".scatterplot-cosine")
+var firstScatterPlotSvg = d3.select(".first-scatterplot-cosine")
+    .append("svg")
+    .attr("width", scatterPlotWidth)
+    .attr("height", scatterPlotHeight);
+
+var secondScatterPlotSvg = d3.select(".second-scatterplot-cosine")
     .append("svg")
     .attr("width", scatterPlotWidth)
     .attr("height", scatterPlotHeight);
@@ -23,7 +27,7 @@ var scatterPlotScale = d3.scaleLinear()
     .domain([-20,20])
     .range([scatterPlotHeight-scatterPlotMargin.bottom, scatterPlotMargin.top]);
 
-function setupScatterPlot(data) {
+function setupScatterPlot(data, scatterPlotSvg) {
     scatterPlotSvg.append("g")
         .attr("transform", `translate(0,${scatterPlotHeight-scatterPlotMargin.bottom})`)
         .call(d3.axisBottom().scale(scatterPlotXScale).ticks(10));
@@ -66,12 +70,16 @@ var storedData;
 var firstHistogramDisplayed = new Set();
 var secondHistogramDisplayed = new Set();
 
+var thirdHistogramDisplayed = new Set();
+var forthHistogramDisplayed = new Set();
+
 dispatch.on("dataLoaded.scatterplot", function(data) {
     storedData = data;
-    setupScatterPlot(data);
+    setupScatterPlot(data, firstScatterPlotSvg);
+    setupScatterPlot(data, secondScatterPlotSvg);
 });
 
-function setOpacityAndColorForGroup(value, opacityValue, colorValue) {
+function setOpacityAndColorForGroup(value, opacityValue, colorValue, scatterPlotSvg) {
     value.forEach(function(v) {
         scatterPlotSvg.selectAll("circle").filter(function (d) {
             return d === v;
@@ -84,34 +92,69 @@ dispatch.on("disablePoints.scatterplot", function (data, histogramNumber) {
     switch (histogramNumber) {
         case ".histogram-q1":
             firstHistogramDisplayed.add(data);
+            firstScatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
             break;
         case ".histogram-q2":
             secondHistogramDisplayed.add(data);
+            firstScatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
+            break;
+        case ".histogram-q3":
+            thirdHistogramDisplayed.add(data);
+            secondScatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
+            break;
+        case ".histogram-q4":
+            forthHistogramDisplayed.add(data);
+            secondScatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
             break;
     }
 
-    scatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
-    firstHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27")});
-    secondHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#2b6dad")});
+    // First scatterplot
+    firstHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27", firstScatterPlotSvg)});
+    secondHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#2b6dad", firstScatterPlotSvg)});
+    
+    // Second scatterplot
+    thirdHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27", secondScatterPlotSvg)});
+    forthHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#2b6dad", secondScatterPlotSvg)});
 });
 
-
-dispatch.on("enablePoints.scatterplot", function (data, histogramNumber) {
-    switch (histogramNumber) {
-        case ".histogram-q1":
-            firstHistogramDisplayed.delete(data);
-            break;
-        case ".histogram-q2":
-            secondHistogramDisplayed.delete(data);
-            break;
-    }
-
+function updateFirstScatterplot() {
     if (firstHistogramDisplayed.size == 0 && secondHistogramDisplayed.size == 0) {
-        scatterPlotSvg.selectAll("circle").attr("fill-opacity", .7)
+        firstScatterPlotSvg.selectAll("circle").attr("fill-opacity", .7)
             .attr("fill", "#9B59B6");
     } else {
-        scatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
-        firstHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27")});
-        secondHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#2b6dad")});
+        firstScatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
+        firstHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27", firstScatterPlotSvg)});
+        secondHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#2b6dad", firstScatterPlotSvg)});
     }
+}
+
+function updateSecondScatterplot() {
+    if (thirdHistogramDisplayed.size == 0 && thirdHistogramDisplayed.size == 0) {
+        secondScatterPlotSvg.selectAll("circle").attr("fill-opacity", .7)
+            .attr("fill", "#9B59B6");
+    } else {
+        secondScatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
+        thirdHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27", firstScatterPlotSvg)});
+        forthHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#2b6dad", firstScatterPlotSvg)});
+    }
+}
+
+dispatch.on("enablePoints.scatterplot", function (data, histogramNumber) {
+  switch (histogramNumber) {
+    case ".histogram-q1":
+      firstHistogramDisplayed.delete(data);
+      break;
+    case ".histogram-q2":
+      secondHistogramDisplayed.delete(data);
+      break;
+    case ".histogram-q3":
+      thirdHistogramDisplayed.delete(data);
+      break;
+    case ".histogram-q4":
+      forthHistogramDisplayed.delete(data);
+      break;
+  }
+
+  updateFirstScatterplot();
+  updateSecondScatterplot();
 });

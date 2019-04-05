@@ -2,9 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href='styles/main.css' rel='stylesheet' type='text/css'>
-	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
     <header>
@@ -47,16 +48,10 @@
                                         </div>
                                     </form>
                                 </div>
-
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
         <!--/.Mask-->
     </header>
@@ -68,29 +63,74 @@
                 The height of each bins represents the number of questions lying in that particular range. You can click on them to see
                 those sentences on the scatter plot.
             </p>
-<br/>
+            <br/>
 
             <div class="col-lg-8">
-                <div class="scatterplot-cosine"></div>
-                <div class="selected-text"></div>
+              <div class="dropdown">
+                <button id="pointsDropdown" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Number of sentences
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item">100</a>
+                  <a class="dropdown-item">1000</a>
+                  <a class="dropdown-item">10000</a>
+                  <a class="dropdown-item">100000</a>
+                </div>
+              </div>
+                <div class="first-scatterplot-cosine"></div>
+                <div class="card"><div class="selected-text well"></div></div>
             </div>
-           <center> <label for="histograms-cosine">Histograms of the cosine distance</label>
-            <div id="histograms-cosine" class="mt-10">
-            <div class="col-lg-4">
-                <br/>
-                <label for="histogram-q1">First Question</label>
-                <div class="histogram-q1" id="histogram-q1"></div>
-            </div>
+            <center> 
+              <label for="histograms-cosine">Histograms of the cosine distance</label>
+              <div id="histograms-cosine" class="mt-10">
+                <div class="col-lg-4">
+                  <br/>
+                  <label for="histogram-q1">First Question</label>
+                  <div class="histogram-q1" id="histogram-q1"></div>
+                </div>
+                <div class="col-lg-4">
+                  <br/>
+                  <br/>
+                  <label for="histogram-q2">Second Question</label>
+                  <div class="histogram-q2" id="histogram-q2"></div>
+                </div>
 
-            <div class="col-lg-4">
-                <br/>
-                <br/>
-                <label for="histogram-q2">Second Question</label>
-                <div class="histogram-q2" id="histogram-q2"></div>
-            </div>
+              </div>
+            </center>
+        </div>
+    </div>
 
+    <div class="full-width" id="scatter-viz">
+        <div class="container">
+            <center> <h3>Exploring similar words by probability </h3> </center>
+            <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
+                The histograms on the right have bins of cosine distance between input questions and the above mentioned sentences.
+                The height of each bins represents the number of questions lying in that particular range. You can click on them to see
+                those sentences on the scatter plot.
+            </p>
+            <br/>
+
+            <div class="col-lg-8">
+              <div class="second-scatterplot-cosine"></div>
+              <div class="card"><div class="selected-text well"></div></div>
             </div>
-               </center>
+            <center> 
+              <label for="histograms-probability">Histograms of the cosine distance</label>
+              <div id="histograms-probability" class="mt-10">
+                <div class="col-lg-4">
+                  <br/>
+                  <label for="histogram-q3">First Question</label>
+                  <div class="histogram-q3" id="histogram-q1"></div>
+                </div>
+                <div class="col-lg-4">
+                  <br/>
+                  <br/>
+                  <label for="histogram-q4">Second Question</label>
+                  <div class="histogram-q4" id="histogram-q2"></div>
+                </div>
+
+              </div>
+            </center>
         </div>
     </div>
     <!--<div class="full-scatterPlotWidth mt-20">-->
@@ -110,6 +150,8 @@
     <!--</div>-->
     <script src="bower_components/d3/d3.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="scripts/data.js"></script>
     <script src="scripts/histogram.js"></script>
     <script src="scripts/scatterplot.js"></script>
