@@ -113,12 +113,7 @@ function setupHistogram(data, klass) {
                     .attr('style', 'fill: orange');
 
                 const forScatterplots = ['.histogram-q1', '.histogram-q2', '.histogram-q3', '.histogram-q4'];
-                
-                if (klass in forScatterplots) {
-                  dispatch.call("disablePoints", null, d, klass);
-                } else {
-                  dispatch.call("heatmapDataLoaded", null, d, klass);
-                }
+                forScatterplots.includes(klass) ? dispatch.call("disablePoints", null, d, klass) : dispatch.call("heatmapDataLoaded", null, d, klass);
                 flags[i] = 1;
             } else {
                 d3.select(this).transition()

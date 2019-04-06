@@ -27,7 +27,7 @@ var scatterPlotScale = d3.scaleLinear()
     .domain([-20,20])
     .range([scatterPlotHeight-scatterPlotMargin.bottom, scatterPlotMargin.top]);
 
-function setupScatterPlot(data, scatterPlotSvg) {
+function setupScatterPlot(data, scatterPlotSvg, scatterPlotNumber) {
     scatterPlotSvg.append("g")
         .attr("transform", `translate(0,${scatterPlotHeight-scatterPlotMargin.bottom})`)
         .call(d3.axisBottom().scale(scatterPlotXScale).ticks(10));
@@ -36,21 +36,29 @@ function setupScatterPlot(data, scatterPlotSvg) {
         .attr("transform", `translate(${scatterPlotMargin.left},0)`)
         .call(d3.axisLeft().scale(scatterPlotScale));
 
-    var selectedText = d3.select(".selected-text").style("opacity", 0);
+    var selectedTextClass = "";
+    
+    if(scatterPlotNumber == 1) {
+      selectedTextClass = ".selected-text1";
+    } else {
+      selectedTextClass = ".selected-text2";
+    }
+    var selectedText = d3.select(selectedTextClass).style("opacity", 0);
     var currentColor = "";
 
     scatterPlotSvg.selectAll("circle")//empty selection
         .data(data)
         .enter() //empty placeholder
         .append("circle")
-        .attr("cx", function(d){return scatterPlotXScale(d.x);})
-        .attr("cy", function(d){return scatterPlotScale(d.y);})
+        .attr("cx", function(d) { return scatterPlotXScale(d.x); })
+        .attr("cy", function(d) { return scatterPlotScale(d.y); })
         .attr("r", 3)
         .style("opacity", 0.7)
         .attr("fill", "#9B59B6")
         .on('mouseover', function (d, i) {
             currentColor = d3.select(this).attr("fill");
             d3.select(this).attr("fill", 'orange');
+            d3.select(this).transition().attr("r", 8);
             selectedText.transition()
                 .duration(50)
                 .style('opacity', 1)
@@ -60,6 +68,7 @@ function setupScatterPlot(data, scatterPlotSvg) {
         })
         .on('mouseout', function (d, i) {
             d3.select(this).attr("fill", currentColor);
+            d3.select(this).transition().attr("r", 3);
             selectedText.transition()
                 .duration(50)
                 .style('opacity', 0);
@@ -75,8 +84,8 @@ var forthHistogramDisplayed = new Set();
 
 dispatch.on("dataLoaded.scatterplot", function(data) {
     storedData = data;
-    setupScatterPlot(data, firstScatterPlotSvg);
-    setupScatterPlot(data, secondScatterPlotSvg);
+    setupScatterPlot(data, firstScatterPlotSvg, 1);
+    setupScatterPlot(data, secondScatterPlotSvg, 2);
 });
 
 function setOpacityAndColorForGroup(value, opacityValue, colorValue, scatterPlotSvg) {
