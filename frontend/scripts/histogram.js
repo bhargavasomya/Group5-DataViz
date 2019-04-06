@@ -1,4 +1,7 @@
 function setupHistogram(data, klass) {
+    var svg = d3.select(klass);
+    svg.selectAll("*").remove();
+
     var margin = {
         top: 5,
         left: 5,
@@ -113,6 +116,7 @@ function setupHistogram(data, klass) {
             }
         });
 }
+
 
 dispatch.on("firstHistogramDataLoaded.histogram", function(data) {
     setupHistogram(data, ".histogram-q1");

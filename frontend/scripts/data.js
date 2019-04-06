@@ -68,6 +68,8 @@ $('.dropdown-item').click(function() {
   var q1 = $('#q1FormInput').val();
   var q2 = $('#q2FormInput').val();
   var k = $(this).text();
+  d3.selectAll("circle").remove();
+
 
   getData(q1, q2, k);
 });
@@ -77,6 +79,20 @@ $('#Submit').click(function() {
     var q1 = $('#q1FormInput').val();
     var q2 = $('#q2FormInput').val();
 
+
     getData(q1, q2, 1000);
-    document.getElementById("scatter-viz").scrollIntoView();
+
 });
+
+// $('#scatter-viz').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
+//$('#Submit').on('click', function() {
+ // setTimeout(removeLoader, 2000); //wait for page load PLUS two seconds.
+//});
+$("#scatter-viz").hide()
+
+$('#Submit').click(function(){
+     $("#scatter-viz").show();
+     document.getElementById("scatter-viz").scrollIntoView({behavior: "smooth"});
+
+});
+
