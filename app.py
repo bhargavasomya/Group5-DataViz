@@ -4,6 +4,8 @@ from flask_cors import CORS
 from ML.sentences import Sentences
 from ML.init_server import create_embedding_index
 
+import pandas as pd
+
 app = Flask(__name__)
 api = Api(app)
 CORS(app)
@@ -29,7 +31,7 @@ def get_pairs():
     questions_array = None
     model = ''
 
-    values = pd.DataFrame(columns=['x', 'y', 'value'])
+    values = []
 
     if request.method == 'POST':
         json = request.get_json()
@@ -42,8 +44,10 @@ def get_pairs():
             q2 = questions_array[j]
             val = sentence.predict_with_first_model(q1, q2) if model == "first" \
                     else sentence.predict_with_second_model(q1, q2)
-            row = [q1, q2, val]
-            values.append(pd.DataFrame(row, columns=['x', 'y', 'value']))
+            row = [q1, q2, val[0][0]]
+            values.append(row)
+    
+    values = pd.DataFrame(values, columns=['x', 'y', 'values'])
 
     return values.to_json(orient='records')
 

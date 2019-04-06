@@ -1,6 +1,6 @@
 var allData;
 
-const dispatch = d3.dispatch("dataLoaded",
+const dispatch = d3.dispatch("dataLoaded", "heatmapDataLoaded",
     "firstHistogramDataLoaded", "secondHistogramDataLoaded",
     "thirdHistogramDataLoaded", "forthHistogramDataLoaded",
     "fifthHistogramDataLoaded", "sixthHistogramDataLoaded",
@@ -77,6 +77,7 @@ function getData(q1, q2, k) {
     }
   });
 }
+
 
 $('.dropdown-item').click(function() {
   // Change sentence

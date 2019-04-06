@@ -5,8 +5,8 @@ function mean(arr) {
   }) / arr.length;
 }
 
-var lPatchWidth=200;
-var itemSize = 22,
+var lPatchWidth=400;
+var itemSize = 30,
   cellSize = itemSize - 3,
   margin = {top: 50, right: 20, bottom: 120, left: 110};
 
@@ -17,7 +17,7 @@ var width = 750 - margin.right - margin.left,
 var colorScale;
 
 colorHold = ["#87cefa", "#86c6ef", "#85bde4", "#83b7d9", "#82afce", "#80a6c2"];
-colorLText = ["0","10","20","30","40","50"];
+colorLText = ["0", "10", "20", "30", "40", "50"];
 
 function bandClassifier(val, multiplier) {
   if (val >= 0) { 
@@ -69,7 +69,7 @@ function heatmapChart(response){
 
 
   // Finding the mean of the data
-  var mean = mean(data.map(function(d){return +d.value}));
+  var mean = window.mean(data.map(function(d){return +d.value}));
 
   //setting percentage change for value w.r.t average
   data.forEach(function(d){
@@ -94,7 +94,7 @@ function heatmapChart(response){
   toolval=tooltip.append("div");
 
 
-  var cells = svg.selectAll('rect')
+  svg.selectAll('rect')
     .data(data)
     .enter().append('g').append('rect')
     .attr('class', 'cell')
@@ -103,8 +103,8 @@ function heatmapChart(response){
     .attr('y', function(d) { return yScale(d.country); })
     .attr('x', function(d) { return xScale(d.product)-cellSize/2; })
     .attr('fill', function(d) { return colorScale(bandClassifier(d.perChange,100));})
-    .attr("rx",3)
-    .attr("ry",3)
+    .attr("rx", 3)
+    .attr("ry", 3)
     .on("mouseover",function(d){
       d3.select(this).style("stroke","orange").style("stroke-width","3px")
       d3.select(".trianglepointer").transition().delay(100).attr("transform","translate("+(-((lPatchWidth/colorScale.range().length)/2+(colorScale.domain().indexOf(bandClassifier(d.perChange,100))*(lPatchWidth/colorScale.range().length) )))+",0)");
@@ -121,8 +121,7 @@ function heatmapChart(response){
       console.log(d3.mouse(this)[0])
       tooltip.select("div").html("<strong>"+d.product+"</strong><br/> "+(+d.value).toFixed(2))
 
-    })
-
+    });
 
   svg.append("g")
     .attr("class", "y axis")
@@ -132,44 +131,42 @@ function heatmapChart(response){
 
   svg.append("g")
     .attr("class", "x axis")
-    .attr("transform","translate(0,"+(y_elements.length * itemSize +cellSize/2)+")")
+    .attr("transform","translate(0," + (y_elements.length * itemSize + cellSize / 2) + ")")
     .call(xAxis)
     .selectAll('text')
     .attr('font-weight', 'normal')
     .style("text-anchor", "end")
     .attr("dx", "-.8em")
     .attr("dy", "-.5em")
-    .attr("transform", function (d) {
+    .attr("transform", function (_) {
       return "rotate(-65)";
     });
 
   // Legends section
-
-
-  legends=svg.append("g").attr("class","legends")
-    .attr("transform","translate("+((width+margin.right)/2-lPatchWidth/2 -margin.left/2)+","+(height+margin.bottom-35-20)+")");
+  legends = svg.append("g").attr("class", "legends")
+    .attr("transform","translate(" + ((width+margin.right) / 2 - lPatchWidth / 2 - margin.left / 2) + "," + (height + margin.bottom - 35 - 20) + ")");
 
   // Legend traingle pointer generator
   var symbolGenerator = d3.symbol()
     .type(d3.symbolTriangle)
     .size(64);
 
-  legends.append("g").attr("transform","rotate(180)").append("g").attr("class","trianglepointer")
-    .attr("transform","translate("+(-lPatchWidth/colorScale.range().length)/2+")")
+  legends.append("g").attr("transform", "rotate(180)").append("g").attr("class","trianglepointer")
+    .attr("transform","translate(" + (-lPatchWidth / colorScale.range().length) / 2 + ")")
     .append("path").attr("d",symbolGenerator());
 
-  //Legend Rectangels
-  legends.append("g").attr("class","LegRect")
-    .attr("transform","translate(0,"+15+")")
+  // Legend Rectangels
+  legends.append("g").attr("class", "LegRect")
+    .attr("transform","translate(0," + 15 + ")")
     .selectAll("rect").data(colorScale.range()).enter()
-    .append("rect").attr("width",lPatchWidth/colorScale.range().length+"px").attr("height","10px").attr("fill",function(d){ return d})
-    .attr("x", function(d,i) { return i*(lPatchWidth/colorScale.range().length) })
+    .append("rect").attr("width", lPatchWidth / colorScale.range().length + "px").attr("height", "10px").attr("fill", function(d){return d})
+    .attr("x", function(_, i) {return i * ( lPatchWidth / colorScale.range().length )})
 
-  // legend text
+  // Legend text
   legends.append("g").attr("class","LegText")
     .attr("transform","translate(0,45)")
     .append("text")
-    .attr("x",lPatchWidth/2)
+    .attr("x",lPatchWidth / 2)
     .attr('font-weight', 'normal')
     .style("text-anchor", "middle")
     .text(colorLText[0])
@@ -178,7 +175,7 @@ function heatmapChart(response){
   rootsvg.append("g")
     .attr("transform","translate(0,30)")
     .append("text")
-    .attr("x",(width+margin.right+margin.left)/2)
+    .attr("x",(width + margin.right + margin.left) / 2)
     .attr('font-weight', 'bold')
     .attr('font-size', '22px')
     .attr('font-family', 'Segoe UI bold')
@@ -186,3 +183,44 @@ function heatmapChart(response){
     .text("Question Similarities")
 }
 
+function getMatrix(questions, model) {
+  $.ajax({
+    type: "POST",
+    contentType: "application/json;charset=utf-8",
+    url: "http://127.0.0.1:5000/getmatrix",
+    traditional: "true",
+    data: JSON.stringify({ questions: questions, model: model }),
+    dataType: "json",
+    success: function (json_data) {
+      console.log(json_data)
+      heatmapChart(json_data);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+var storedData;
+dispatch.on("heatmapDataLoaded.heatmap", function(data, klass) {
+    const firstHeatmap = ['.histogram-q3', '.histogram-q4']
+    var model = "";
+    
+    if (klass in firstHeatmap) {
+      if (klass === '.histogram-q3') {
+        storedData = data.sort(function(a,b) {return b.distance1 - b.distance2});
+      } else {
+        storedData = data.sort(function(a,b) {return b.distance2 - b.distance2});
+      }  
+      model = "model1";
+    }  
+    
+    console.log(storedData);
+    if (storedData.length >= 10) {
+      storedData = storedData.slice(0, 11);
+    } 
+    
+    var sentences = storedData.map(x => x.question);
+    getMatrix(sentences, model);
+
+});
