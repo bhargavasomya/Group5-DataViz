@@ -1,10 +1,13 @@
-const dispatch = d3.dispatch("dataLoaded",
+var allData;
+
+const dispatch = d3.dispatch("dataLoaded", "heatmapDataLoaded",
     "firstHistogramDataLoaded", "secondHistogramDataLoaded",
     "thirdHistogramDataLoaded", "forthHistogramDataLoaded",
+    "fifthHistogramDataLoaded", "sixthHistogramDataLoaded",
     "enablePoints", "disablePoints");
 
 
-function processHistogram(data) {
+function processHistogram(data, model = "model1") {
     var firstHistogram = d3.histogram()
         .value(function(d) { return d.distance1 })
         .domain([-1,1])
@@ -12,6 +15,7 @@ function processHistogram(data) {
 
     var firstBins = firstHistogram(data);
     dispatch.call('firstHistogramDataLoaded', null, firstBins);
+    dispatch.call('fifthHistogramDataLoaded', null, firstBins);
 
     var secondHistogram = d3.histogram()
         .value(function(d) { return d.distance2 })
@@ -20,19 +24,30 @@ function processHistogram(data) {
 
     var secondBins = secondHistogram(data);
     dispatch.call('secondHistogramDataLoaded', null, secondBins);
+    dispatch.call('sixthHistogramDataLoaded', null, secondBins);
 
+    var functions = {
+      model1_probs_1: function(d) { return d.model1_probs_1 },
+      model1_probs_2: function(d) { return d.model1_probs_2 },
+      model2_probs_1: function(d) { return d.model2_probs_1 },
+      model2_probs_2: function(d) { return d.model2_probs_2 }
+    };
 
-    var thirdHistogram = d3.histogram()
-        .value(function(d) { return d.distance1 })
-        .domain([-1,1])
-        .thresholds(20);
+  var thirdHistogram = d3.histogram()
+    .value(function(d) {
+      return model === "model1" ? functions.model1_probs_1(d) : functions.model2_probs_1(d);
+    })
+    .domain([0,1])
+    .thresholds(10);
 
     var thirdBins = thirdHistogram(data);
     dispatch.call('thirdHistogramDataLoaded', null, thirdBins);
 
     var forthHistogram = d3.histogram()
-        .value(function(d) { return d.distance1 })
-        .domain([-1,1])
+        .value(function(d) {
+          return model === "model1" ? functions.model1_probs_2(d) : functions.model2_probs_2(d);
+        })
+        .domain([0,1])
         .thresholds(20);
 
     var forthBins = forthHistogram(data);
@@ -53,6 +68,7 @@ function getData(q1, q2, k) {
     dataType: "json",
     success: function (json_data) {
       console.log(json_data)
+      allData = json_data;
       processHistogram(json_data);
       processScatterPlot(json_data);
     },
@@ -61,6 +77,7 @@ function getData(q1, q2, k) {
     }
   });
 }
+
 
 $('.dropdown-item').click(function() {
   // Change sentence
@@ -82,6 +99,18 @@ $('#Submit').click(function() {
 
     getData(q1, q2, 1000);
 
+});
+
+$('.first-radio-model').click(function() {
+  var firstHistogram = "";
+
+  if (document.getElementById('first-model-option1').checked) {
+    firstHistogram = "model1";
+  } else {
+    firstHistogram = "model2";
+  }
+
+  processHistogram(allData, firstHistogram);
 });
 
 // $('#scatter-viz').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');

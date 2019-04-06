@@ -115,6 +115,16 @@
             </div>
             <center>
               <label for="histograms-probability">Histograms of the cosine distance</label>
+            <center>
+              <label for="histograms-probability">Histograms of the probability distance</label>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active first-radio-model">
+                  <input type="radio" name="options" id="first-model-option1" autocomplete="off" checked> First Model
+                </label>
+                <label class="btn btn-secondary first-radio-model">
+                  <input type="radio" name="options" id="first-model-option2" autocomplete="off"> Second Model
+                </label>
+              </div>
               <div id="histograms-probability" class="mt-10">
                 <div class="col-lg-4">
                   <br/>
@@ -126,6 +136,34 @@
                   <br/>
                   <label for="histogram-q4">Second Question</label>
                   <div class="histogram-q4" id="histogram-q2"></div>
+                </div>
+
+              </div>
+            </center>
+        </div>
+    </div>
+
+    <div class="full-width" id="scatter-viz">
+        <div class="container">
+            <center> <h3>Heatmap </h3> </center>
+            <p> Heatmap </p>
+            <br/>
+            <div class="col-lg-8">
+              <div class="heatmap"></div>
+            </div>
+            <center>
+              <label for="histograms-cosine">Histograms of the cosine distance</label>
+              <div id="histograms-cosine" class="mt-10">
+                <div class="col-lg-4">
+                  <br/>
+                  <label for="histogram-q5">First Question</label>
+                  <div class="histogram-q5" id="histogram-q5"></div>
+                </div>
+                <div class="col-lg-4">
+                  <br/>
+                  <br/>
+                  <label for="histogram-q6">Second Question</label>
+                  <div class="histogram-q6" id="histogram-q6"></div>
                 </div>
 
               </div>
@@ -155,5 +193,6 @@
     <script src="scripts/data.js"></script>
     <script src="scripts/histogram.js"></script>
     <script src="scripts/scatterplot.js"></script>
+    <script src="scripts/heatmap.js"></script>
     </body>
 </html>

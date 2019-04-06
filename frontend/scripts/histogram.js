@@ -31,6 +31,10 @@ function setupHistogram(data, klass) {
                 return [0,1];
             case ".histogram-q4":
                 return [0,1];
+            case ".histogram-q5":
+                return [-1,1];
+            case ".histogram-q6":
+                return [-1,1];
         }
     }(klass);
 
@@ -60,6 +64,10 @@ function setupHistogram(data, klass) {
                 return "#7a7fad";
             case ".histogram-q4":
                 return "#1b622d";
+            case ".histogram-q5":
+                return "#B92B27";
+            case ".histogram-q6":
+                return "#2b6dad";
         }
     }(klass);
 
@@ -104,7 +112,13 @@ function setupHistogram(data, klass) {
                     .duration('50')
                     .attr('style', 'fill: orange');
 
-                dispatch.call("disablePoints", null, d, klass);
+                const forScatterplots = ['.histogram-q1', '.histogram-q2', '.histogram-q3', '.histogram-q4'];
+                
+                if (klass in forScatterplots) {
+                  dispatch.call("disablePoints", null, d, klass);
+                } else {
+                  dispatch.call("heatmapDataLoaded", null, d, klass);
+                }
                 flags[i] = 1;
             } else {
                 d3.select(this).transition()
@@ -132,4 +146,12 @@ dispatch.on("thirdHistogramDataLoaded.histogram", function(data) {
 
 dispatch.on("forthHistogramDataLoaded.histogram", function(data) {
     setupHistogram(data, ".histogram-q4");
+});
+
+dispatch.on("fifthHistogramDataLoaded.histogram", function(data) {
+    setupHistogram(data, ".histogram-q5");
+});
+
+dispatch.on("sixthHistogramDataLoaded.histogram", function(data) {
+    setupHistogram(data, ".histogram-q6");
 });
