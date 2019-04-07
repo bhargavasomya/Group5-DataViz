@@ -205,25 +205,28 @@ function getMatrix(questions, model) {
 }
 
 var storedData;
-dispatch.on("heatmapDataLoaded.heatmap", function(data, klass) {
-    const firstHeatmap = ['.histogram-q3', '.histogram-q4']
-    var model = "";
-    
-    if (klass in firstHeatmap) {
-      if (klass === '.histogram-q3') {
-        storedData = data.sort(function(a,b) {return b.distance1 - b.distance2});
-      } else {
-        storedData = data.sort(function(a,b) {return b.distance2 - b.distance2});
-      }  
-      model = "model1";
-    }  
-    
-    console.log(storedData);
-    if (storedData.length >= 10) {
-      storedData = storedData.slice(0, 11);
-    } 
-    
-    var sentences = storedData.map(x => x.question);
-    getMatrix(sentences, model);
+const firstHeatmap = ['.histogram-q5', '.histogram-q6']
 
+dispatch.on("heatmapDataLoaded.heatmap", function(data, klass) {
+    var model = "";
+    if (data != null) {
+      if (firstHeatmap.includes(klass)) {
+        console.log("here");
+        if (klass === '.histogram-q5') {
+          storedData = data.sort(function(a,b) {return b.distance1 - a.distance1});
+        } else {
+          storedData = data.sort(function(a,b) {return b.distance2 - a.distance2});
+        }  
+        model = "model1";
+      }  
+      
+      if (storedData.length >= 10) {
+        storedData = storedData.slice(0, 10);
+      } 
+      console.log(storedData);
+      
+      var sentences = storedData.map(x => x.question);
+      console.log(sentences);
+      getMatrix(sentences, model);
+    }
 });
