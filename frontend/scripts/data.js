@@ -86,6 +86,7 @@ $('.dropdown-item').click(function() {
   var q2 = $('#q2FormInput').val();
   var k = $(this).text();
   d3.selectAll("circle").remove();
+  d3.selectAll("rect").remove();
 
 
   getData(q1, q2, k);
