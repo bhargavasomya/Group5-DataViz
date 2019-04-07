@@ -145,9 +145,7 @@ div.tooltip {
     border-radius: 5px;
     align: center;
 }
-.svg{
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+
 h3,
 h5,
 h6,
@@ -157,10 +155,13 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 600;
     line-height: 1.1;
     color: #B92B27;
+    white-space:nowrap;
+    text-align:center;
+
 }
 h1 small,
 h2 small,
@@ -189,6 +190,8 @@ h6 .small,
     font-weight: normal;
     line-height: 1;
     color: #999999;
+    white-space:nowrap;
+    text-align: center;
 }
 h1,
 .h1,
@@ -221,6 +224,8 @@ h6,
 .h6 {
     margin-top: 9px;
     margin-bottom: 9px;
+    white-space:nowrap;
+    text-align: center;
 }
 h4 small,
 .h4 small,
@@ -235,6 +240,7 @@ h5 .small,
 h6 .small,
 .h6 .small {
     font-size: 75%;
+    text-align: center;
 }
 h1,
 .h1 {
@@ -285,4 +291,24 @@ label {
 
 .jumbotron{
     padding: 2%;
+}
+
+.histogram-q1{
+  margin-left: auto;
+  margin-right:auto;
+  text-align: center;
+}
+
+h5{
+text-align:center;
+white-space:nowrap;
+}
+
+.row {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-content: center;
+  align-content: center;
 }
