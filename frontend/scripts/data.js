@@ -113,10 +113,6 @@ $('.first-radio-model').click(function() {
   processHistogram(allData, firstHistogram);
 });
 
-// $('#scatter-viz').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
-//$('#Submit').on('click', function() {
- // setTimeout(removeLoader, 2000); //wait for page load PLUS two seconds.
-//});
 $("#scatter-viz").hide()
 
 $('#Submit').click(function(){
@@ -124,4 +120,7 @@ $('#Submit').click(function(){
      document.getElementById("scatter-viz").scrollIntoView({behavior: "smooth"});
 
 });
-
+//$('#scatter-viz').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
+//$('#Submit').on('click', function() {
+ //setTimeout(removeLoader, 2000); //wait for page load PLUS two seconds.
+//});

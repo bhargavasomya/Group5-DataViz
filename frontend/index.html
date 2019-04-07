@@ -57,12 +57,15 @@
 
     <div class="full-width" id="scatter-viz">
         <div class="container">
+            <br/>
+            <div class = "jumbotron">
             <center> <h3>Exploring similar words by cosine distance </h3> </center>
             <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
                 The histograms on the right have bins of cosine distance between input questions and the above mentioned sentences.
                 The height of each bins represents the number of questions lying in that particular range. You can click on them to see
                 those sentences on the scatter plot.
             </p>
+            </div>
             <br/>
             <div class ="row">
             <div class="col-lg-8">
@@ -99,27 +102,30 @@
             </center>
             </div>
         </div>
-
+<br/>
         <div class="container">
+            <div class="jumbotron">
             <center> <h3>Exploring similar words by probability </h3> </center>
             <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
                 The histograms on the right have bins of cosine distance between input questions and the above mentioned sentences.
                 The height of each bins represents the number of questions lying in that particular range. You can click on them to see
                 those sentences on the scatter plot.
             </p>
+            </div>
             <br/>
             <div class = "row">
             <div class="col-lg-8">
               <div class="second-scatterplot-cosine"></div>
               <div class="card"><div class="selected-text well"></div></div>
             </div>
-            <center>
-              <label for="histograms-probability">Histograms of the cosine distance</label>
+
             <center>
               <label for="histograms-probability">Histograms of the probability distance</label>
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <br/>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons" class = "col-lg-4">
                 <label class="btn btn-secondary active first-radio-model">
-                  <input type="radio" name="options" id="first-model-option1" autocomplete="off" checked> First Model
+                  <input type="radio" name="options" id="first-model-option1" autocomplete="off" checked
+                  class="col-lg-4"> First Model
                 </label>
                 <label class="btn btn-secondary first-radio-model">
                   <input type="radio" name="options" id="first-model-option2" autocomplete="off"> Second Model
@@ -148,26 +154,25 @@
             <center> <h3>Heatmap </h3> </center>
             <p> Heatmap </p>
             <br/>
-            <div class="col-lg-8">
-              <div class="heatmap"></div>
-            </div>
-            <center>
-              <label for="histograms-cosine">Histograms of the cosine distance</label>
-              <div id="histograms-cosine" class="mt-10">
-                <div class="col-lg-4">
-                  <br/>
-                  <label for="histogram-q5">First Question</label>
-                  <div class="histogram-q5" id="histogram-q5"></div>
-                </div>
-                <div class="col-lg-4">
-                  <br/>
-                  <br/>
-                  <label for="histogram-q6">Second Question</label>
-                  <div class="histogram-q6" id="histogram-q6"></div>
-                </div>
+            <div class = "row">
 
-              </div>
-            </center>
+                <div class="heatmap"></div>
+                    <center>
+                    <label>Histograms of the cosine distance</label>
+                    <div id="histograms-cosine" class="mt-10">
+                        <div class="col-lg-4">
+                            <br/>
+                            <label><nobr>First Question</nobr></label>
+                            <div class="histogram-q5" id="histogram-q5" style="align: left;"></div>
+
+
+                            <br/>
+                            <br/>
+                            <label>Second Question</label>
+                            <div class="histogram-q6" id="histogram-q6"></div>
+                        </div>
+                    </div>
+                </center>
                 </div>
         </div>
     </div>
