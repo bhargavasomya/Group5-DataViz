@@ -1,3 +1,5 @@
+const forScatterplots = ['.histogram-q1', '.histogram-q2', '.histogram-q3', '.histogram-q4'];
+
 function setupHistogram(data, klass) {
 
     var svg = d3.select(klass);
@@ -109,6 +111,16 @@ function setupHistogram(data, klass) {
         })
         .on('click', function (d, i) {
             if (flags[i] == 0) {
+                // Histogram logic for scatterplot
+                if (forScatterplots.includes(klass)) {
+                  dispatch.call("disablePoints", null, d, klass);
+                } else {
+                  // If it is for heapmap, color everything first
+                  svg.selectAll("rect").style("fill", colors);
+                  dispatch.call("heatmapDataLoaded", null, d, klass);
+                };
+
+                // Finally change the color to orange
                 d3.select(this).transition()
                     .duration('50')
                     .attr('style', 'fill: orange');
@@ -126,7 +138,11 @@ function setupHistogram(data, klass) {
                     .duration('50')
                     .attr('style', 'fill: ' + colors);
 
-                dispatch.call("enablePoints", null, d, klass);
+                if (forScatterplots.includes(klass)) {
+                  dispatch.call("enablePoints", null, d, klass);
+                } else {
+                  dispatch.call("heatmapDataLoaded", null, null, klass);
+                }
                 flags[i] = 0;
             }
         });

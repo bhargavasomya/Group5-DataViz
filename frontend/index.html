@@ -6,6 +6,7 @@
         <link href='styles/main.css' rel='stylesheet' type='text/css'>
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
     </head>
     <body>
     <header>
@@ -70,17 +71,24 @@
             <div class ="row">
             <div class="col-lg-8">
               <div class="dropdown">
-                <button id="pointsDropdown" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button id="points-dropdown1" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Number of sentences
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item">100</a>
-                  <a class="dropdown-item">1000</a>
-                  <a class="dropdown-item">10000</a>
-                  <a class="dropdown-item">100000</a>
+                  <a class="dropdown-item dropdown1">100</a>
+                  <a class="dropdown-item dropdown1">1000</a>
+                  <a class="dropdown-item dropdown1">10000</a>
+                  <a class="dropdown-item dropdown1">100000</a>
+                </div>
+                <div id="spinner1" class="spinner-border m-1" role="status">
+                  <span class="sr-only">Loading...</span>
                 </div>
               </div>
                 <div class="first-scatterplot-cosine"></div>
+                <div>
+                  <span><i class="fas fa-search-plus"></i>
+                    Zoom the chart to get a closer look</span>
+                </div>
                 <div class="selected-text1 well"></div>
             </div>
                 <div class="histogram-block">
@@ -116,7 +124,23 @@
             <br/>
             <div class = "row">
             <div class="col-lg-8">
+              <button id="points-dropdown2" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Number of sentences
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item dropdown2">100</a>
+                <a class="dropdown-item dropdown2">1000</a>
+                <a class="dropdown-item dropdown2">10000</a>
+                <a class="dropdown-item dropdown2">100000</a>
+              </div>
+              <div id="spinner2" class="spinner-border m-1" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
               <div class="second-scatterplot-cosine"></div>
+              <div>
+                <span><i class="fas fa-search-plus"></i>
+                  Zoom the chart to get a closer look</span>
+              </div>
               <div class="selected-text2 well"></div>
             </div>
 

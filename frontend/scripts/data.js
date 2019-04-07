@@ -58,7 +58,7 @@ function processScatterPlot(data) {
     dispatch.call('dataLoaded', null, data);
 }
 
-function getData(q1, q2, k) {
+function getData(q1, q2, k, scroll = false) {
   $.ajax({
     type: "POST",
     contentType: "application/json;charset=utf-8",
@@ -74,7 +74,12 @@ function getData(q1, q2, k) {
       processHistogram(json_data);
       processScatterPlot(json_data);
       $("#scatter-viz").show();
-      document.getElementById("scatter-viz").scrollIntoView({behavior: "smooth"});
+      if (scroll) {
+        document.getElementById("scatter-viz").scrollIntoView({behavior: "smooth"});
+      }
+      document.getElementById("Submit").value = "Start";
+      $("#spinner1").hide();
+      $("#spinner2").hide();
     },
     error: function(error) {
       console.log(error);
@@ -83,22 +88,33 @@ function getData(q1, q2, k) {
 }
 
 
-$('.dropdown-item').click(function() {
+$('.dropdown1').click(function() {
   // Change sentence
-  $('#pointsDropdown').text($(this).text());
+  $("#spinner1").show();
+  $('#points-dropdown1').text($(this).text());
   var q1 = $('#q1FormInput').val();
   var q2 = $('#q2FormInput').val();
   var k = $(this).text();
   getData(q1, q2, k);
 });
 
+$('.dropdown2').click(function() {
+  // Change sentence
+  $("#spinner2").show();
+  $('#points-dropdown2').text($(this).text());
+  var q1 = $('#q1FormInput').val();
+  var q2 = $('#q2FormInput').val();
+  var k = $(this).text();
+  getData(q1, q2, k);
+});
 
 $('#Submit').click(function() {
+    document.getElementById("Submit").value = "Loading ...";
     $("#scatter-viz").hide()
     var q1 = $('#q1FormInput').val();
     var q2 = $('#q2FormInput').val();
 
-    getData(q1, q2, 1000);
+    getData(q1, q2, 1000, true);
 
 });
 
@@ -115,3 +131,4 @@ $('.first-radio-model').click(function() {
 });
 
 $("#scatter-viz").hide();
+$("#spinner1").hide();
