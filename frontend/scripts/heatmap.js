@@ -30,6 +30,9 @@ function bandClassifier(val, multiplier) {
 
 
 function heatmapChart(response){
+var svg = d3.select('.heatmap');
+    svg.selectAll("*").remove();
+
   data = response.map(function (item) {
     var newItem = {};
     newItem.country = item.x;
