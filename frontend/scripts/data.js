@@ -75,6 +75,8 @@ function getData(q1, q2, k) {
       processScatterPlot(json_data);
       $("#scatter-viz").show();
       document.getElementById("scatter-viz").scrollIntoView({behavior: "smooth"});
+      document.getElementById("Submit").value = "Start";
+      $("#spinner1").hide();
     },
     error: function(error) {
       console.log(error);
@@ -85,6 +87,7 @@ function getData(q1, q2, k) {
 
 $('.dropdown-item').click(function() {
   // Change sentence
+  $("#spinner1").show();
   $('#pointsDropdown').text($(this).text());
   var q1 = $('#q1FormInput').val();
   var q2 = $('#q2FormInput').val();
@@ -94,6 +97,7 @@ $('.dropdown-item').click(function() {
 
 
 $('#Submit').click(function() {
+    document.getElementById("Submit").value = "Loading ...";
     $("#scatter-viz").hide()
     var q1 = $('#q1FormInput').val();
     var q2 = $('#q2FormInput').val();
@@ -115,3 +119,4 @@ $('.first-radio-model').click(function() {
 });
 
 $("#scatter-viz").hide();
+$("#spinner1").hide();
