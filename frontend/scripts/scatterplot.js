@@ -92,8 +92,7 @@ function setOpacityAndColorForGroup(value, opacityValue, colorValue, scatterPlot
     value.forEach(function(v) {
         scatterPlotSvg.selectAll("circle").filter(function (d) {
             return d === v;
-        }).attr("fill-opacity", opacityValue).attr("fill", colorValue)
-
+        }).transition().delay(100).attr("fill-opacity", opacityValue).attr("fill", colorValue)
     });
 }
 
@@ -128,10 +127,10 @@ dispatch.on("disablePoints.scatterplot", function (data, histogramNumber) {
 
 function updateFirstScatterplot() {
     if (firstHistogramDisplayed.size == 0 && secondHistogramDisplayed.size == 0) {
-        firstScatterPlotSvg.selectAll("circle").attr("fill-opacity", .7)
+        firstScatterPlotSvg.selectAll("circle").transition().attr("fill-opacity", .7)
             .attr("fill", "#9B59B6");
     } else {
-        firstScatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
+        firstScatterPlotSvg.selectAll("circle").transition().attr("fill-opacity", 0.0);
         firstHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27", firstScatterPlotSvg)});
         secondHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#2b6dad", firstScatterPlotSvg)});
     }
@@ -139,7 +138,7 @@ function updateFirstScatterplot() {
 
 function updateSecondScatterplot() {
     if (thirdHistogramDisplayed.size == 0 && thirdHistogramDisplayed.size == 0) {
-        secondScatterPlotSvg.selectAll("circle").attr("fill-opacity", .7)
+        secondScatterPlotSvg.selectAll("circle").transition().attr("fill-opacity", .7)
             .attr("fill", "#9B59B6");
     } else {
         secondScatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
