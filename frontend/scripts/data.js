@@ -139,5 +139,24 @@ $('.first-radio-model').click(function() {
   processHistogram(allData, firstHistogram);
 });
 
+$('.fifth-radio-model').click(function() {
+    d3.select("#sankey-probability1").selectAll("text").remove();
+    d3.select("#sankey-probability1").selectAll(".link").remove();
+    d3.select("#sankey-probability1").selectAll("rect").remove();
+    d3.select("#sankey-probability2").selectAll("text").remove();
+    d3.select("#sankey-probability2").selectAll(".link").remove();
+    d3.select("#sankey-probability2").selectAll("rect").remove();
+
+    var firstHistogram = "";
+
+    if (document.getElementById('first-model-option5').checked) {
+        firstHistogram = "model1";
+    } else {
+        firstHistogram = "model2";
+    }
+
+    processHistogram(allData, firstHistogram);
+});
+
 $("#scatter-viz").hide();
 $("#spinner1").hide();

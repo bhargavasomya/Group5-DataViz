@@ -141,7 +141,7 @@ function createSankey(graph, svg) {
       .ease(d3.easeSin)
       .duration('200')
       .attr('font-size', "15px")
-      .attr('fill', 'red');
+      .attr('fill', 'black');
   })
   .on('mouseout', function(d,i) {
     d3.select(this).transition()
