@@ -267,94 +267,104 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-8">
-                <div id="sankey-cosine-2" class="sankey-cosine-1"></div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="mt-10">
-                    <div class="col-lg-4">
-                        <br/>
-                        <h5 class="col-lg-4">Second Question</h5>
-                        <div class="histogram-q10" id="histogram-q10"></div>
-                    </div>
-                </div>
-                </center>
-            </div>
-        </div>
-
     </div>
     <div class="full-width" id="scatter-viz">
         <div class="container">
-            <div class="jumbotron">
-                <center><h3>Exploring similar words by probability </h3></center>
-                <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
-                    The histograms on the right have bins of cosine distance between input questions and the above
-                    mentioned sentences.
-                    The height of each bins represents the number of questions lying in that particular range. You can
-                    click on them to see
-                    those sentences on the scatter plot.
-                </p>
-            </div>
             <br/>
             <div class="row">
                 <div class="col-lg-8">
-                    <div id="sankey-probability1" class="sankey-probability1"></div>
+                    <div id="sankey-cosine-2" class="sankey-cosine-2"></div>
                 </div>
 
                 <div class="col-lg-4">
                     <div class="mt-10">
                         <div class="col-lg-4">
                             <br/>
-                            <center>
-                                <h4>Histograms of the cosine distance</h4>
-                            </center>
-                            <h5 class="col-lg-4">
-                                <center>First Question</center>
-                            </h5>
-                            <div class="histogram-q11" id="histogram-q11" style="align: left;"></div>
+                            <h5 class="col-lg-4">Second Question</h5>
+                            <div class="histogram-q10" id="histogram-q10"></div>
                         </div>
                     </div>
                     </center>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-8">
-                <div id="sankey-probability2" class="sankey-probability2"></div>
-            </div>
 
-            <div class="col-lg-4">
-                <div class="mt-10">
+        </div>
+        <div class="full-width" id="scatter-viz">
+            <div class="container">
+                <div class="jumbotron">
+                    <center><h3>Exploring similar words by probability </h3></center>
+                    <p>The following scatter plot shows the sentences available in our training data in 2 dimensional
+                        space.
+                        The histograms on the right have bins of cosine distance between input questions and the above
+                        mentioned sentences.
+                        The height of each bins represents the number of questions lying in that particular range. You
+                        can
+                        click on them to see
+                        those sentences on the scatter plot.
+                    </p>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div id="sankey-probability1" class="sankey-probability1"></div>
+                    </div>
+
                     <div class="col-lg-4">
-                        <br/>
-                        <h5 class="col-lg-4">Second Question</h5>
-                        <div class="histogram-q12" id="histogram-q12"></div>
+                        <div class="mt-10">
+                            <div class="col-lg-4">
+                                <br/>
+                                <center>
+                                    <h4>Histograms of the cosine distance</h4>
+                                </center>
+                                <h5 class="col-lg-4">
+                                    <center>First Question</center>
+                                </h5>
+                                <div class="histogram-q11" id="histogram-q11" style="align: left;"></div>
+                            </div>
+                        </div>
+                        </center>
                     </div>
                 </div>
-                </center>
+            </div>
+        </div>
+        <div class="full-width" id="scatter-viz">
+            <div class="container">
+                <br/>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div id="sankey-probability2" class="sankey-probability2"></div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="mt-10">
+                            <div class="col-lg-4">
+                                <br/>
+                                <h5 class="col-lg-4">Second Question</h5>
+                                <div class="histogram-q12" id="histogram-q12"></div>
+                            </div>
+                        </div>
+                        </center>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-    </div>
-</div>
 
-
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-<script src="scripts/data.js"></script>
-<script src="scripts/histogram.js"></script>
-<script src="scripts/histogram-sankey.js"></script>
-<script src="scripts/scatterplot.js"></script>
-<script src="scripts/heatmap.js"></script>
-<script src="scripts/sankey.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+        <script src="scripts/data.js"></script>
+        <script src="scripts/histogram.js"></script>
+        <script src="scripts/histogram-sankey.js"></script>
+        <script src="scripts/scatterplot.js"></script>
+        <script src="scripts/heatmap.js"></script>
+        <script src="scripts/sankey.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
     width = 500 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    height = 550 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svgCosine1 = d3.select("#sankey-cosine-1").append("svg")
@@ -130,6 +130,9 @@ function createSankey(graph, svg) {
       .filter(function(d) { return d.x < width / 2; })
         .attr("x", 6 + sankey.nodeWidth())
         .attr("text-anchor", "start");
+
+    link.append('title')
+      .text(function(d) { return 'Weight= '+d.value; });
 	
 	node
 	.select('text')
@@ -137,7 +140,7 @@ function createSankey(graph, svg) {
     d3.select(this).transition()
       .ease(d3.easeSin)
       .duration('200')
-      .attr('font-size', "20px")
+      .attr('font-size', "15px")
       .attr('fill', 'red');
   })
   .on('mouseout', function(d,i) {

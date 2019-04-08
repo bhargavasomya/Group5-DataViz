@@ -123,7 +123,7 @@ dispatch.on("setupSankeyHistogram-9.histogram-sankey", function(data, defaultSel
     setupSankeyHistogram(data, ".histogram-q9");
 });
 
-dispatch.on("setupSankeyHistogram-10.histogram-sankey", function(data, defaultSelection) {
+dispatch.on("setupSankeyHistogram-10.histogram-sankey", function(data, defaultSelection = null) {
     setupSankeyHistogram(data, ".histogram-q10");
 });
 
