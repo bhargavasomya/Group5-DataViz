@@ -125,8 +125,6 @@ function setupHistogram(data, klass) {
                     .duration('50')
                     .attr('style', 'fill: orange');
 
-                const forScatterplots = ['.histogram-q1', '.histogram-q2', '.histogram-q3', '.histogram-q4'];
-
                 if (klass in forScatterplots) {
                   dispatch.call("disablePoints", null, d, klass);
                 } else {

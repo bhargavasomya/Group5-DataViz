@@ -312,3 +312,13 @@ white-space:nowrap;
   -webkit-align-content: center;
   align-content: center;
 }
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+}

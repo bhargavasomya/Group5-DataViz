@@ -1,89 +1,99 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href='styles/main.css' rel='stylesheet' type='text/css'>
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
-    </head>
-    <body>
-    <header>
-        <!--Mask-->
-        <div id="intro" class="view">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href='styles/main.css' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+            integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+    <!--Mask-->
+    <div id="intro" class="view">
 
-            <div class="mask">
+        <div class="mask">
 
-                <div class="container-fluid d-flex align-items-center justify-content-center">
+            <div class="container-fluid d-flex align-items-center justify-content-center">
 
-                    <div class="row d-flex justify-content-center text-center">
+                <div class="row d-flex justify-content-center text-center">
 
-                        <div class="col-md-10">
+                    <div class="col-md-10">
 
-                            <!-- Heading -->
+                        <!-- Heading -->
 
-                            <!-- Description -->
-                                <div class="form-container">
-                                    <img src="./assets/quora-logo-png-new-latest-red.png" alt="Quora Logo" style="width:224px;height:60px;">
-                                    <h2 class="display-4 font-weight-bold white-text mb-2" style="color: #B92B27; font-size: 24px">Visualizing Quora Duplicate Questions</h2>
-                                    <h4 class="white-text my-4"> An Interactive Visualization</h4>
-                                    <p>
-                                    <center> <b>Enter two questions to check if they are duplicate </b></center>
-                                    <br/>
-                                </p>
-                                    <form class="form-inline" method="POST">
-                                        <div class="container">
-                                            <div class="col-md-6">
-                                                <textarea class="form-control mb-3" id="q1FormInput" rows="4" cols="50%", placeholder="Question 1"></textarea>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <textarea type="text" class="form-control mb-4 mr-sm-2" id="q2FormInput" rows="4" cols="50%", placeholder="Question 2"></textarea>
-                                            </div>
-                                            <input class="btn btn-primary mx-auto mt-20"
-                                                   id="Submit"
-                                                   name="Submit"
-                                                   style="background: #3e78ad"
-                                                   type="button" value="Start"/>
-                                        </div>
-                                    </form>
+                        <!-- Description -->
+                        <div class="form-container">
+                            <img src="./assets/quora-logo-png-new-latest-red.png" alt="Quora Logo"
+                                 style="width:224px;height:60px;">
+                            <h2 class="display-4 font-weight-bold white-text mb-2"
+                                style="color: #B92B27; font-size: 24px">Visualizing Quora Duplicate Questions</h2>
+                            <h4 class="white-text my-4"> An Interactive Visualization</h4>
+                            <p>
+                            <center><b>Enter two questions to check if they are duplicate </b></center>
+                            <br/>
+                            </p>
+                            <form class="form-inline" method="POST">
+                                <div class="container">
+                                    <div class="col-md-6">
+                                        <textarea class="form-control mb-3" id="q1FormInput" rows="4" cols="50%" ,
+                                                  placeholder="Question 1"></textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <textarea type="text" class="form-control mb-4 mr-sm-2" id="q2FormInput"
+                                                  rows="4" cols="50%" , placeholder="Question 2"></textarea>
+                                    </div>
+                                    <input class="btn btn-primary mx-auto mt-20"
+                                           id="Submit"
+                                           name="Submit"
+                                           style="background: #3e78ad"
+                                           type="button" value="Start"/>
                                 </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--/.Mask-->
-    </header>
+    </div>
+    <!--/.Mask-->
+</header>
 
-    <div class="full-width" id="scatter-viz">
-        <div class="container">
-            <br/>
-            <div class = "jumbotron">
-            <center> <h3>Exploring similar words by cosine distance </h3> </center>
+<div class="full-width" id="scatter-viz">
+    <div class="container">
+        <br/>
+        <div class="jumbotron">
+            <center><h3>Exploring similar words by cosine distance </h3></center>
             <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
-                The histograms on the right have bins of cosine distance between input questions and the above mentioned sentences.
-                The height of each bins represents the number of questions lying in that particular range. You can click on them to see
+                The histograms on the right have bins of cosine distance between input questions and the above mentioned
+                sentences.
+                The height of each bins represents the number of questions lying in that particular range. You can click
+                on them to see
                 those sentences on the scatter plot.
             </p>
-            </div>
-            <br/>
-            <div class ="row">
+        </div>
+        <br/>
+        <div class="row">
             <div class="col-lg-8">
-              <div class="dropdown">
-                <button id="points-dropdown1" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Number of sentences
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item dropdown1">100</a>
-                  <a class="dropdown-item dropdown1">1000</a>
-                  <a class="dropdown-item dropdown1">10000</a>
-                  <a class="dropdown-item dropdown1">100000</a>
+                <div class="dropdown">
+                    <button id="points-dropdown1" class="btn btn-secondary dropdown-toggle" type="button"
+                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Number of sentences
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item dropdown1">100</a>
+                        <a class="dropdown-item dropdown1">1000</a>
+                        <a class="dropdown-item dropdown1">10000</a>
+                        <a class="dropdown-item dropdown1">100000</a>
+                    </div>
+                    <div id="spinner1" class="spinner-border m-1" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
                 </div>
-                <div id="spinner1" class="spinner-border m-1" role="status">
-                  <span class="sr-only">Loading...</span>
-                </div>
-              </div>
                 <div class="first-scatterplot-cosine"></div>
                 <div>
                   <span><i class="fas fa-search-plus"></i>
@@ -91,116 +101,124 @@
                 </div>
                 <div class="selected-text1 well"></div>
             </div>
-                <div class="histogram-block">
-              <div id="histograms-cosine">
-                <div class="col-lg-4">
-                     <center>
-                    <h4>Histograms of the cosine distance</h4>
-                    <h5 class="col-lg-4" >First Question</h5>
-                  <div class="histogram-q1" id="histogram-q1"></div>
-                </div>
-                <div class="col-lg-4">
-                  <br/>
-                  <br/>
-                  <h5 class="col-lg-4">Second Question</h5>
-                  <div class="histogram-q2" id="histogram-q2"></div>
-                </div>
+            <div class="histogram-block">
+                <div id="histograms-cosine">
+                    <div class="col-lg-4">
+                        <center>
+                            <h4>Histograms of the cosine distance</h4>
+                            <h5 class="col-lg-4">First Question</h5>
+                            <div class="histogram-q1" id="histogram-q1"></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <br/>
+                        <br/>
+                        <h5 class="col-lg-4">Second Question</h5>
+                        <div class="histogram-q2" id="histogram-q2"></div>
+                    </div>
 
-              </div>
-            </center>
                 </div>
+                </center>
             </div>
         </div>
-<br/>
-        <div class="container">
-            <div class="jumbotron">
-            <center> <h3>Exploring similar words by probability </h3> </center>
+    </div>
+    <br/>
+    <div class="container">
+        <div class="jumbotron">
+            <center><h3>Exploring similar words by probability </h3></center>
             <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
-                The histograms on the right have bins of cosine distance between input questions and the above mentioned sentences.
-                The height of each bins represents the number of questions lying in that particular range. You can click on them to see
+                The histograms on the right have bins of cosine distance between input questions and the above mentioned
+                sentences.
+                The height of each bins represents the number of questions lying in that particular range. You can click
+                on them to see
                 those sentences on the scatter plot.
             </p>
-            </div>
-            <br/>
-            <div class = "row">
+        </div>
+        <br/>
+        <div class="row">
             <div class="col-lg-8">
-              <button id="points-dropdown2" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Number of sentences
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item dropdown2">100</a>
-                <a class="dropdown-item dropdown2">1000</a>
-                <a class="dropdown-item dropdown2">10000</a>
-                <a class="dropdown-item dropdown2">100000</a>
-              </div>
-              <div id="spinner2" class="spinner-border m-1" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-              <div class="second-scatterplot-cosine"></div>
-              <div>
+                <button id="points-dropdown2" class="btn btn-secondary dropdown-toggle" type="button"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Number of sentences
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item dropdown2">100</a>
+                    <a class="dropdown-item dropdown2">1000</a>
+                    <a class="dropdown-item dropdown2">10000</a>
+                    <a class="dropdown-item dropdown2">100000</a>
+                </div>
+                <div id="spinner2" class="spinner-border m-1" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="second-scatterplot-cosine"></div>
+                <div>
                 <span><i class="fas fa-search-plus"></i>
                   Zoom the chart to get a closer look</span>
-              </div>
-              <div class="selected-text2 well"></div>
+                </div>
+                <div class="selected-text2 well"></div>
             </div>
 
 
-                <br/>
-                <div class="histogram-block">
-                    <h4 class="col-lg-4">Histograms of the probability distance</h4>
-                    <center>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons" class = "col-lg-4">
-                            <label class="btn btn-secondary active first-radio-model">
-                                <input type="radio" name="options" id="first-model-option1" autocomplete="off" checked
-                                       class="col-lg-4"> First Model
-                            </label>
-                            <label class="btn btn-secondary first-radio-model">
-                                <input type="radio" name="options" id="first-model-option2" autocomplete="off"> Second Model
-                            </label>
-                        </div>
-                    </center>
-                    <div id="histograms-probability" class="mt-10">
-                        <div class="col-lg-4">
-                            <br/>
-                            <h5 class="col-lg-4">First Question</h5>
-                            <div class="histogram-q3" id="histogram-q3"></div>
-                        </div>
-                        <div class="col-lg-4">
-                            <br/>
-                            <br/>
-                            <h5 class="col-lg-4">Second Question</h5>
-                            <div class="histogram-q4" id="histogram-q4"></div>
-                        </div>
-
+            <br/>
+            <div class="histogram-block">
+                <h4 class="col-lg-4">Histograms of the probability distance</h4>
+                <center>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons" class="col-lg-4">
+                        <label class="btn btn-secondary active first-radio-model">
+                            <input type="radio" name="options" id="first-model-option1" autocomplete="off" checked
+                                   class="col-lg-4"> First Model
+                        </label>
+                        <label class="btn btn-secondary first-radio-model">
+                            <input type="radio" name="options" id="first-model-option2" autocomplete="off"> Second Model
+                        </label>
                     </div>
+                </center>
+                <div id="histograms-probability" class="mt-10">
+                    <div class="col-lg-4">
+                        <br/>
+                        <h5 class="col-lg-4">First Question</h5>
+                        <div class="histogram-q3" id="histogram-q3"></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <br/>
+                        <br/>
+                        <h5 class="col-lg-4">Second Question</h5>
+                        <div class="histogram-q4" id="histogram-q4"></div>
+                    </div>
+
                 </div>
+            </div>
         </div>
     </div>
 
     <div class="full-width" id="scatter-viz">
         <div class="container">
-            <center> <h3>Heatmap </h3> </center>
+            <center><h3>Heatmap </h3></center>
             <div class="jumbotron">
-            <center> <h3>Exploring similar words by cosine distance </h3> </center>
-            <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
-                The histograms on the right have bins of cosine distance between input questions and the above mentioned sentences.
-                The height of each bins represents the number of questions lying in that particular range. You can click on them to see
-                those sentences on the scatter plot.
-            </p>
+                <center><h3>Exploring similar words by cosine distance </h3></center>
+                <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
+                    The histograms on the right have bins of cosine distance between input questions and the above
+                    mentioned sentences.
+                    The height of each bins represents the number of questions lying in that particular range. You can
+                    click on them to see
+                    those sentences on the scatter plot.
+                </p>
             </div>
             <br/>
-            <div class = "row">
-                <div class ="col-lg-8">
-                <div class="heatmap"></div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="heatmap"></div>
                 </div>
 
-                    <div class="col-lg-4">
+                <div class="col-lg-4">
                     <div id="histograms-cosine" class="mt-10">
                         <div class="col-lg-4">
                             <br/>
                             <center>
-                            <h4>Histograms of the cosine distance</h4>
-                            <h5 class="col-lg-4"><center>First Question</center></h5>
+                                <h4>Histograms of the cosine distance</h4>
+                            </center>
+                            <h5 class="col-lg-4">
+                                <center>First Question</center>
+                            </h5>
                             <div class="histogram-q5" id="histogram-q5" style="align: left;"></div>
 
 
@@ -210,33 +228,133 @@
                             <div class="histogram-q6" id="histogram-q6"></div>
                         </div>
                     </div>
-                </center>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
-    <!--<div class="full-scatterPlotWidth mt-20">-->
-        <!--<div class="container">-->
-            <!--<div class="col-lg-6">-->
-                <!--<div class="scatterplot-prob"></div>-->
-            <!--</div>-->
-            <!--<div class="col-lg-3">-->
-                <!--<label for="histogram-q3">First Question</label>-->
-                <!--<div class="histogram-q3" id="histogram-q3"></div>-->
-            <!--</div>-->
-            <!--<div class="col-lg-3">-->
-                <!--<label for="histogram-q4">Second Question</label>-->
-                <!--<div class="histogram-q4" id="histogram-q4"></div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <script src="bower_components/d3/d3.min.js"></script>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="scripts/data.js"></script>
-    <script src="scripts/histogram.js"></script>
-    <script src="scripts/scatterplot.js"></script>
-    <script src="scripts/heatmap.js"></script>
-    </body>
+    <div class="full-width" id="scatter-viz">
+        <div class="container">
+            <div class="jumbotron">
+                <center><h3>Exploring similar words by cosine distance </h3></center>
+                <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
+                    The histograms on the right have bins of cosine distance between input questions and the above
+                    mentioned sentences.
+                    The height of each bins represents the number of questions lying in that particular range. You can
+                    click on them to see
+                    those sentences on the scatter plot.
+                </p>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div id="sankey-cosine-1" class="sankey-cosine-1"></div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="mt-10">
+                        <div class="col-lg-4">
+                            <br/>
+                            <center>
+                                <h4>Histograms of the cosine distance</h4>
+                            </center>
+                            <h5 class="col-lg-4">
+                                <center>First Question</center>
+                            </h5>
+                            <div class="histogram-q9" id="histogram-q9" style="align: left;"></div>
+                        </div>
+                    </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div id="sankey-cosine-2" class="sankey-cosine-1"></div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mt-10">
+                    <div class="col-lg-4">
+                        <br/>
+                        <h5 class="col-lg-4">Second Question</h5>
+                        <div class="histogram-q10" id="histogram-q10"></div>
+                    </div>
+                </div>
+                </center>
+            </div>
+        </div>
+
+    </div>
+    <div class="full-width" id="scatter-viz">
+        <div class="container">
+            <div class="jumbotron">
+                <center><h3>Exploring similar words by probability </h3></center>
+                <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
+                    The histograms on the right have bins of cosine distance between input questions and the above
+                    mentioned sentences.
+                    The height of each bins represents the number of questions lying in that particular range. You can
+                    click on them to see
+                    those sentences on the scatter plot.
+                </p>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div id="sankey-probability1" class="sankey-probability1"></div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="mt-10">
+                        <div class="col-lg-4">
+                            <br/>
+                            <center>
+                                <h4>Histograms of the cosine distance</h4>
+                            </center>
+                            <h5 class="col-lg-4">
+                                <center>First Question</center>
+                            </h5>
+                            <div class="histogram-q11" id="histogram-q11" style="align: left;"></div>
+                        </div>
+                    </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div id="sankey-probability2" class="sankey-probability2"></div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mt-10">
+                    <div class="col-lg-4">
+                        <br/>
+                        <h5 class="col-lg-4">Second Question</h5>
+                        <div class="histogram-q12" id="histogram-q12"></div>
+                    </div>
+                </div>
+                </center>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="scripts/data.js"></script>
+<script src="scripts/histogram.js"></script>
+<script src="scripts/histogram-sankey.js"></script>
+<script src="scripts/scatterplot.js"></script>
+<script src="scripts/heatmap.js"></script>
+<script src="scripts/sankey.js"></script>
+</body>
 </html>

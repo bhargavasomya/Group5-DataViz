@@ -4,7 +4,10 @@ const dispatch = d3.dispatch("dataLoaded", "heatmapDataLoaded",
     "firstHistogramDataLoaded", "secondHistogramDataLoaded",
     "thirdHistogramDataLoaded", "forthHistogramDataLoaded",
     "fifthHistogramDataLoaded", "sixthHistogramDataLoaded",
-    "enablePoints", "disablePoints");
+    "setupSankeyHistogram-9", "setupSankeyHistogram-10",
+    "setupSankeyHistogram-11", "setupSankeyHistogram-12",
+    "enablePoints", "disablePoints",
+    "createSankey");
 
 
 function processHistogram(data, model = "model1") {
@@ -16,6 +19,7 @@ function processHistogram(data, model = "model1") {
     var firstBins = firstHistogram(data);
     dispatch.call('firstHistogramDataLoaded', null, firstBins);
     dispatch.call('fifthHistogramDataLoaded', null, firstBins);
+    dispatch.call('setupSankeyHistogram-9', null, firstBins);
 
     var secondHistogram = d3.histogram()
         .value(function(d) { return d.distance2 })
@@ -25,6 +29,8 @@ function processHistogram(data, model = "model1") {
     var secondBins = secondHistogram(data);
     dispatch.call('secondHistogramDataLoaded', null, secondBins);
     dispatch.call('sixthHistogramDataLoaded', null, secondBins);
+    dispatch.call('setupSankeyHistogram-10', null, secondBins);
+
 
     var functions = {
       model1_probs_1: function(d) { return d.model1_probs_1 },
@@ -42,6 +48,8 @@ function processHistogram(data, model = "model1") {
 
     var thirdBins = thirdHistogram(data);
     dispatch.call('thirdHistogramDataLoaded', null, thirdBins);
+    dispatch.call('setupSankeyHistogram-11', null, thirdBins);
+
 
     var forthHistogram = d3.histogram()
         .value(function(d) {
@@ -52,6 +60,7 @@ function processHistogram(data, model = "model1") {
 
     var forthBins = forthHistogram(data);
     dispatch.call('forthHistogramDataLoaded', null, forthBins);
+    dispatch.call('setupSankeyHistogram-12', null, forthBins);
 }
 
 function processScatterPlot(data) {
