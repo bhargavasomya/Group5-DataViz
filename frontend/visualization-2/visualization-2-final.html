@@ -108,6 +108,12 @@ d3.json("data.json", function(error, graph) {
         .attr("x", 6 + sankey.nodeWidth())
         .attr("text-anchor", "start");
 	
+	
+	link.append('title')
+      .text(function(d) { return 'Weight= '+d.value; });
+
+	
+	
 	node
 	.select('text')
 	.on('mouseover', function(d,i) {
