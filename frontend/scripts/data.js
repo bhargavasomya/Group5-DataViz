@@ -78,7 +78,6 @@ function getData(q1, q2, k, scroll = false) {
     success: function (json_data) {
       d3.selectAll("circle").remove();
       d3.selectAll("rect").remove();
-      console.log(json_data)
       allData = json_data;
       processHistogram(json_data);
       processScatterPlot(json_data);

@@ -90,24 +90,11 @@ function setupHistogram(data, klass) {
         .on('mouseover', function (d, i) {
             // Hover color
             d3.select(this).style("fill", 'orange');
-
-            // Tooltip
-            div.transition()
-                .duration(50)
-                .style("opacity", 1);
-            console.log(d.length);
-            let num = d.length;
-            div.html(num)
-                .style("left", (d3.event.pageX + 10) + "px")
-                .style("top", (d3.event.pageY - 15) + "px");
         })
         .on('mouseout', function (d, i) {
             if (flags[i] == 0) {
                 d3.select(this).style("fill", colors);
             }
-            div.transition()
-                .duration('50')
-                .style("opacity", 0);
         })
         .on('click', function (d, i) {
             if (flags[i] == 0) {

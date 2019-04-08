@@ -112,7 +112,6 @@ function setupSankeyHistogram(data, klass) {
                     d3.select("#sankey-probability2").selectAll("rect").remove();
                     break;
             }
-            console.log(klass);
             dispatch.call("createSankey", null, d, klass);
         });
 }
