@@ -28,13 +28,26 @@ var scatterPlotScale = d3.scaleLinear()
     .range([scatterPlotHeight-scatterPlotMargin.bottom, scatterPlotMargin.top]);
 
 function setupScatterPlot(data, scatterPlotSvg, scatterPlotNumber) {
-    scatterPlotSvg.append("g")
+    var gX = scatterPlotSvg.append("g")
         .attr("transform", `translate(0,${scatterPlotHeight-scatterPlotMargin.bottom})`)
         .call(d3.axisBottom().scale(scatterPlotXScale).ticks(10));
 
-    scatterPlotSvg.append("g")
+    var gY = scatterPlotSvg.append("g")
         .attr("transform", `translate(${scatterPlotMargin.left},0)`)
         .call(d3.axisLeft().scale(scatterPlotScale));
+
+    var zoom = d3.zoom()
+    .scaleExtent([.5, 20])
+    .extent([[0, 0], [scatterPlotWidth, scatterPlotHeight]])
+    .on("zoom", zoomed);
+
+    scatterPlotSvg.append("rect")
+    .attr("width", scatterPlotWidth)
+    .attr("height", scatterPlotHeight)
+    .style("fill", "none")
+    .style("pointer-events", "all")
+    .attr('transform', `translate(${scatterPlotMargin.left},${scatterPlotMargin.top})`)
+    .call(zoom);
 
     var selectedTextClass = "";
     
@@ -46,7 +59,7 @@ function setupScatterPlot(data, scatterPlotSvg, scatterPlotNumber) {
     var selectedText = d3.select(selectedTextClass).style("opacity", 0);
     var currentColor = "";
 
-    scatterPlotSvg.selectAll("circle")//empty selection
+    var points = scatterPlotSvg.selectAll("circle")//empty selection
         .data(data)
         .enter() //empty placeholder
         .append("circle")
@@ -73,6 +86,19 @@ function setupScatterPlot(data, scatterPlotSvg, scatterPlotNumber) {
                 .duration(50)
                 .style('opacity', 0);
         });
+
+    function zoomed() {
+    // create new scale ojects based on event
+    var new_xScale = d3.event.transform.rescaleX(scatterPlotXScale);
+    var new_yScale = d3.event.transform.rescaleY(scatterPlotScale);
+    // update axes
+    gX.call(d3.axisBottom().scale(scatterPlotXScale).scale(new_xScale));
+    gY.call(d3.axisLeft().scale(scatterPlotScale).scale(new_yScale));
+    points.data(data)
+     .attr('cx', function(d) {return new_xScale(d.x)})
+     .attr('cy', function(d) {return new_yScale(d.y)});
+    }
+
 }
 
 var storedData;
