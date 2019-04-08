@@ -346,6 +346,8 @@ dispatch.on("createSankey.sankey", function (data, klass) {
       nodes = cosineSankeyData1.nodes;
       links = cosineSankeyData1.links;
 
+      nodes[0].name = $('#q1FormInput').val();
+
       sortedData.forEach(function(g, i) {
         nodes[i + 1].name = g.question;
         links[i].value = g.distance1;
@@ -358,6 +360,8 @@ dispatch.on("createSankey.sankey", function (data, klass) {
       cosineSankeyData2 = restoreDefault();
       nodes = cosineSankeyData2.nodes;
       links = cosineSankeyData2.links;
+
+      nodes[0].name = $('#q2FormInput').val();
 
       sortedData.forEach(function(g, i) {
         nodes[i + 1].name = g.question;
@@ -378,6 +382,9 @@ dispatch.on("createSankey.sankey", function (data, klass) {
       probabilitySankeyData1 = restoreDefault();
       nodes = probabilitySankeyData1.nodes;
       links = probabilitySankeyData1.links;
+
+      nodes[0].name = $('#q1FormInput').val();
+
       sortedData.forEach(function(g, i) {
         nodes[i + 1].name = g.question;
         links[i].value = model === "model1" ? g.model1_probs_1 : g.model2_probs_1;
@@ -391,6 +398,8 @@ dispatch.on("createSankey.sankey", function (data, klass) {
       probabilitySankeyData2 = restoreDefault();
       nodes = probabilitySankeyData2.nodes;
       links = probabilitySankeyData2.links;
+
+      nodes[0].name = $('#q2FormInput').val();
 
       sortedData.forEach(function(g, i) {
         nodes[i + 1].name = g.question;
