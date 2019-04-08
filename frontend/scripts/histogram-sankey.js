@@ -37,16 +37,16 @@ function setupSankeyHistogram(data, klass) {
 
     var xScale = d3.scaleLinear() //Discrete Scale
         .domain(range)
-        .range([margin.left, width-margin.right]) //Rounds values of
+        .range([margin.left + 4, width]) //Rounds values of
     svg.append("g")
-        .attr("transform", `translate(0,${height-margin.bottom})`)
-        .call(d3.axisBottom().scale(xScale));
+        .attr("transform", `translate(0,${height-margin.bottom-20})`)
+        .call(d3.axisBottom().ticks(3).scale(xScale));
 
     var yScale = d3.scaleLinear() //Continuous Scale
         .domain([0, d3.max(data, function(d) { return d.length; })])
-        .range([height-margin.bottom, margin.top]);
+        .range([height-margin.bottom-20, margin.top]);
     svg.append("g")
-        .attr("transform", `translate(${margin.left},0)`)
+        .attr("transform", `translate(${margin.left + 4},0)`)
         .call(d3.axisLeft().scale(yScale));
 
     var flags = Array(20).fill(0);
@@ -71,7 +71,7 @@ function setupSankeyHistogram(data, klass) {
         .attr("x", 1)
         .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + yScale(d.length) + ")"; })
         .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) -1 ; })
-        .attr("height", function(d) { return height - yScale(d.length); })
+        .attr("height", function(d) { return height - yScale(d.length) - 20; })
         .style("fill", colors)
         .on('mouseover', function (d, i) {
             // Hover color
