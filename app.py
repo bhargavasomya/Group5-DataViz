@@ -26,6 +26,28 @@ def get_data():
         k = int(names['k'])
     return sentence.get_sentences(q1, q2, k=k).to_json(orient='records')
 
+@app.route('/predict-duplicate-with-first-model', methods=['POST'])
+def predict_with_first_model():
+    q1 = ''
+    q2 = ''
+    if request.method == 'POST':
+        names = request.get_json()
+        q1 = names['q1']
+        q2 = names['q2']
+
+    return sentence.predict_with_first_model(q1, q2).to_json(orient='records')
+
+@app.route('/predict-duplicate-with-second-model', methods=['POST'])
+def predict_with_second_model():
+    q1 = ''
+    q2 = ''
+    if request.method == 'POST':
+        names = request.get_json()
+        q1 = names['q1']
+        q2 = names['q2']
+
+    return sentence.predict_with_second_model(q1, q2).to_json(orient='records')
+
 @app.route('/getmatrix', methods=['POST'])
 def get_pairs():
     questions_array = None
