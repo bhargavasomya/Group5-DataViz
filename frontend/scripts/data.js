@@ -81,6 +81,7 @@ function getData(q1, q2, k, scroll = false) {
       allData = json_data;
       processHistogram(json_data);
       processScatterPlot(json_data);
+      $('#exampleModalCenter').modal();
       $("#scatter-viz").show();
       if (scroll) {
         document.getElementById("scatter-viz").scrollIntoView({behavior: "smooth"});
@@ -88,7 +89,6 @@ function getData(q1, q2, k, scroll = false) {
       document.getElementById("Submit").value = "Start";
       $("#spinner1").hide();
       $("#spinner2").hide();
-      $('#exampleModalCenter').modal();
     },
     error: function(error) {
       console.log(error);
