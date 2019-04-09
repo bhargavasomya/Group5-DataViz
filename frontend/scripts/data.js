@@ -95,6 +95,55 @@ function getData(q1, q2, k, scroll = false) {
   });
 }
 
+function getPredictionFirstModel(q1, q2) {
+  console.log("Here");
+  $.ajax({
+    type: "POST",
+    contentType: "application/json;charset=utf-8",
+    url: "http://127.0.0.1:5000/predict-duplicate-with-first-model",
+    traditional: "true",
+    data: JSON.stringify({ q1: q1, q2: q2 }),
+    dataType: "json",
+    success: function (json_data) {
+      var result = json_data.result;
+      console.log(result);
+      if (result >= 0.5) {
+        sentence = "Using the first model, the questions are <b>duplicate</b>. Meanwhile..."
+      } else {
+        sentence = "Using the first model, the questions are <b>not duplicate</b>. Meanwhile..."
+      }
+      document.getElementById("first-model-result").innerHTML = sentence;
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+function getPredictionSecondModel(q1, q2) {
+  $.ajax({
+    type: "POST",
+    contentType: "application/json;charset=utf-8",
+    url: "http://127.0.0.1:5000/predict-duplicate-with-second-model",
+    traditional: "true",
+    data: JSON.stringify({ q1: q1, q2: q2 }),
+    dataType: "json",
+    success: function (json_data) {
+      var result = json_data.result;
+      console.log(result);
+      var sentence = "";
+      if (result >= 0.5) {
+        sentence = "Using the second model, the questions are <b>duplicate</b>."
+      } else {
+        sentence = "Using the second model, the questions are <b>not duplicate</b>."
+      }
+      document.getElementById("second-model-result").innerHTML = sentence;
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
 
 $('.dropdown1').click(function() {
   // Change sentence
@@ -122,8 +171,9 @@ $('#Submit').click(function() {
     var q1 = $('#q1FormInput').val();
     var q2 = $('#q2FormInput').val();
 
+    getPredictionFirstModel(q1, q2);
+    getPredictionSecondModel(q1, q2);
     getData(q1, q2, 1000, true);
-
 });
 
 $('.first-radio-model').click(function() {

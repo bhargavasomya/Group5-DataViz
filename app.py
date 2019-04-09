@@ -4,6 +4,8 @@ from flask_cors import CORS
 from ML.sentences import Sentences
 from ML.init_server import create_embedding_index
 
+from flask import jsonify
+
 import pandas as pd
 
 app = Flask(__name__)
@@ -35,7 +37,8 @@ def predict_with_first_model():
         q1 = names['q1']
         q2 = names['q2']
 
-    return sentence.predict_with_first_model(q1, q2).to_json(orient='records')
+    print(q1)
+    return jsonify({"result": str(sentence.predict_with_first_model(q1, q2)[0][0])})
 
 @app.route('/predict-duplicate-with-second-model', methods=['POST'])
 def predict_with_second_model():
@@ -46,7 +49,7 @@ def predict_with_second_model():
         q1 = names['q1']
         q2 = names['q2']
 
-    return sentence.predict_with_second_model(q1, q2).to_json(orient='records')
+    return jsonify({"result": str(sentence.predict_with_second_model(q1, q2)[0][0])})
 
 @app.route('/getmatrix', methods=['POST'])
 def get_pairs():
