@@ -87,6 +87,7 @@ function setupHistogram(data, klass) {
         .attr("height", function(d) { return 0; })
         .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) -1 ; })
         .style("fill", colors)
+        .attr("class", "pointer")
         .on('mouseover', function (d, i) {
             // Hover color
             d3.select(this).style("fill", 'orange');
@@ -136,6 +137,7 @@ function setupHistogram(data, klass) {
         .delay(function(_, i) {return i * 100;})
         .attr("height", function(d) { return height - yScale(d.length) - 20; })
         .attr("y", function (d) {return yScale(d.length);});
+
 }
 
 
