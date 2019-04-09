@@ -64,14 +64,14 @@ function setupSankeyHistogram(data, klass) {
         }
     }(klass);
 
-    svg.selectAll("rect")
+    var scatter = svg.selectAll("rect")
         .data(data)
         .enter()
         .append("rect")
-        .attr("x", 1)
-        .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + yScale(d.length) + ")"; })
+        .attr("x", function (d) {return xScale(d.x0);})
+        .attr("y", function (d) {return height - 20;})
+        .attr("height", function(d) { return 0; })
         .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) -1 ; })
-        .attr("height", function(d) { return height - yScale(d.length) - 20; })
         .style("fill", colors)
         .on('mouseover', function (d, i) {
             // Hover color
@@ -114,6 +114,11 @@ function setupSankeyHistogram(data, klass) {
             }
             dispatch.call("createSankey", null, d, klass);
         });
+
+    scatter.transition()
+        .delay(function(_, i) {return i * 100;})
+        .attr("height", function(d) { return height - yScale(d.length) - 20; })
+        .attr("y", function (d) {return yScale(d.length);});
 }
 
 
