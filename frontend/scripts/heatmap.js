@@ -5,7 +5,7 @@ function mean(arr) {
   }) / arr.length;
 }
 
-var lPatchWidth=400;
+var lPatchWidth=300;
 var itemSize = 30,
   cellSize = itemSize - 3,
   margin = {top: 50, right: 20, bottom: 120, left: 110};
@@ -16,7 +16,8 @@ var width = 750 - margin.right - margin.left,
   height = 300 - margin.top - margin.bottom;
 var colorScale;
 
-colorHold = ["#87cefa", "#86c6ef", "#85bde4", "#83b7d9", "#82afce", "#80a6c2"];
+//colorHold = ["#87cefa", "#86c6ef", "#85bde4", "#83b7d9", "#82afce", "#80a6c2"];
+colorHold = ["#FFC039", "#FFC707", "#FF9339", "#FF6307", "#FF4739", "#FF1907"]
 colorLText = ["0", "10", "20", "30", "40", "50"];
 
 function bandClassifier(val, multiplier) {
@@ -35,18 +36,20 @@ var svg = d3.select('.heatmap');
 
   data = response.map(function (item) {
     var newItem = {};
-    newItem.country = item.x;
-    newItem.product = item.y;
-    newItem.value = +item.value;
+    newItem.X_co = item.x;
+    newItem.Y_co = item.y;
+    newItem.value = +item.values;
     return newItem;
   });
-
+  console.log("Testing");
+  console.log(data);
+  console.log("Testing");
   invertcolors=0;
   // Inverting color scale
   if(invertcolors) { colorHold.reverse(); }
 
-  var x_elements = d3.set(data.map(function( item ) { return item.product; } )).values(),
-    y_elements = d3.set(data.map(function( item ) { return item.country; } )).values();
+  var x_elements = d3.set(data.map(function( item ) { return item.Y_co; } )).values(),
+    y_elements = d3.set(data.map(function( item ) { return item.X_co; } )).values();
 
   var xScale = d3.scaleBand()
     .domain(x_elements)
@@ -89,7 +92,7 @@ var svg = d3.select('.heatmap');
     .attr("height", height + margin.top + margin.bottom)
 
   var svg = rootsvg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + (width/4 + margin.left) + "," + margin.top + ")");
 
   // tooltip
   tooltip = d3.select("body").append("div").style("width","80px").style("height","40px").style("background","#C3B3E5")
@@ -103,8 +106,8 @@ var svg = d3.select('.heatmap');
     .attr('class', 'cell')
     .attr('width', cellSize)
     .attr('height', cellSize)
-    .attr('y', function(d) { return yScale(d.country); })
-    .attr('x', function(d) { return xScale(d.product)-cellSize/2; })
+    .attr('y', function(d) { return yScale(d.X_co); })
+    .attr('x', function(d) { return xScale(d.Y_co)-cellSize/2; })
     .attr('fill', function(d) { return colorScale(bandClassifier(d.perChange,100));})
     .attr("rx", 3)
     .attr("ry", 3)
@@ -122,7 +125,7 @@ var svg = d3.select('.heatmap');
         .style("top",(d3.event.pageY-30)+"px").style("left",(d3.event.pageX+20)+"px");
 
       console.log(d3.mouse(this)[0])
-      tooltip.select("div").html("<strong>"+d.product+"</strong><br/> "+(+d.value).toFixed(2))
+      tooltip.select("div").html("<strong>"+d.Y_co+"</strong><br/> "+(+d.value).toFixed(2))
 
     });
 
@@ -174,16 +177,7 @@ var svg = d3.select('.heatmap');
     .style("text-anchor", "middle")
     .text(colorLText[0])
 
-  // Heading 
-  rootsvg.append("g")
-    .attr("transform","translate(0,30)")
-    .append("text")
-    .attr("x",(width + margin.right + margin.left) / 2)
-    .attr('font-weight', 'bold')
-    .attr('font-size', '22px')
-    .attr('font-family', 'Segoe UI bold')
-    .style("text-anchor", "middle")
-    .text("Question Similarities")
+  
 }
 
 function getMatrix(questions, model) {
