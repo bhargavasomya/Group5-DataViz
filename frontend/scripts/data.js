@@ -88,6 +88,7 @@ function getData(q1, q2, k, scroll = false) {
       document.getElementById("Submit").value = "Start";
       $("#spinner1").hide();
       $("#spinner2").hide();
+      $('#exampleModalCenter').modal();
     },
     error: function(error) {
       console.log(error);
