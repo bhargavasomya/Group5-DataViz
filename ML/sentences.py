@@ -33,11 +33,14 @@ class Sentences(object):
         # _sentences = pickle.load(open("./data/words.p", "rb"))
         points = pickle.load(open("./data/points.pkl", "rb"))
         questions = pickle.load(open("./data/questions.pkl", "rb"))
+        extra_questions = pickle.load(open("./data/demo_sentences.pkl", "rb"))
 
         # self.data["sentences"] = _sentences
         self.data["x"] = points[:, 0]
         self.data["y"] = points[:, 1]
         self.data["question"] = questions
+
+        self.data = extra_questions.append(self.data)
         self.nn = NeuralNetwork(embedding_index)
         self.lsa = LSA()
 
