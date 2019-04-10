@@ -30,9 +30,19 @@ function bandClassifier(val, multiplier) {
 }
 
 
-function heatmapChart(response){
-var svg = d3.select('.heatmap');
-    svg.selectAll("*").remove();
+function heatmapChart(response, klass){
+
+  var histogramClass = ""
+
+  if(klass === '.histogram-q5' || klass === '.histogram-q6'){
+      histogramClass = '.heatmap1';
+  }else{
+     histogramClass = '.heatmap2';
+  }
+
+
+  var svg = d3.select(histogramClass);
+  svg.selectAll("*").remove();
 
   data = response.map(function (item) {
     var newItem = {};
@@ -86,7 +96,7 @@ var svg = d3.select('.heatmap');
     .domain([-3,-2,-1,1,2,3])
     .range(colorHold);
 
-  var rootsvg = d3.select('.heatmap')
+ var rootsvg = d3.select(histogramClass)
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -168,7 +178,7 @@ var svg = d3.select('.heatmap');
     .append("rect").attr("width", lPatchWidth / colorScale.range().length + "px").attr("height", "10px").attr("fill", function(d){return d})
     .attr("x", function(_, i) {return i * ( lPatchWidth / colorScale.range().length )})
 
-  // Legend text
+  /* Legend text
   legends.append("g").attr("class","LegText")
     .attr("transform","translate(0,45)")
     .append("text")
@@ -176,11 +186,11 @@ var svg = d3.select('.heatmap');
     .attr('font-weight', 'normal')
     .style("text-anchor", "middle")
     .text(colorLText[0])
-
+*/
   
 }
 
-function getMatrix(questions, model) {
+function getMatrix(questions, model, klass) {
   $.ajax({
     type: "POST",
     contentType: "application/json;charset=utf-8",
@@ -190,7 +200,7 @@ function getMatrix(questions, model) {
     dataType: "json",
     success: function (json_data) {
       console.log(json_data)
-      heatmapChart(json_data);
+      heatmapChart(json_data, klass);
     },
     error: function(error) {
       console.log(error);
@@ -202,7 +212,17 @@ var storedData;
 const firstHeatmap = ['.histogram-q5', '.histogram-q6']
 
 dispatch.on("heatmapDataLoaded.heatmap", function(data, klass) {
-    var model = "";
+	var model = "";
+	$('.second-radio-model').click(function() {
+		var firstHistogram = "";
+
+		if (document.getElementById('second-model-option1').checked) {
+		model = "model1";
+		} else {
+		model = "model2";
+		}
+	});
+
     if (data != null) {
       if (firstHeatmap.includes(klass)) {
         console.log("here");
@@ -211,8 +231,17 @@ dispatch.on("heatmapDataLoaded.heatmap", function(data, klass) {
         } else {
           storedData = data.sort(function(a,b) {return b.distance2 - a.distance2});
         }  
-        model = "model1";
-      }  
+        //model = "model1";
+      }else{
+	
+        if (klass === '.histogram-q7') {
+          storedData = model === "model1" ? data.sort(function(a,b) {return b.model1_probs_1 - a.model1_probs_1}) : data.sort(function(a,b) {return b.model2_probs_1 - a.model2_probs_1});
+        } else {
+          //storedData = data.sort(function(a,b) {return b.distance2 - a.distance2});
+	  storedData = model === "model1" ? data.sort(function(a,b) {return b.model1_probs_2 - a.model1_probs_2}) : data.sort(function(a,b) {return b.model2_probs_2 - a.model2_probs_2});
+        }        
+
+      }    
       
       if (storedData.length >= 10) {
         storedData = storedData.slice(0, 10);
@@ -221,6 +250,6 @@ dispatch.on("heatmapDataLoaded.heatmap", function(data, klass) {
       
       var sentences = storedData.map(x => x.question);
       console.log(sentences);
-      getMatrix(sentences, model);
+      getMatrix(sentences, model, klass);
     }
 });

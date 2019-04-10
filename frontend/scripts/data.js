@@ -4,6 +4,7 @@ const dispatch = d3.dispatch("dataLoaded", "heatmapDataLoaded",
     "firstHistogramDataLoaded", "secondHistogramDataLoaded",
     "thirdHistogramDataLoaded", "forthHistogramDataLoaded",
     "fifthHistogramDataLoaded", "sixthHistogramDataLoaded",
+    "seventhHistogramDataLoaded", "eighthHistogramDataLoaded",
     "setupSankeyHistogram-9", "setupSankeyHistogram-10",
     "setupSankeyHistogram-11", "setupSankeyHistogram-12",
     "enablePoints", "disablePoints",
@@ -49,7 +50,7 @@ function processHistogram(data, model = "model1") {
     var thirdBins = thirdHistogram(data);
     dispatch.call('thirdHistogramDataLoaded', null, thirdBins);
     dispatch.call('setupSankeyHistogram-11', null, thirdBins);
-
+    dispatch.call('seventhHistogramDataLoaded', null, thirdBins);
 
     var forthHistogram = d3.histogram()
         .value(function(d) {
@@ -61,6 +62,7 @@ function processHistogram(data, model = "model1") {
     var forthBins = forthHistogram(data);
     dispatch.call('forthHistogramDataLoaded', null, forthBins);
     dispatch.call('setupSankeyHistogram-12', null, forthBins);
+    dispatch.call('eighthHistogramDataLoaded', null, forthBins);
 }
 
 function processScatterPlot(data, q1, q2) {
@@ -190,6 +192,21 @@ $('.first-radio-model').click(function() {
 
   processHistogram(allData, firstHistogram);
 });
+
+
+$('.second-radio-model').click(function() {
+  var firstHistogram = "";
+
+  if (document.getElementById('second-model-option1').checked) {
+    firstHistogram = "model1";
+  } else {
+    firstHistogram = "model2";
+  }
+
+  processHistogram(allData, firstHistogram);
+});
+
+
 
 $('.fifth-radio-model').click(function() {
     d3.select("#sankey-probability1").selectAll("text").remove();
