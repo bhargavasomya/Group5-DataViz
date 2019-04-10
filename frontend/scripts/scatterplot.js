@@ -68,7 +68,7 @@ function setupScatterPlot(data, scatterPlotSvg, scatterPlotNumber) {
         .append("circle")
         .attr("cx", function(d) { return scatterPlotXScale(d.x); })
         .attr("cy", function(d) { return scatterPlotScale(d.y); })
-        .attr("r", function(d) { return (d.question === question1 || d.question === question2) ? 10 : 3})
+        .attr("r", function(d) { return (d.question === question1 || d.question === question2) ? 7 : 3})
         .style("opacity", 0.7)
         .attr("fill", function(d) {return (d.question === question1 || d.question === question2) ? "orange" : "#9B59B6"})
         .on('mouseover', function (d, i) {
@@ -172,7 +172,7 @@ function updateFirstScatterplot() {
 function updateSecondScatterplot() {
     if (thirdHistogramDisplayed.size == 0 && thirdHistogramDisplayed.size == 0) {
         secondScatterPlotSvg.selectAll("circle").transition().attr("fill-opacity", .7)
-            .attr("fill", "#9B59B6");
+            .attr("fill", function(d) { return (d.question === question1 || d.question === question2) ? "orange" : "#9B59B6"});
     } else {
         secondScatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
         thirdHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, .7, "#B92B27", firstScatterPlotSvg)});
