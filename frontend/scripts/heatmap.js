@@ -51,9 +51,27 @@ function heatmapChart(response, klass){
     newItem.value = +item.values;
     return newItem;
   });
-  console.log("Testing");
+ 
+  console.log("this is a test");
   console.log(data);
-  console.log("Testing");
+  console.log("Done testing");
+
+  var new_questions = {};
+  var count = 0;
+  for(i=0;i<data.length;i++){
+	q1 = data[i].X_co;
+	if (!(q1 in new_questions)){
+		new_questions[q1] = "q"+count.toString();
+		count+=1;
+	}
+  }
+
+  for(i=0;i<data.length;i++){
+	data[i].X_co = new_questions[data[i].X_co];
+	data[i].Y_co = new_questions[data[i].Y_co];
+  }
+
+
   invertcolors=0;
   // Inverting color scale
   if(invertcolors) { colorHold.reverse(); }
@@ -188,6 +206,19 @@ function heatmapChart(response, klass){
     .text(colorLText[0])
 */
   
+    var x;
+    if(histogramClass === '.heatmap1'){
+    	x = document.getElementById("heatmap1_questions");
+    }else{
+        x = document.getElementById("heatmap2_questions");
+    }
+    x.innerHTML = "";
+    for (var key in new_questions) {
+	x.innerHTML += new_questions[key] + " : " + key + "<br>";
+
+    }
+
+
 }
 
 function getMatrix(questions, model, klass) {
