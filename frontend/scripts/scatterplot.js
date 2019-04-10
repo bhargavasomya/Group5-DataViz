@@ -1,3 +1,6 @@
+var question1 = "";
+var question2 = "";
+
 var scatterPlotWidth = 540;
 var scatterPlotHeight = 540;
 var scatterPlotMargin = {
@@ -65,9 +68,9 @@ function setupScatterPlot(data, scatterPlotSvg, scatterPlotNumber) {
         .append("circle")
         .attr("cx", function(d) { return scatterPlotXScale(d.x); })
         .attr("cy", function(d) { return scatterPlotScale(d.y); })
-        .attr("r", 3)
+        .attr("r", function(d) { return (d.question === question1 || d.question === question2) ? 10 : 3})
         .style("opacity", 0.7)
-        .attr("fill", "#9B59B6")
+        .attr("fill", function(d) {return (d.question === question1 || d.question === question2) ? "orange" : "#9B59B6"})
         .on('mouseover', function (d, i) {
             currentColor = d3.select(this).attr("fill");
             d3.select(this).attr("fill", 'orange');
@@ -108,8 +111,11 @@ var secondHistogramDisplayed = new Set();
 var thirdHistogramDisplayed = new Set();
 var forthHistogramDisplayed = new Set();
 
-dispatch.on("dataLoaded.scatterplot", function(data) {
+
+dispatch.on("dataLoaded.scatterplot", function(data, _question1, _question2) {
     storedData = data;
+    question1 = _question1;
+    question2 = _question2;
     setupScatterPlot(data, firstScatterPlotSvg, 1);
     setupScatterPlot(data, secondScatterPlotSvg, 2);
 });
@@ -118,7 +124,8 @@ function setOpacityAndColorForGroup(value, opacityValue, colorValue, scatterPlot
     value.forEach(function(v) {
         scatterPlotSvg.selectAll("circle").filter(function (d) {
             return d === v;
-        }).transition().delay(100).attr("fill-opacity", opacityValue).attr("fill", colorValue)
+        }).transition().delay(100).attr("fill-opacity", opacityValue)
+        .attr("fill", function(d) {return (d.question === question1 || d.question === question2) ? "orange" : colorValue})
     });
 }
 
@@ -154,11 +161,11 @@ dispatch.on("disablePoints.scatterplot", function (data, histogramNumber) {
 function updateFirstScatterplot() {
     if (firstHistogramDisplayed.size == 0 && secondHistogramDisplayed.size == 0) {
         firstScatterPlotSvg.selectAll("circle").transition().attr("fill-opacity", .7)
-            .attr("fill", "#9B59B6");
+            .attr("fill", function(d) { return (d.question === question1 || d.question === question2) ? "orange" : "#9B59B6"});
     } else {
         firstScatterPlotSvg.selectAll("circle").transition().attr("fill-opacity", 0.0);
-        firstHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27", firstScatterPlotSvg)});
-        secondHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#2b6dad", firstScatterPlotSvg)});
+        firstHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, .7, "#B92B27", firstScatterPlotSvg)});
+        secondHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, .7, "#2b6dad", firstScatterPlotSvg)});
     }
 }
 
@@ -168,8 +175,8 @@ function updateSecondScatterplot() {
             .attr("fill", "#9B59B6");
     } else {
         secondScatterPlotSvg.selectAll("circle").attr("fill-opacity", 0.0);
-        thirdHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#B92B27", firstScatterPlotSvg)});
-        forthHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, 1, "#2b6dad", firstScatterPlotSvg)});
+        thirdHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, .7, "#B92B27", firstScatterPlotSvg)});
+        forthHistogramDisplayed.forEach(function(g) {setOpacityAndColorForGroup(g, .7, "#2b6dad", firstScatterPlotSvg)});
     }
 }
 

@@ -63,8 +63,8 @@ function processHistogram(data, model = "model1") {
     dispatch.call('setupSankeyHistogram-12', null, forthBins);
 }
 
-function processScatterPlot(data) {
-    dispatch.call('dataLoaded', null, data);
+function processScatterPlot(data, q1, q2) {
+    dispatch.call('dataLoaded', null, data, q1, q2);
 }
 
 function getData(q1, q2, k, scroll = false) {
@@ -82,7 +82,7 @@ function getData(q1, q2, k, scroll = false) {
       d3.select(".second-scatterplot-cosine").selectAll("g").remove();
       allData = json_data;
       processHistogram(json_data);
-      processScatterPlot(json_data);
+      processScatterPlot(json_data, q1, q2);
       $('#exampleModalCenter').modal();
       $("#scatter-viz").show();
       if (scroll) {

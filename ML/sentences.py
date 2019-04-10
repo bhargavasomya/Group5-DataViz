@@ -50,38 +50,39 @@ class Sentences(object):
 
         # Append the question
         local_data = self.data[:k]
-        local_data.append(pd.DataFrame([[point1[0], point1[1], sentence1], [point2[0], point2[1], sentence2]],
+        local_data = local_data.append(pd.DataFrame([[point1[0], point1[1], sentence1], [point2[0], point2[1], sentence2]],
                                        columns=['x', 'y', 'question']))
+
 
         # Removing punctuations from strings
         sentence1 = sentence1.translate(str.maketrans('', '', string.punctuation))
         sentence2 = sentence2.translate(str.maketrans('', '', string.punctuation))
 
         local_data["distance1"] = [cosine_similarity([point1], [[row["x"], row["y"]]])[0][0] for index, row in
-                                   self.data[:k].iterrows()]
+                                   local_data.iterrows()]
         local_data["distance2"] = [cosine_similarity([point2], [[row["x"], row["y"]]])[0][0] for index, row in
-                                   self.data[:k].iterrows()]
+                                   local_data.iterrows()]
 
         local_data["model1_probs_1"] = [
             self.nn.predict_with_first_model(sentence1,
                                              row["question"].translate(str.maketrans('', '', string.punctuation)))[0][0]
             for index, row in
-            self.data[:k].iterrows()]
+            local_data.iterrows()]
         local_data["model1_probs_2"] = [
             self.nn.predict_with_first_model(sentence2,
                                              row["question"].translate(str.maketrans('', '', string.punctuation)))[0][0]
             for index, row in
-            self.data[:k].iterrows()]
+            local_data.iterrows()]
         local_data["model2_probs_1"] = [
             self.nn.predict_with_second_model(sentence1,
                                               row["question"].translate(str.maketrans('', '', string.punctuation)))[0][0]
             for index, row in
-            self.data[:k].iterrows()]
+            local_data.iterrows()]
         local_data["model2_probs_2"] = [
             self.nn.predict_with_second_model(sentence2,
                                               row["question"].translate(str.maketrans('', '', string.punctuation)))[0][0]
             for index, row in
-            self.data[:k].iterrows()]
+            local_data.iterrows()]
 
         return local_data
 
