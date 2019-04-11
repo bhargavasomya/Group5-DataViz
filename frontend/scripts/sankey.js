@@ -141,14 +141,14 @@ function createSankey(graph, svg) {
       .ease(d3.easeSin)
       .duration('200')
       .attr('font-size', "15px")
-      .attr('fill', 'black');
+      .attr('fill', '#3366cc');
   })
   .on('mouseout', function(d,i) {
     d3.select(this).transition()
       .ease(d3.easeSin)
       .duration('200')
       .attr('font-size', "10px")
-      .attr('fill', '#333');
+      .attr('fill', '#3366cc');
   });
 	
 
