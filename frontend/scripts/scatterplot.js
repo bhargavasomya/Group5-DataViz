@@ -59,7 +59,7 @@ function setupScatterPlot(data, scatterPlotSvg, scatterPlotNumber) {
     } else {
       selectedTextClass = ".selected-text2";
     }
-    var selectedText = d3.select(selectedTextClass).style("opacity", 0);
+    var selectedText = d3.select(selectedTextClass);
     var currentColor = "";
 
     var points = scatterPlotSvg.selectAll("circle")//empty selection
@@ -75,19 +75,13 @@ function setupScatterPlot(data, scatterPlotSvg, scatterPlotNumber) {
             currentColor = d3.select(this).attr("fill");
             d3.select(this).attr("fill", 'orange');
             d3.select(this).transition().attr("r", 8);
-            selectedText.transition()
-                .duration(50)
-                .style('opacity', 1)
-
             let q = d.question;
-            selectedText.html(q);
+            selectedText.html("Hovered point: " + q);
         })
         .on('mouseout', function (d, i) {
             d3.select(this).attr("fill", currentColor);
             d3.select(this).transition().attr("r", 3);
-            selectedText.transition()
-                .duration(50)
-                .style('opacity', 0);
+            selectedText.html("Hovered point: <br><br><br>");
         });
 
     function zoomed() {
