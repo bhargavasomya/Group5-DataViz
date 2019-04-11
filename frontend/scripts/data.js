@@ -1,4 +1,5 @@
 var allData;
+var firstLoad = true;
 
 const dispatch = d3.dispatch("dataLoaded", "heatmapDataLoaded",
     "firstHistogramDataLoaded", "secondHistogramDataLoaded",
@@ -85,7 +86,10 @@ function getData(q1, q2, k, scroll = false) {
       allData = json_data;
       processHistogram(json_data);
       processScatterPlot(json_data, q1, q2);
-      $('#exampleModalCenter').modal();
+      if (firstLoad) {
+          $('#exampleModalCenter').modal();
+          firstLoad = false;
+      }
       $("#scatter-viz").show();
       if (scroll) {
         document.getElementById("scatter-viz").scrollIntoView({behavior: "smooth"});
