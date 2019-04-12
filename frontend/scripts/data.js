@@ -9,7 +9,7 @@ const dispatch = d3.dispatch("dataLoaded", "heatmapDataLoaded",
     "setupSankeyHistogram-9", "setupSankeyHistogram-10",
     "setupSankeyHistogram-11", "setupSankeyHistogram-12",
     "enablePoints", "disablePoints",
-    "createSankey");
+    "createSankey", "resetZoom");
 
 
 function processHistogram(data, model = "model1") {
@@ -230,6 +230,7 @@ $('.fifth-radio-model').click(function() {
 
     processHistogram(allData, firstHistogram);
 });
+
 
 $("#scatter-viz").hide();
 $("#spinner1").hide();

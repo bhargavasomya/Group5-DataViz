@@ -4,8 +4,6 @@
 
 }
 
-.pointer {cursor: pointer;}
-
 #intro {
     background: url("../assets/quora_background.png")no-repeat center center fixed;
     -webkit-background-size: cover;
