@@ -23,6 +23,9 @@ var secondScatterPlotSvg = d3.select(".second-scatterplot-cosine")
     .attr("width", scatterPlotWidth)
     .attr("height", scatterPlotHeight);
 
+var firstZoom;
+var secondZoom;
+
 var scatterPlotXScale = d3.scaleLinear()
     .domain([-20, 20])
     .range([scatterPlotMargin.left, scatterPlotWidth - scatterPlotMargin.right]);
@@ -58,11 +61,11 @@ function setupScatterPlot(data, scatterPlotSvg, scatterPlotNumber) {
         .attr('transform', `translate(${scatterPlotMargin.left},${scatterPlotMargin.top})`)
         .call(zoom);
 
-    d3.select(".zoom-level").on("click", function() {
-        console.log("Hello");
-        var t = d3.zoomIdentity.translate(0, 0).scale(1);
-        firstScatterPlotSvg.call(zoom.transform, t);
-    });
+    // d3.select(".zoom-level").on("click", function() {
+    //     console.log("Hello");
+    //     var t = d3.zoomIdentity.translate(0, 0).scale(1);
+    //     firstScatterPlotSvg.call(zoom.transform, t);
+    // });
 
     var selectedTextClass = "";
 
@@ -129,7 +132,7 @@ function setupScatterPlot(data, scatterPlotSvg, scatterPlotNumber) {
             document.getElementById("zoom-level2").innerHTML = "Zoom: " + parseInt((transform.k / 20) * 100) + "%";
         }
     }
-
+    return [zoom];
 }
 
 var storedData;
@@ -144,8 +147,12 @@ dispatch.on("dataLoaded.scatterplot", function (data, _question1, _question2) {
     storedData = data;
     question1 = _question1;
     question2 = _question2;
-    setupScatterPlot(data, firstScatterPlotSvg, 1);
-    setupScatterPlot(data, secondScatterPlotSvg, 2);
+    var fromScatterPlot1 = setupScatterPlot(data, firstScatterPlotSvg, 1);
+    // firstScatterPlotSvg = fromScatterPlot1[0];
+    firstZoom = fromScatterPlot1[0];
+    var fromScatterPlot2 = setupScatterPlot(data, secondScatterPlotSvg, 2);
+    // secondScatterPlotSvg = fromScatterPlot2[0];
+    secondZoom = fromScatterPlot2[0];
 });
 
 function setOpacityAndColorForGroup(value, opacityValue, colorValue, scatterPlotSvg) {
@@ -248,4 +255,14 @@ dispatch.on("enablePoints.scatterplot", function (data, histogramNumber) {
 
     updateFirstScatterplot();
     updateSecondScatterplot();
+});
+
+$('#zoom-level1').click(function() {
+    var t = d3.zoomIdentity.translate(0, 0).scale(1);
+    firstScatterPlotSvg.transition().duration(1000).call(firstZoom.transform, t);
+});
+
+$('#zoom-level2').click(function() {
+    var t = d3.zoomIdentity.translate(0, 0).scale(1);
+    secondScatterPlotSvg.transition().duration(1000).call(secondZoom.transform, t);
 });
