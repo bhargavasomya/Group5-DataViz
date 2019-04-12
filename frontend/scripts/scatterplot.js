@@ -5,9 +5,9 @@ var scatterPlotWidth = 540;
 var scatterPlotHeight = 540;
 var scatterPlotMargin = {
     top: 50,
-    left: 25,
+    left: 0,
     right: 25,
-    bottom: 50
+    bottom: 2
 };
 
 var symbol = d3.symbol();
