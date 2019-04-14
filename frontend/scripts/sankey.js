@@ -33,7 +33,7 @@ var svgProbability2 = d3.select("#sankey-probability2").append("svg")
         "translate(" + margin.left + "," + margin.top + ")");
 
 // Color scale used
-var color = d3.scaleOrdinal(["#3366cc", "#dc3912"]);
+var color = d3.scaleOrdinal(["#B5D3E7", "#dc3912"]);
 
 // Set the sankey diagram properties
 var sankey = d3.sankey()
@@ -126,7 +126,8 @@ function createSankey(graph, svg) {
         .attr("transform", null)
         .text(function(d) { return d.name; }).call(wrap, 300)
         .attr("font-size", "10px")
-        .attr("fill", function(d) { return d.color = color(d.group); })
+        .attr("fill","black")
+		.style("font-weight","bold")
       .filter(function(d) { return d.x < width / 2; })
         .attr("x", 6 + sankey.nodeWidth())
         .attr("text-anchor", "start");
@@ -141,14 +142,14 @@ function createSankey(graph, svg) {
       .ease(d3.easeSin)
       .duration('200')
       .attr('font-size', "15px")
-      .attr('fill', '#3366cc');
+      .attr('fill', 'black');
   })
   .on('mouseout', function(d,i) {
     d3.select(this).transition()
       .ease(d3.easeSin)
       .duration('200')
       .attr('font-size', "10px")
-      .attr('fill', '#3366cc');
+      .attr('fill', 'black');
   });
 	
 
