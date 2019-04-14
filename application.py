@@ -3,10 +3,30 @@ from flask_restful import Resource, Api
 from flask_cors import CORS
 from ML.sentences import Sentences
 from ML.init_server import create_embedding_index
-
+import boto3
+from tqdm import tqdm
+import os
 from flask import jsonify
-
 import pandas as pd
+
+try:
+    os.mkdir("data")
+except OSError:
+    print("Creation of the directory %s failed")
+else:
+    print("Successfully created the directory")
+
+
+s3 = boto3.resource('s3')
+bucket = s3.Bucket('ds5500')
+
+with open("data.txt", "r") as f:
+    data_requirements = f.read()
+    data_requirements = data_requirements.split()
+
+    for d in tqdm(data_requirements):
+        with open(d, 'wb') as data:
+            bucket.download_fileobj(d, data)
 
 app = Flask(__name__)
 api = Api(app)
