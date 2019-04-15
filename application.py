@@ -25,10 +25,11 @@ with open("data.txt", "r") as f:
     data_requirements = data_requirements.split()
 
     for d in tqdm(data_requirements):
-        with open(d, 'wb') as data:
+        with open("data/" + d, 'wb') as data:
             bucket.download_fileobj(d, data)
 
 app = Flask(__name__)
+app.debug = True
 api = Api(app)
 CORS(app)
 
