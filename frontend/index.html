@@ -146,7 +146,7 @@
         <br/>
         <div class="row">
             <div class="col-lg-8">
-                <div class="buttons"
+                <div class="buttons">
                 <button id="points-dropdown2" class="btn btn-secondary dropdown-toggle" type="button"
                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Number of sentences
@@ -160,6 +160,7 @@
                 <div id="spinner2" class="spinner-border m-1" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
+
                 <button id="zoom-level2" class="btn btn-secondary" data-toggle="tooltip" title="Click to reset zoom">Zoom: 5%</button>
             </div>
                 <div class="second-scatterplot-cosine"></div>
@@ -205,11 +206,11 @@
         </div>
     </div>
 
-    <div class="full-width" id="scatter-viz">
-        <div class="container">
-            <center><h3>Heatmap </h3></center>
-            <div class="jumbotron">
-                <center><h3>Exploring similar words by cosine distance </h3></center>
+    <!--<div class="full-width" id="scatter-viz">
+        <div class="container">-->
+            <!--<center><h3>Heatmap </h3></center>-->
+            <!--<div class="jumbotron">
+                <center><h3>Exploring similarity of top 10 questions with each other </h3></center>
                 <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
                     The histograms on the right have bins of cosine distance between input questions and the above
                     mentioned sentences.
@@ -218,8 +219,8 @@
                     those sentences on the scatter plot.
                 </p>
             </div>
-            <br/>
-            <div class="row">
+            <br/>-->
+         <!--   <div class="row">
                 <div class="col-lg-8">
                     <div class="heatmap1"></div>
                 </div>
@@ -246,18 +247,15 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <div class="full-width">
+    <!--<div class="full-width">
         <div class="container">
             <div id="heatmap1_questions">
                 
             </div>
         </div>
-    </div>
-
-
-
+    </div>-->
 
 
     <div class="full-width" id="scatter-viz">
@@ -275,7 +273,7 @@
                 </div>
 
                 <div class="histogram-block">
-                <h4 class="col-lg-4">Histograms of the probability distance</h4>
+                <h4 class="col-lg-4">Histograms of model probabilities</h4>
                 <center>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons" class="col-lg-4">
                         <label class="btn btn-secondary active second-radio-model">
@@ -319,7 +317,7 @@
 
 
 
-    <div class="full-width" id="scatter-viz">
+    <!--<div class="full-width" id="scatter-viz">
         <div class="container">
             <div class="jumbotron">
                 <center><h3>Exploring similar words by cosine distance </h3></center>
@@ -354,8 +352,9 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="full-width" id="scatter-viz">
+    </div>-->
+
+    <!--<div class="full-width" id="scatter-viz">
         <div class="container">
             <br/>
             <div class="row">
@@ -375,7 +374,8 @@
                 </div>
             </div>
 
-        </div>
+        </div>-->
+
         <div class="full-width" id="scatter-viz">
             <div class="container">
                 <div class="jumbotron">
@@ -401,7 +401,7 @@
                             <div class="col-lg-4">
                                 <br/>
                                 <center>
-                                    <h4>Histograms of the probability</h4>
+                                    <h4>Histograms of model probabilities</h4>
                                 </center>
                                 <center>
                                     <div class="btn-group btn-group-toggle" data-toggle="buttons" class="col-lg-4">
