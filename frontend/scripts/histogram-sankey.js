@@ -82,7 +82,7 @@ function setupSankeyHistogram(data, klass) {
         .range([150-margin.bottom-20, margin.top]);
     svg.append("g")
         .attr("transform", `translate(${margin.left + 4},0)`)
-        .call(d3.axisLeft().scale(yScale));
+        .call(d3.axisLeft().ticks(0).scale(yScale));
 
     var flags = Array(20).fill(0);
 
