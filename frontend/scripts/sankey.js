@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
     width = 500 - margin.left - margin.right,
-    height = 550 - margin.top - margin.bottom;
+    height = 650 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svgCosine1 = d3.select("#sankey-cosine-1").append("svg")
@@ -38,7 +38,7 @@ var color = d3.scaleOrdinal(["#B5D3E7", "#dc3912"]);
 // Set the sankey diagram properties
 var sankey = d3.sankey()
     .nodeWidth(20)
-    .nodePadding(20)
+    .nodePadding(30)
     .size([width, height]);
 
 function wrap(text, width) {

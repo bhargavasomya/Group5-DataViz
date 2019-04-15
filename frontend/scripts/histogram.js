@@ -7,7 +7,7 @@ function setupHistogram(data, klass) {
 
     var margin = {
         top: 5,
-        left: 5,
+        left: 35,
         right: 5,
         bottom: 1
     };
@@ -16,13 +16,54 @@ function setupHistogram(data, klass) {
     var q1 = d3.selectAll(klass);
 
     var width = 250 - margin.left - margin.right;
-    var height = 150;
+    var height = 165;
 
 
     var svg = q1
         .append("svg")
         .attr("width", width)
         .attr("height", height);
+
+    var xlabel = function(klass) {
+        switch(klass) {
+            case ".histogram-q1":
+                return "cosine distance";
+            case ".histogram-q2":
+                return "cosine distance";
+            case ".histogram-q3":
+                return "probability";
+            case ".histogram-q4":
+                return "probability";
+            case ".histogram-q5":
+                return "cosine distance";
+            case ".histogram-q6":
+                return "cosine distance";
+            case ".histogram-q7":
+                return "probability";
+            case ".histogram-q8":
+                return "probability";
+        }
+    }(klass);
+
+   svg.append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "middle")
+    .attr("x", width /2 + 20)
+    .attr("y", 160)
+    .text(xlabel)
+    .style("font-size", "12px")
+    .style("text-align", "center");
+
+    svg.append("text")
+    .attr("class", "y label")
+    .attr("text-anchor", "middle")
+    .attr("x", -height/ 2 )
+    .attr("y", -3)
+    .attr("dy", "1em")
+    .attr("transform", "rotate(-90)")
+    .text("count")
+    .style("font-size", "12px");
+
 
     var range = function(klass) {
         switch(klass) {
@@ -45,19 +86,22 @@ function setupHistogram(data, klass) {
         }
     }(klass);
 
+
     var xScale = d3.scaleLinear() //Discrete Scale
         .domain(range)
         .range([margin.left + 4, width]) //Rounds values of
     svg.append("g")
-        .attr("transform", `translate(0,${height-margin.bottom-20})`)
+        .attr("transform", `translate(0,${150-margin.bottom-20})`)
         .call(d3.axisBottom().ticks(3).scale(xScale));
+
+
 
     var yScale = d3.scaleLinear() //Continuous Scale
         .domain([0, d3.max(data, function(d) { return d.length; })])
-        .range([height-margin.bottom-20, margin.top]);
+        .range([150-margin.bottom-20, margin.top]);
     svg.append("g")
         .attr("transform", `translate(${margin.left + 4},0)`)
-        .call(d3.axisLeft().scale(yScale));
+        .call(d3.axisLeft().ticks(0).scale(yScale));
 
     var flags = Array(20).fill(0);
 
@@ -91,7 +135,7 @@ function setupHistogram(data, klass) {
         .enter()
         .append("rect")
         .attr("x", function (d) {return xScale(d.x0);})
-        .attr("y", function (d) {return height - 20;})
+        .attr("y", function (d) {return 150 - 20;})
         .attr("height", function(d) { return 0; })
         .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) -1 ; })
         .style("fill", colors)
@@ -143,7 +187,7 @@ function setupHistogram(data, klass) {
 
     scatter.transition()
         .delay(function(_, i) {return i * 100;})
-        .attr("height", function(d) { return height - yScale(d.length) - 20; })
+        .attr("height", function(d) { return 150 - yScale(d.length) - 20; })
         .attr("y", function (d) {return yScale(d.length);});
 
 }

@@ -17,8 +17,9 @@ var width = 750 - margin.right - margin.left,
 var colorScale;
 
 //colorHold = ["#87cefa", "#86c6ef", "#85bde4", "#83b7d9", "#82afce", "#80a6c2"];
-colorHold = ["#FFC039", "#FFC707", "#FF9339", "#FF6307", "#FF4739", "#FF1907"]
-colorLText = ["0", "10", "20", "30", "40", "50"];
+colorHold=["#ffffd9","#c7e9b4", "#7fcdbb", "#1d91c0","#253494","#081d58"];
+//colorHold = ["#FFC039", "#FFC707", "#FF9339", "#FF6307", "#FF4739", "#FF1907"]
+//colorLText = ["0", "10", "20", "30", "40", "50"];
 
 function bandClassifier(val, multiplier) {
   if (val >= 0) { 
@@ -52,10 +53,6 @@ function heatmapChart(response, klass){
     return newItem;
   });
  
-  console.log("this is a test");
-  console.log(data);
-  console.log("Done testing");
-
   var new_questions = {};
   var count = 0;
   for(i=0;i<data.length;i++){
@@ -176,9 +173,11 @@ function heatmapChart(response, klass){
       return "rotate(-65)";
     });
 
+  console.log(data);
+
   // Legends section
   legends = svg.append("g").attr("class", "legends")
-    .attr("transform","translate(" + ((width+margin.right) / 2 - lPatchWidth / 2 - margin.left / 2) + "," + (height + margin.bottom - 35 - 20) + ")");
+    .attr("transform","translate(" + ((width+margin.right) / 2 - lPatchWidth / 2 - margin.left / 2) + "," + (height + margin.bottom - 200) + ")");
 
   // Legend traingle pointer generator
   var symbolGenerator = d3.symbol()
@@ -186,7 +185,7 @@ function heatmapChart(response, klass){
     .size(64);
 
   legends.append("g").attr("transform", "rotate(180)").append("g").attr("class","trianglepointer")
-    .attr("transform","translate(" + (-lPatchWidth / colorScale.range().length) / 2 + ")")
+    .attr("transform","translate(" + (-lPatchWidth / colorScale.range().length) / 4 + ")")
     .append("path").attr("d",symbolGenerator());
 
   // Legend Rectangels
@@ -196,16 +195,6 @@ function heatmapChart(response, klass){
     .append("rect").attr("width", lPatchWidth / colorScale.range().length + "px").attr("height", "10px").attr("fill", function(d){return d})
     .attr("x", function(_, i) {return i * ( lPatchWidth / colorScale.range().length )})
 
-  /* Legend text
-  legends.append("g").attr("class","LegText")
-    .attr("transform","translate(0,45)")
-    .append("text")
-    .attr("x",lPatchWidth / 2)
-    .attr('font-weight', 'normal')
-    .style("text-anchor", "middle")
-    .text(colorLText[0])
-*/
-  
     var x;
     if(histogramClass === '.heatmap1'){
     	x = document.getElementById("heatmap1_questions");
@@ -230,7 +219,7 @@ function getMatrix(questions, model, klass) {
     data: JSON.stringify({ questions: questions, model: model }),
     dataType: "json",
     success: function (json_data) {
-      console.log(json_data)
+      //console.log(json_data)
       heatmapChart(json_data, klass);
     },
     error: function(error) {
@@ -256,7 +245,7 @@ dispatch.on("heatmapDataLoaded.heatmap", function(data, klass) {
 
     if (data != null) {
       if (firstHeatmap.includes(klass)) {
-        console.log("here");
+        //console.log("here");
         if (klass === '.histogram-q5') {
           storedData = data.sort(function(a,b) {return b.distance1 - a.distance1});
         } else {
@@ -277,10 +266,10 @@ dispatch.on("heatmapDataLoaded.heatmap", function(data, klass) {
       if (storedData.length >= 10) {
         storedData = storedData.slice(0, 10);
       } 
-      console.log(storedData);
+      //console.log(storedData);
       
       var sentences = storedData.map(x => x.question);
-      console.log(sentences);
+      //console.log(sentences);
       getMatrix(sentences, model, klass);
     }
 });

@@ -35,11 +35,11 @@
                             </p>
                             <form class="form-inline" method="POST">
                                 <div class="container">
-                                    <div class="col-md-6">
+                                    <div class="input-box">
                                         <textarea class="form-control mb-3" id="q1FormInput" rows="4" cols="40"
                                                   placeholder="Question 1"></textarea>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="input-box">
                                         <textarea type="text" class="form-control mb-4 mr-sm-2" id="q2FormInput"
                                                   rows="4" cols="40" placeholder="Question 2"></textarea>
                                     </div>
@@ -65,8 +65,8 @@
         <div class="alert alert-success">
           <h4 class="alert-heading">We got it!</h4>
           <span>
-            <p id="first-model-result"></p>
-            <p id="second-model-result"></p>
+            <p id="first-model-result" style="text-align: center"></p>
+            <p id="second-model-result" style="text-align: center"></p>
           </span>
         </div>
         <br/>
@@ -83,8 +83,8 @@
         <br/>
         <div class="row">
             <div class="col-lg-8">
-                <div class="dropdown">
-                    <button id="points-dropdown1" class="btn btn-secondary dropdown-toggle" type="button"
+                <div class = "buttons">
+                <button id="points-dropdown1" class="btn btn-secondary dropdown-toggle" type="button"
                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Number of sentences
                     </button>
@@ -97,8 +97,9 @@
                     <div id="spinner1" class="spinner-border m-1" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
-                </div>
                 <button id="zoom-level1" class="btn btn-secondary zoom-level" data-toggle="tooltip" title="Click to reset zoom">Zoom: 5%</button>
+                </div>
+
                 <div class="first-scatterplot-cosine"></div>
                 <br />
                 <div>
@@ -108,6 +109,7 @@
                 <div class="selected-text1 alert alert-info" id="selected-text1">Hovered point: <br><br><br></div>
                 <br>
             </div>
+
             <div class="histogram-block">
                 <div id="histograms-cosine">
                     <div class="col-lg-4">
@@ -144,6 +146,7 @@
         <br/>
         <div class="row">
             <div class="col-lg-8">
+                <div class="buttons"
                 <button id="points-dropdown2" class="btn btn-secondary dropdown-toggle" type="button"
                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Number of sentences
@@ -158,6 +161,7 @@
                     <span class="sr-only">Loading...</span>
                 </div>
                 <button id="zoom-level2" class="btn btn-secondary" data-toggle="tooltip" title="Click to reset zoom">Zoom: 5%</button>
+            </div>
                 <div class="second-scatterplot-cosine"></div>
                 <br />
                 <div>
@@ -171,7 +175,7 @@
 
             <br/>
             <div class="histogram-block">
-                <h4 class="col-lg-4">Histograms of the probability distance</h4>
+                <h4 class="col-lg-4">Histograms of model probabilities </h4>
                 <center>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons" class="col-lg-4">
                         <label class="btn btn-secondary active first-radio-model">

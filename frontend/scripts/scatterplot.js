@@ -5,9 +5,9 @@ var scatterPlotWidth = 540;
 var scatterPlotHeight = 540;
 var scatterPlotMargin = {
     top: 50,
-    left: 0,
+    left: 50,
     right: 25,
-    bottom: 2
+    bottom: 50
 };
 
 var symbol = d3.symbol();
@@ -18,10 +18,42 @@ var firstScatterPlotSvg = d3.select(".first-scatterplot-cosine")
     .attr("width", scatterPlotWidth)
     .attr("height", scatterPlotHeight);
 
+    firstScatterPlotSvg.append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .attr("x", scatterPlotWidth /2 + 75)
+    .attr("y", scatterPlotHeight - 10)
+    .text("Principle Component 1");
+
+    firstScatterPlotSvg.append("text")
+    .attr("class", "y label")
+    .attr("text-anchor", "end")
+    .attr("x", -scatterPlotHeight/ 2 + 75)
+    .attr("y", -1)
+    .attr("dy", "1em")
+    .attr("transform", "rotate(-90)")
+    .text("Principle Component 2");
+
 var secondScatterPlotSvg = d3.select(".second-scatterplot-cosine")
     .append("svg")
     .attr("width", scatterPlotWidth)
     .attr("height", scatterPlotHeight);
+
+    secondScatterPlotSvg.append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .attr("x", scatterPlotWidth /2 + 75)
+    .attr("y", scatterPlotHeight - 10)
+    .text("Principle Component 1");
+
+    secondScatterPlotSvg.append("text")
+    .attr("class", "y label")
+    .attr("text-anchor", "end")
+    .attr("x", -scatterPlotHeight/ 2 + 75)
+    .attr("y", -1)
+    .attr("dy", "1em")
+    .attr("transform", "rotate(-90)")
+    .text("Principle Component 2");
 
 var firstZoom;
 var secondZoom;
@@ -108,7 +140,6 @@ function setupScatterPlot(data, scatterPlotSvg, scatterPlotNumber) {
             d3.select(this).transition().attr("r", 3);
             selectedText.html("Hovered point: <br><br><br>");
         });
-
     function zoomed() {
         // get the zoom property
         var transform = d3.zoomTransform(this);
