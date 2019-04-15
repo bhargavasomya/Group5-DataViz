@@ -12,7 +12,7 @@ import pandas as pd
 try:
     os.mkdir("data")
 except OSError:
-    print("Creation of the directory %s failed")
+    print("Creation of the directory failed")
 else:
     print("Successfully created the directory")
 
@@ -28,10 +28,10 @@ with open("data.txt", "r") as f:
         with open("data/" + d, 'wb') as data:
             bucket.download_fileobj(d, data)
 
-app = Flask(__name__)
-app.debug = True
-api = Api(app)
-CORS(app)
+application = Flask(__name__)
+application.debug = True
+api = Api(application)
+CORS(application)
 
 embedding_index = create_embedding_index()
 sentence = Sentences(embedding_index)
