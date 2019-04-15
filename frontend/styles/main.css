@@ -291,6 +291,8 @@ label {
 
 .jumbotron{
     padding: 2%;
+    background-color: white;
+    box-shadow: grey 0px 5px 10px 0px;
 }
 
 .histogram-q1{
