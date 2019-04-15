@@ -74,7 +74,7 @@ function getData(q1, q2, k, scroll = false) {
   $.ajax({
     type: "POST",
     contentType: "application/json;charset=utf-8",
-    url: "http://127.0.0.1:5000/getdata",
+    url: "http://ds5500-deployment.wd2ywwxp3m.us-east-1.elasticbeanstalk.com//getdata",
     traditional: "true",
     data: JSON.stringify({ q1: q1, q2: q2, k: k }),
     dataType: "json",
@@ -109,7 +109,7 @@ function getPredictionFirstModel(q1, q2) {
   $.ajax({
     type: "POST",
     contentType: "application/json;charset=utf-8",
-    url: "http://127.0.0.1:5000/predict-duplicate-with-first-model",
+    url: "http://ds5500-deployment.wd2ywwxp3m.us-east-1.elasticbeanstalk.com/predict-duplicate-with-first-model",
     traditional: "true",
     data: JSON.stringify({ q1: q1, q2: q2 }),
     dataType: "json",
@@ -133,7 +133,7 @@ function getPredictionSecondModel(q1, q2) {
   $.ajax({
     type: "POST",
     contentType: "application/json;charset=utf-8",
-    url: "http://127.0.0.1:5000/predict-duplicate-with-second-model",
+    url: "http://ds5500-deployment.wd2ywwxp3m.us-east-1.elasticbeanstalk.com//predict-duplicate-with-second-model",
     traditional: "true",
     data: JSON.stringify({ q1: q1, q2: q2 }),
     dataType: "json",
