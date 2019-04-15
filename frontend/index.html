@@ -258,131 +258,7 @@
         </div>
     </div>-->
 
-
-
-        <div class="container">
-            <center><h3>Heatmap </h3></center>
-            <div class="jumbotron">
-                <center><h3>Exploring similar words by Probabilities </h3></center>
-                <p>
-                </p>
-            </div>
-            <br/>
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="heatmap2"></div>
-
-                </div>
-
-                <div class="histogram-block">
-                <h4 class="col-lg-4">Histograms of model probabilities</h4>
-                <center>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons" class="col-lg-4">
-                        <label class="btn btn-secondary active second-radio-model">
-                            <input type="radio" name="options" id="second-model-option1" autocomplete="off" checked
-                                   class="col-lg-4"> First Model
-                        </label>
-                        <label class="btn btn-secondary second-radio-model">
-                            <input type="radio" name="options" id="second-model-option2" autocomplete="off"> Second Model
-                        </label>
-                    </div>
-                </center>
-                <div id="histograms-probability" class="mt-10">
-                    <div class="col-lg-4">
-                        <br/>
-                        <h5 class="col-lg-4">First Question</h5>
-                        <div class="histogram-q7" id="histogram-q7"></div>
-                    </div>
-                    <div class="col-lg-4">
-                        <br/>
-                        <br/>
-                        <h5 class="col-lg-4">Second Question</h5>
-                        <div class="histogram-q8" id="histogram-q8"></div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="full-width">
-        <div class="container">
-            <div id="heatmap2_questions">
-                <div id="heatmap2_questions">
-                
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-    <!--<div class="full-width" id="scatter-viz">
-        <div class="container">
-            <div class="jumbotron">
-                <center><h3>Exploring similar words by cosine distance </h3></center>
-                <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
-                    The histograms on the right have bins of cosine distance between input questions and the above
-                    mentioned sentences.
-                    The height of each bins represents the number of questions lying in that particular range. You can
-                    click on them to see
-                    those sentences on the scatter plot.
-                </p>
-            </div>
-            <br/>
-            <div class="row">
-                <div class="col-lg-8">
-                    <div id="sankey-cosine-1" class="sankey-cosine-1"></div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="mt-10">
-                        <div class="col-lg-4">
-                            <br/>
-                            <center>
-                                <h4>Histograms of the cosine distance</h4>
-                            </center>
-                            <h5 class="col-lg-4">
-                                <center>First Question</center>
-                            </h5>
-                            <div class="histogram-q9" id="histogram-q9" style="align: left;"></div>
-                        </div>
-                    </div>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </div>-->
-
-    <!--<div class="full-width" id="scatter-viz">
-        <div class="container">
-            <br/>
-            <div class="row">
-                <div class="col-lg-8">
-                    <div id="sankey-cosine-2" class="sankey-cosine-2"></div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="mt-10">
-                        <div class="col-lg-4">
-                            <br/>
-                            <h5 class="col-lg-4">Second Question</h5>
-                            <div class="histogram-q10" id="histogram-q10"></div>
-                        </div>
-                    </div>
-                    </center>
-                </div>
-            </div>
-
-        </div>-->
-
-
-            <div class="container">
+<div class="container">
                 <div class="jumbotron">
                     <center><h3>Exploring similar words by probability </h3></center>
                     <p>The following scatter plot shows the sentences available in our training data in 2 dimensional
@@ -460,6 +336,133 @@
             </div>
         </div>
                 </div>
+
+
+
+        <div class="container">
+            <center><h3>Heatmap </h3></center>
+            <div class="jumbotron">
+                <center><h3>Exploring similar words by Probabilities </h3></center>
+                <p>
+                </p>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="heatmap2"></div>
+                    <div id="heatmap2_questions"></div>
+
+
+                </div>
+
+                <div class="histogram-block">
+                <h4 class="col-lg-4">Histograms of model probabilities</h4>
+                <center>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons" class="col-lg-4">
+                        <label class="btn btn-secondary active second-radio-model">
+                            <input type="radio" name="options" id="second-model-option1" autocomplete="off" checked
+                                   class="col-lg-4"> First Model
+                        </label>
+                        <label class="btn btn-secondary second-radio-model">
+                            <input type="radio" name="options" id="second-model-option2" autocomplete="off"> Second Model
+                        </label>
+                    </div>
+                </center>
+                <div id="histograms-probability" class="mt-10">
+                    <div class="col-lg-4">
+                        <br/>
+                        <h5 class="col-lg-4">First Question</h5>
+                        <div class="histogram-q7" id="histogram-q7"></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <br/>
+                        <br/>
+                        <h5 class="col-lg-4">Second Question</h5>
+                        <div class="histogram-q8" id="histogram-q8"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--<div class="full-width">
+        <div class="container">
+            <div id="heatmap2_questions">
+                
+            </div>
+        </div>
+    </div>-->
+
+
+
+
+
+
+    <!--<div class="full-width" id="scatter-viz">
+        <div class="container">
+            <div class="jumbotron">
+                <center><h3>Exploring similar words by cosine distance </h3></center>
+                <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
+                    The histograms on the right have bins of cosine distance between input questions and the above
+                    mentioned sentences.
+                    The height of each bins represents the number of questions lying in that particular range. You can
+                    click on them to see
+                    those sentences on the scatter plot.
+                </p>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div id="sankey-cosine-1" class="sankey-cosine-1"></div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="mt-10">
+                        <div class="col-lg-4">
+                            <br/>
+                            <center>
+                                <h4>Histograms of the cosine distance</h4>
+                            </center>
+                            <h5 class="col-lg-4">
+                                <center>First Question</center>
+                            </h5>
+                            <div class="histogram-q9" id="histogram-q9" style="align: left;"></div>
+                        </div>
+                    </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!--<div class="full-width" id="scatter-viz">
+        <div class="container">
+            <br/>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div id="sankey-cosine-2" class="sankey-cosine-2"></div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="mt-10">
+                        <div class="col-lg-4">
+                            <br/>
+                            <h5 class="col-lg-4">Second Question</h5>
+                            <div class="histogram-q10" id="histogram-q10"></div>
+                        </div>
+                    </div>
+                    </center>
+                </div>
+            </div>
+
+        </div>-->
+
+
+
 
     </div>
 
