@@ -37,7 +37,7 @@ embedding_index = create_embedding_index()
 sentence = Sentences(embedding_index)
 
 
-@app.route('/getdata', methods=['POST'])
+@application.route('/getdata', methods=['POST'])
 def get_data():
     q1 = ''
     q2 = ''
@@ -49,7 +49,7 @@ def get_data():
         k = int(names['k'])
     return sentence.get_sentences(q1, q2, k=k).to_json(orient='records')
 
-@app.route('/predict-duplicate-with-first-model', methods=['POST'])
+@application.route('/predict-duplicate-with-first-model', methods=['POST'])
 def predict_with_first_model():
     q1 = ''
     q2 = ''
@@ -61,7 +61,7 @@ def predict_with_first_model():
     print(q1)
     return jsonify({"result": str(sentence.predict_with_first_model(q1, q2)[0][0])})
 
-@app.route('/predict-duplicate-with-second-model', methods=['POST'])
+@application.route('/predict-duplicate-with-second-model', methods=['POST'])
 def predict_with_second_model():
     q1 = ''
     q2 = ''
@@ -72,7 +72,7 @@ def predict_with_second_model():
 
     return jsonify({"result": str(sentence.predict_with_second_model(q1, q2)[0][0])})
 
-@app.route('/getmatrix', methods=['POST'])
+@application.route('/getmatrix', methods=['POST'])
 def get_pairs():
     questions_array = None
     model = ''
