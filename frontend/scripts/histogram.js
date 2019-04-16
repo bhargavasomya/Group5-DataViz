@@ -27,17 +27,17 @@ function setupHistogram(data, klass) {
     var xlabel = function(klass) {
         switch(klass) {
             case ".histogram-q1":
-                return "cosine distance";
+                return "cosine similarity";
             case ".histogram-q2":
-                return "cosine distance";
+                return "cosine similarity";
             case ".histogram-q3":
                 return "probability";
             case ".histogram-q4":
                 return "probability";
             case ".histogram-q5":
-                return "cosine distance";
+                return "cosine similarity";
             case ".histogram-q6":
-                return "cosine distance";
+                return "cosine similarity";
             case ".histogram-q7":
                 return "probability";
             case ".histogram-q8":
@@ -139,7 +139,7 @@ function setupHistogram(data, klass) {
         .attr("height", function(d) { return 0; })
         .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) -1 ; })
         .style("fill", colors)
-        .attr("class", "pointer")
+        .style("cursor", "pointer")
         .on('mouseover', function (d, i) {
             // Hover color
             d3.select(this).style("fill", 'orange');
@@ -150,6 +150,10 @@ function setupHistogram(data, klass) {
             }
         })
         .on('click', function (d, i) {
+                d3.select(".histogram-q7").selectAll("rect").style("fill", "#7a7fad");
+                d3.select(".histogram-q8").selectAll("rect").style("fill", "#1b622d");
+
+
             if (flags[i] == 0) {
                 // Histogram logic for scatterplot
                 if (forScatterplots.includes(klass)) {
@@ -162,7 +166,6 @@ function setupHistogram(data, klass) {
 
                 // Finally change the color to orange
                 d3.select(this).transition()
-                    .duration('50')
                     .attr('style', 'fill: orange');
 
                 if (klass in forScatterplots) {
@@ -173,7 +176,6 @@ function setupHistogram(data, klass) {
                 flags[i] = 1;
             } else {
                 d3.select(this).transition()
-                    .duration('50')
                     .attr('style', 'fill: ' + colors);
 
                 if (forScatterplots.includes(klass)) {

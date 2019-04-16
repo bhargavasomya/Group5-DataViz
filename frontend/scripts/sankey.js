@@ -1,6 +1,6 @@
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 500 - margin.left - margin.right,
+    width = 650 - margin.left - margin.right,
     height = 650 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -39,7 +39,7 @@ var color = d3.scaleOrdinal(["#B5D3E7", "#dc3912"]);
 var sankey = d3.sankey()
     .nodeWidth(20)
     .nodePadding(30)
-    .size([width, height]);
+    .size([width - 200, height]);
 
 function wrap(text, width) {
   text.each(function () {
@@ -119,7 +119,7 @@ function createSankey(graph, svg) {
   // add in the title for the nodes
     node
       .append("text")
-        .attr("x", -6)
+        .attr("x", 225)
         .attr("y", function(d) { return d.dy / 2; })
         .attr("dy", ".20em")
         .attr("text-anchor", "end")
@@ -138,18 +138,13 @@ function createSankey(graph, svg) {
 	node
 	.select('text')
 	.on('mouseover', function(d,i) {
-    d3.select(this).transition()
-      .ease(d3.easeSin)
-      .duration('200')
-      .attr('font-size', "15px")
-      .attr('fill', 'black');
+	    console.log(d.real);
+        $(this).popover({
+          'content': d.real
+        }).popover("show")
   })
   .on('mouseout', function(d,i) {
-    d3.select(this).transition()
-      .ease(d3.easeSin)
-      .duration('200')
-      .attr('font-size', "10px")
-      .attr('fill', 'black');
+    $(this).popover().popover("hide")
   });
 	
 
@@ -170,17 +165,17 @@ function createSankey(graph, svg) {
 
 var cosineSankeyData1 = {
 "nodes":[
-  {"node":0,"name":"This is question 1", "group":0},
-  {"node":1,"name":"This is question 2", "group":0},
-  {"node":2,"name":"This is question 3", "group":0},
-  {"node":3,"name":"This is question 4", "group":0},
-  {"node":4,"name":"This is question 5", "group":0},
-  {"node":5,"name":"This is question 6", "group":0},
-  {"node":6,"name":"This is question 6", "group":0},
-  {"node":7,"name":"This is question 6", "group":0},
-  {"node":8,"name":"This is question 6", "group":0},
-  {"node":9,"name":"This is question 6", "group":0},
-  {"node":10,"name":"This is question 6", "group":0},
+  {"node":0,"name":"This is question 1","real":"This is question 1", "group":0},
+  {"node":1,"name":"This is question 2","real":"This is question 1", "group":0},
+  {"node":2,"name":"This is question 3","real":"This is question 1", "group":0},
+  {"node":3,"name":"This is question 4","real":"This is question 1", "group":0},
+  {"node":4,"name":"This is question 5","real":"This is question 1", "group":0},
+  {"node":5,"name":"This is question 6","real":"This is question 1", "group":0},
+  {"node":6,"name":"This is question 6","real":"This is question 1", "group":0},
+  {"node":7,"name":"This is question 6","real":"This is question 1" , "group":0},
+  {"node":8,"name":"This is question 6","real":"This is question 1" , "group":0},
+  {"node":9,"name":"This is question 6","real":"This is question 1" , "group":0},
+  {"node":10,"name":"This is question 6","real":"This is question 1" , "group":0},
 ],
 "links":[
   {"source":0,"target":1,"value":0},
@@ -197,17 +192,17 @@ var cosineSankeyData1 = {
 
 var cosineSankeyData2 = {
   "nodes":[
-    {"node":0,"name":"This is question 1", "group":0},
-    {"node":1,"name":"This is question 2", "group":0},
-    {"node":2,"name":"This is question 3", "group":0},
-    {"node":3,"name":"This is question 4", "group":0},
-    {"node":4,"name":"This is question 5", "group":0},
-    {"node":5,"name":"This is question 6", "group":0},
-    {"node":6,"name":"This is question 6", "group":0},
-    {"node":7,"name":"This is question 6", "group":0},
-    {"node":8,"name":"This is question 6", "group":0},
-    {"node":9,"name":"This is question 6", "group":0},
-    {"node":10,"name":"This is question 6", "group":0},
+    {"node":0,"name":"This is question 1","real":"This is question 1","group":0},
+    {"node":1,"name":"This is question 2","real":"This is question 1","group":0},
+    {"node":2,"name":"This is question 3","real":"This is question 1","group":0},
+    {"node":3,"name":"This is question 4","real":"This is question 1","group":0},
+    {"node":4,"name":"This is question 5","real":"This is question 1","group":0},
+    {"node":5,"name":"This is question 6","real":"This is question 1","group":0},
+    {"node":6,"name":"This is question 6","real":"This is question 1","group":0},
+    {"node":7,"name":"This is question 6","real":"This is question 1","group":0},
+    {"node":8,"name":"This is question 6","real":"This is question 1","group":0},
+    {"node":9,"name":"This is question 6","real":"This is question 1","group":0},
+    {"node":10,"name":"This is question 6","real":"This is question 1","group":0}
   ],
   "links":[
     {"source":0,"target":1,"value":0},
@@ -224,17 +219,17 @@ var cosineSankeyData2 = {
 
 var probabilitySankeyData1 = {
 "nodes":[
-  {"node":0,"name":"This is question 1", "group":0},
-  {"node":1,"name":"This is question 2", "group":0},
-  {"node":2,"name":"This is question 3", "group":0},
-  {"node":3,"name":"This is question 4", "group":0},
-  {"node":4,"name":"This is question 5", "group":0},
-  {"node":5,"name":"This is question 6", "group":0},
-  {"node":6,"name":"This is question 6", "group":0},
-  {"node":7,"name":"This is question 6", "group":0},
-  {"node":8,"name":"This is question 6", "group":0},
-  {"node":9,"name":"This is question 6", "group":0},
-  {"node":10,"name":"This is question 6", "group":0}
+  {"node":0,"name":"This is question 1","real":"This is question 1","group":0},
+  {"node":1,"name":"This is question 2","real":"This is question 1","group":0},
+  {"node":2,"name":"This is question 3","real":"This is question 1","group":0},
+  {"node":3,"name":"This is question 4","real":"This is question 1","group":0},
+  {"node":4,"name":"This is question 5","real":"This is question 1","group":0},
+  {"node":5,"name":"This is question 6","real":"This is question 1","group":0},
+  {"node":6,"name":"This is question 6","real":"This is question 1","group":0},
+  {"node":7,"name":"This is question 6","real":"This is question 1","group":0},
+  {"node":8,"name":"This is question 6","real":"This is question 1","group":0},
+  {"node":9,"name":"This is question 6","real":"This is question 1","group":0},
+  {"node":10,"name":"This is question 6","real":"This is question 1","group":0}
 ],
 "links":[
   {"source":0,"target":1,"value":0},
@@ -251,17 +246,17 @@ var probabilitySankeyData1 = {
 
 var probabilitySankeyData2 = {
   "nodes":[
-    {"node":0,"name":"This is question 1", "group":0},
-    {"node":1,"name":"This is question 2", "group":0},
-    {"node":2,"name":"This is question 3", "group":0},
-    {"node":3,"name":"This is question 4", "group":0},
-    {"node":4,"name":"This is question 5", "group":0},
-    {"node":5,"name":"This is question 6", "group":0},
-    {"node":6,"name":"This is question 6", "group":0},
-    {"node":7,"name":"This is question 6", "group":0},
-    {"node":8,"name":"This is question 6", "group":0},
-    {"node":9,"name":"This is question 6", "group":0},
-    {"node":10,"name":"This is question 6", "group":0}
+    {"node":0,"name":"This is question 1","real":"This is question 1","group":0},
+    {"node":1,"name":"This is question 2","real":"This is question 1","group":0},
+    {"node":2,"name":"This is question 3","real":"This is question 1","group":0},
+    {"node":3,"name":"This is question 4","real":"This is question 1","group":0},
+    {"node":4,"name":"This is question 5","real":"This is question 1","group":0},
+    {"node":5,"name":"This is question 6","real":"This is question 1","group":0},
+    {"node":6,"name":"This is question 6","real":"This is question 1","group":0},
+    {"node":7,"name":"This is question 6","real":"This is question 1","group":0},
+    {"node":8,"name":"This is question 6","real":"This is question 1","group":0},
+    {"node":9,"name":"This is question 6","real":"This is question 1","group":0},
+    {"node":10,"name":"This is question 6","real":"This is question 1","group":0}
   ],
   "links":[
     {"source":0,"target":1,"value":0},
@@ -279,17 +274,17 @@ var probabilitySankeyData2 = {
 function restoreDefault() {
   return {
     "nodes":[
-      {"node":0,"name":"This is question 1", "group":0},
-      {"node":1,"name":"This is question 2", "group":0},
-      {"node":2,"name":"This is question 3", "group":0},
-      {"node":3,"name":"This is question 4", "group":0},
-      {"node":4,"name":"This is question 5", "group":0},
-      {"node":5,"name":"This is question 6", "group":0},
-      {"node":6,"name":"This is question 6", "group":0},
-      {"node":7,"name":"This is question 6", "group":0},
-      {"node":8,"name":"This is question 6", "group":0},
-      {"node":9,"name":"This is question 6", "group":0},
-      {"node":10,"name":"This is question 6", "group":0}
+      {"node":0,"name":"This is question 1","real":"This is question 1","group":0},
+      {"node":1,"name":"This is question 2","real":"This is question 1","group":0},
+      {"node":2,"name":"This is question 3","real":"This is question 1","group":0},
+      {"node":3,"name":"This is question 4","real":"This is question 1","group":0},
+      {"node":4,"name":"This is question 5","real":"This is question 1","group":0},
+      {"node":5,"name":"This is question 6","real":"This is question 1","group":0},
+      {"node":6,"name":"This is question 6","real":"This is question 1","group":0},
+      {"node":7,"name":"This is question 6","real":"This is question 1","group":0},
+      {"node":8,"name":"This is question 6","real":"This is question 1","group":0},
+      {"node":9,"name":"This is question 6","real":"This is question 1","group":0},
+      {"node":10,"name":"This is question 6","real":"This is question 1","group":0}
     ],
     "links":[
       {"source":0,"target":1,"value":0},
@@ -350,7 +345,9 @@ dispatch.on("createSankey.sankey", function (data, klass) {
       nodes[0].name = $('#q1FormInput').val();
 
       sortedData.forEach(function(g, i) {
-        nodes[i + 1].name = g.question;
+        var sliced = (g.question.length > 80) ? g.question.slice(0,80) + "..." : g.question;
+        nodes[i + 1].name = sliced;
+        nodes[i + 1].real = g.question;
         links[i].value = g.distance1;
       });
       cosineSankeyData1.nodes = nodes;
@@ -365,7 +362,9 @@ dispatch.on("createSankey.sankey", function (data, klass) {
       nodes[0].name = $('#q2FormInput').val();
 
       sortedData.forEach(function(g, i) {
-        nodes[i + 1].name = g.question;
+        var sliced = (g.question.length > 80) ? g.question.slice(0,80)  + "..." : g.question;
+        nodes[i + 1].name = sliced;
+        nodes[i + 1].real = g.question;
         links[i].value = g.distance2;
       });
       cosineSankeyData2.nodes = nodes;
@@ -387,7 +386,10 @@ dispatch.on("createSankey.sankey", function (data, klass) {
       nodes[0].name = $('#q1FormInput').val();
 
       sortedData.forEach(function(g, i) {
-        nodes[i + 1].name = g.question;
+        var sliced = (g.question.length > 80) ? g.question.slice(0,80)  + "..." : g.question;
+        console.log(sliced);
+        nodes[i + 1].name = sliced;
+        nodes[i + 1].real = g.question;
         links[i].value = model === "model1" ? g.model1_probs_1 : g.model2_probs_1;
       });
 
@@ -403,7 +405,10 @@ dispatch.on("createSankey.sankey", function (data, klass) {
       nodes[0].name = $('#q2FormInput').val();
 
       sortedData.forEach(function(g, i) {
-        nodes[i + 1].name = g.question;
+        var sliced = (g.question.length > 80) ? g.question.slice(0,80)  + "..." : g.question;
+        console.log(sliced);
+        nodes[i + 1].name = sliced;
+        nodes[i + 1].real = g.question;
         links[i].value = model === "model1" ? g.model1_probs_2 : g.model2_probs_2;
       });
 

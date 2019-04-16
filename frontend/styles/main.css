@@ -108,7 +108,7 @@ body {
 * {box-sizing: border-box;}
 
 
-#scatter-viz {
+.scatter-viz {
     position: relative;
     height:100vh;
     width: 100%;
@@ -338,6 +338,7 @@ justify-content: center;
   padding: 20px 20px 20px 20px;
   box-shadow: 0px 5px 10px 0px grey;
 }
+
 .histogram-block{
   margin: 10px auto;
   background-color: white;
@@ -359,3 +360,11 @@ justify-content: center;
 margin: 10px;
 }
 
+#points-dropdown2{
+margin: 10px;
+}
+
+#sankey-probability2 {
+height: 100%;
+overflow: auto;
+}
