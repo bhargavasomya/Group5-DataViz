@@ -19,7 +19,7 @@ var colorScale;
 //colorHold = ["#87cefa", "#86c6ef", "#85bde4", "#83b7d9", "#82afce", "#80a6c2"];
 colorHold=["#ffffd9","#c7e9b4", "#7fcdbb", "#1d91c0","#253494","#081d58"];
 //colorHold = ["#FFC039", "#FFC707", "#FF9339", "#FF6307", "#FF4739", "#FF1907"]
-//colorLText = ["0", "10", "20", "30", "40", "50"];
+colorLText = ["0", "10", "20", "30", "40", "50"];
 
 function bandClassifier(val, multiplier) {
   if (val >= 0) { 
@@ -114,7 +114,7 @@ function heatmapChart(response, klass){
  var rootsvg = d3.select(histogramClass)
     .append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("height", 450);
 
   var svg = rootsvg.append("g")
     .attr("transform", "translate(" + (width/4 + margin.left) + "," + margin.top + ")");
@@ -150,7 +150,7 @@ function heatmapChart(response, klass){
         .style("top",(d3.event.pageY-30)+"px").style("left",(d3.event.pageX+20)+"px");
 
       console.log(d3.mouse(this)[0])
-      tooltip.select("div").html("<strong>"+d.Y_co+"</strong><br/> "+(+d.value).toFixed(2))
+      tooltip.select("div").html((+d.value).toFixed(2))
 
     });
 
@@ -177,19 +177,20 @@ function heatmapChart(response, klass){
 
   // Legends section
   legends = svg.append("g").attr("class", "legends")
-    .attr("transform","translate(" + ((width+margin.right) / 2 - lPatchWidth / 2 - margin.left / 2) + "," + (height + margin.bottom - 200) + ")");
+    .attr("transform","translate(" + 0 + "," + (height + margin.bottom - 275) + ")");
 
   // Legend traingle pointer generator
   var symbolGenerator = d3.symbol()
     .type(d3.symbolTriangle)
     .size(64);
 
-  legends.append("g").attr("transform", "rotate(180)").append("g").attr("class","trianglepointer")
+  legends.append("g").attr("transform", "rotate(180)").append("g").attr("y", 0).attr("class","trianglepointer")
     .attr("transform","translate(" + (-lPatchWidth / colorScale.range().length) / 4 + ")")
     .append("path").attr("d",symbolGenerator());
 
   // Legend Rectangels
   legends.append("g").attr("class", "LegRect")
+      .attr("y", 0)
     .attr("transform","translate(0," + 15 + ")")
     .selectAll("rect").data(colorScale.range()).enter()
     .append("rect").attr("width", lPatchWidth / colorScale.range().length + "px").attr("height", "10px").attr("fill", function(d){return d})
