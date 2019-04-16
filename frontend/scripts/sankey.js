@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
     width = 500 - margin.left - margin.right,
-    height = 650 - margin.top - margin.bottom;
+    height = 1000 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svgCosine1 = d3.select("#sankey-cosine-1").append("svg")
@@ -176,11 +176,11 @@ var cosineSankeyData1 = {
   {"node":3,"name":"This is question 4", "group":0},
   {"node":4,"name":"This is question 5", "group":0},
   {"node":5,"name":"This is question 6", "group":0},
-  {"node":6,"name":"This is question 6", "group":0},
-  {"node":7,"name":"This is question 6", "group":0},
-  {"node":8,"name":"This is question 6", "group":0},
-  {"node":9,"name":"This is question 6", "group":0},
-  {"node":10,"name":"This is question 6", "group":0},
+  {"node":6,"name":"This is question 7", "group":0},
+  {"node":7,"name":"This is question 8", "group":0},
+  {"node":8,"name":"This is question 9", "group":0},
+  {"node":9,"name":"This is question 10", "group":0},
+  {"node":10,"name":"This is question 11", "group":0},
 ],
 "links":[
   {"source":0,"target":1,"value":0},
@@ -203,11 +203,11 @@ var cosineSankeyData2 = {
     {"node":3,"name":"This is question 4", "group":0},
     {"node":4,"name":"This is question 5", "group":0},
     {"node":5,"name":"This is question 6", "group":0},
-    {"node":6,"name":"This is question 6", "group":0},
-    {"node":7,"name":"This is question 6", "group":0},
-    {"node":8,"name":"This is question 6", "group":0},
-    {"node":9,"name":"This is question 6", "group":0},
-    {"node":10,"name":"This is question 6", "group":0},
+    {"node":6,"name":"This is question 7", "group":0},
+    {"node":7,"name":"This is question 8", "group":0},
+    {"node":8,"name":"This is question 9", "group":0},
+    {"node":9,"name":"This is question 10", "group":0},
+    {"node":10,"name":"This is question 11", "group":0},
   ],
   "links":[
     {"source":0,"target":1,"value":0},

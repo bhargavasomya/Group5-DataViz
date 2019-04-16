@@ -71,13 +71,14 @@
         </div>
         <br/>
         <div class="jumbotron">
+            <p> Lets explore our data with respect to your input to understand why we received these results... </p>
             <center><h3>Exploring similar words by cosine distance </h3></center>
-            <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
+            <p>The scatter plot displays the distribution of the questions in lower dimensional space.
                 The histograms on the right have bins of cosine distance between input questions and the above mentioned
                 sentences.
                 The height of each bins represents the number of questions lying in that particular range. You can click
-                on them to see
-                those sentences on the scatter plot.
+                on them to see those sentences on the scatter plot.
+
             </p>
         </div>
         <br/>
@@ -136,11 +137,18 @@
         <div class="jumbotron">
             <center><h3>Exploring similar words by probability </h3></center>
             <p>The following scatter plot shows the sentences available in our training data in 2 dimensional space.
-                The histograms on the right have bins of cosine distance between input questions and the above mentioned
+                The histograms on the right have bins of model probabilities between input questions and the above mentioned
                 sentences.
                 The height of each bins represents the number of questions lying in that particular range. You can click
-                on them to see
-                those sentences on the scatter plot.
+                on them to see those sentences on the scatter plot. You can choose between the two models we trained to see the
+                difference.
+                <br/>
+                By using cosine distance and neural network distribution we try to compare the two approaches.
+                Our intuition is that cosine distances perform well for short and simple sentences, whereas the neural
+                networks perform well when there is a comparison between long and complex meaning sentences.
+                When the points in the scatter plot show an overlap for question 1 and question 2 we can infer that
+                the questions are duplicates and vice versa.
+
             </p>
         </div>
         <br/>
@@ -260,15 +268,12 @@
 
 <div class="container">
                 <div class="jumbotron">
-                    <center><h3>Exploring similar words by probability </h3></center>
-                    <p>The following scatter plot shows the sentences available in our training data in 2 dimensional
-                        space.
-                        The histograms on the right have bins of cosine distance between input questions and the above
-                        mentioned sentences.
-                        The height of each bins represents the number of questions lying in that particular range. You
-                        can
-                        click on them to see
-                        those sentences on the scatter plot.
+                    <center><h3>The 10 most similar words</h3></center>
+                    <p>The following is a Sankey diagram to list the questions that are top 10 in every bucket to a particular
+                        input question. The width of the links depends on the value of the probability/normalized cosine
+                        distance. The user now basically has a ranked list of similar questions to the input questions that
+                        he may want to look at. Also, by displaying the list of questions in parallel plots we enable
+                        connectivity and proximity principles.
                     </p>
                 </div>
                 <br/>
@@ -342,8 +347,15 @@
         <div class="container">
             <center><h3>Heatmap </h3></center>
             <div class="jumbotron">
-                <center><h3>Exploring similar words by Probabilities </h3></center>
+                <center><h3>Exploring similarity of top 10 words </h3></center>
                 <p>
+                    Our heatmap visualization is basically validating whether the questions that fall
+                    in a particular distribution bucket are similar to each other. The idea being that if
+                    a question is similar to the input it should also be similar to an extent to other questions
+                    that are similar to it. (transitivity relation) The heatmap has a max element count of 10.
+                    These are the top 10 questions lying in every bucket of the probability distribution.
+                    This visualization serves the task of analyzing our model performance using the generated
+                    outputs(in this case the similar questions of the distribution bucket).
                 </p>
             </div>
             <br/>
