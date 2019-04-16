@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from ML.sentences import Sentences
 from ML.init_server import create_embedding_index
 import boto3
@@ -38,6 +38,7 @@ sentence = Sentences(embedding_index)
 
 
 @application.route('/getdata', methods=['POST'])
+@cross_origin(origin='*',headers=['access-control-allow-origin','Content-Type'])
 def get_data():
     q1 = ''
     q2 = ''
@@ -50,6 +51,7 @@ def get_data():
     return sentence.get_sentences(q1, q2, k=k).to_json(orient='records')
 
 @application.route('/predict-duplicate-with-first-model', methods=['POST'])
+@cross_origin(origin='*',headers=['access-control-allow-origin','Content-Type'])
 def predict_with_first_model():
     q1 = ''
     q2 = ''
@@ -62,6 +64,7 @@ def predict_with_first_model():
     return jsonify({"result": str(sentence.predict_with_first_model(q1, q2)[0][0])})
 
 @application.route('/predict-duplicate-with-second-model', methods=['POST'])
+@cross_origin(origin='*',headers=['access-control-allow-origin','Content-Type'])
 def predict_with_second_model():
     q1 = ''
     q2 = ''
@@ -73,6 +76,7 @@ def predict_with_second_model():
     return jsonify({"result": str(sentence.predict_with_second_model(q1, q2)[0][0])})
 
 @application.route('/getmatrix', methods=['POST'])
+@cross_origin(origin='*',headers=['access-control-allow-origin','Content-Type'])
 def get_pairs():
     questions_array = None
     model = ''
