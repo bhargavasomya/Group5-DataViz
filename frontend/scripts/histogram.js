@@ -150,6 +150,10 @@ function setupHistogram(data, klass) {
             }
         })
         .on('click', function (d, i) {
+                d3.select(".histogram-q7").selectAll("rect").style("fill", "#7a7fad");
+                d3.select(".histogram-q8").selectAll("rect").style("fill", "#1b622d");
+
+
             if (flags[i] == 0) {
                 // Histogram logic for scatterplot
                 if (forScatterplots.includes(klass)) {
@@ -162,7 +166,6 @@ function setupHistogram(data, klass) {
 
                 // Finally change the color to orange
                 d3.select(this).transition()
-                    .duration('50')
                     .attr('style', 'fill: orange');
 
                 if (klass in forScatterplots) {
@@ -173,7 +176,6 @@ function setupHistogram(data, klass) {
                 flags[i] = 1;
             } else {
                 d3.select(this).transition()
-                    .duration('50')
                     .attr('style', 'fill: ' + colors);
 
                 if (forScatterplots.includes(klass)) {
