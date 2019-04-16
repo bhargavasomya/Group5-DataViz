@@ -3,9 +3,9 @@ title: Visualizing Quora Duplicate Question
 layout: post
 ---
 
-Motivation:
+**Motivation:**
 
-Data Summary:
+**Data Summary:**
 
 Quora is a question-and-answer website where questions are asked, answered, edited, and organized by its community of users in the form of opinions. Our dataset for the project is a collection of question pairs from Quora along with their associated attributes. This dataset is readily available on Kaggle.
 A brief description of the features present in our data is as follows:
