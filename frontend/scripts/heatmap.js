@@ -66,6 +66,9 @@ function heatmapChart(response, klass){
   for(i=0;i<data.length;i++){
 	data[i].X_co = new_questions[data[i].X_co];
 	data[i].Y_co = new_questions[data[i].Y_co];
+	if(data[i].X_co === data[i].Y_co){
+		data[i].value = 1;
+	}  
   }
 
 
