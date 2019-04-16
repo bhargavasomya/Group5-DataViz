@@ -27,17 +27,17 @@ function setupHistogram(data, klass) {
     var xlabel = function(klass) {
         switch(klass) {
             case ".histogram-q1":
-                return "cosine distance";
+                return "cosine similarity";
             case ".histogram-q2":
-                return "cosine distance";
+                return "cosine similarity";
             case ".histogram-q3":
                 return "probability";
             case ".histogram-q4":
                 return "probability";
             case ".histogram-q5":
-                return "cosine distance";
+                return "cosine similarity";
             case ".histogram-q6":
-                return "cosine distance";
+                return "cosine similarity";
             case ".histogram-q7":
                 return "probability";
             case ".histogram-q8":
@@ -139,7 +139,7 @@ function setupHistogram(data, klass) {
         .attr("height", function(d) { return 0; })
         .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) -1 ; })
         .style("fill", colors)
-        .attr("class", "pointer")
+        .style("cursor", "pointer")
         .on('mouseover', function (d, i) {
             // Hover color
             d3.select(this).style("fill", 'orange');

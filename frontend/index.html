@@ -71,10 +71,10 @@
         </div>
         <br/>
         <div class="jumbotron">
-            <center><h3>Exploring similar words by cosine distance </h3></center>
+            <center><h3>Exploring similar words by cosine similarity </h3></center>
             <p> Lets explore our data with respect to your input to understand why we received these results... </p>
             <p>The scatter plot displays the distribution of the questions in lower dimensional space.
-                The histograms on the right have bins of cosine distance between input questions and the above mentioned
+                The histograms on the right have bins of cosine similarity between input questions and the above mentioned
                 sentences.
                 The height of each bins represents the number of questions lying in that particular range. You can click
                 on them to see those sentences on the scatter plot.
@@ -115,7 +115,7 @@
                 <div id="histograms-cosine">
                     <div class="col-lg-4">
                         <center>
-                            <h4>Histograms of the cosine distance</h4>
+                            <h4>Histograms of the cosine similarity</h4>
                             <h5 class="col-lg-4">First Question</h5>
                             <div class="histogram-q1" id="histogram-q1"></div>
                         </center>
@@ -143,8 +143,8 @@
                 on them to see those sentences on the scatter plot. You can choose between the two models we trained to see the
                 difference.
                 <br/>
-                By using cosine distance and neural network distribution we try to compare the two approaches.
-                Our intuition is that cosine distances perform well for short and simple sentences, whereas the neural
+                By using cosine similarity and neural network distribution we try to compare the two approaches.
+                Our intuition is that cosine similarity perform well for short and simple sentences, whereas the neural
                 networks perform well when there is a comparison between long and complex meaning sentences.
                 When the points in the scatter plot show an overlap for question 1 and question 2 we can infer that
                 the questions are duplicates and vice versa.
@@ -271,7 +271,7 @@
                     <center><h3>The 10 most similar words</h3></center>
                     <p>The following is a Sankey diagram to list the questions that are top 10 in every bucket to a particular
                         input question. The width of the links depends on the value of the probability/normalized cosine
-                        distance. The user now basically has a ranked list of similar questions to the input questions that
+                        similarity. The user now basically has a ranked list of similar questions to the input questions that
                         he may want to look at. Also, by displaying the list of questions in parallel plots we enable
                         connectivity and proximity principles.
                     </p>

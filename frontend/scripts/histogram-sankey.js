@@ -25,9 +25,9 @@ function setupSankeyHistogram(data, klass) {
         var xlabel = function(klass) {
         switch(klass) {
             case ".histogram-q9":
-                return "cosine distance";
+                return "cosine similarity";
             case ".histogram-q10":
-                return "cosine distance";
+                return "cosine similarity";
             case ".histogram-q11":
                 return "probability";
             case ".histogram-q12":
@@ -108,7 +108,7 @@ function setupSankeyHistogram(data, klass) {
         .attr("height", function(d) { return 0; })
         .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) -1 ; })
         .style("fill", colors)
-        .attr("class", "pointer")
+        .style("cursor", "pointer")
         .on('mouseover', function (d, i) {
             // Hover color
             d3.select(this).style("fill", 'orange');
