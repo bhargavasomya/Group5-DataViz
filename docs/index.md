@@ -4,6 +4,7 @@ layout: post
 ---
 
 **Motivation:**
+
 In order to build a high-quality knowledge base, it's important that Q&A platforms like Quora and Stack Exchange  ensure each unique question exists only once. The writers for such platforms shouldn't have to write the same answer to multiple versions of the same question, and readers should be able to find a single non-duplicate page with the question they're looking for. For example, Quora would consider questions like “What are the best ways to lose weight?”, “How can a person reduce weight?”, and “What are effective weight loss plans?” to be duplicate questions. To prevent duplicate questions from existing on such Knowledge bases, our goal is to develop machine learning and natural language processing system to automatically identify when questions with the same intent have been asked multiple times. With the help of this project, we wanted our users to develop a deeper understanding of how these models work. Our aim is to address the issue that sometimes the sentences with considerable sementic similarity may not have the exact same meaning. 
 
 **Data Summary:**
