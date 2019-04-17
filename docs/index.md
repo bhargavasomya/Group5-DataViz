@@ -41,13 +41,17 @@ Here’s an excerpt of the raw data being used:
 | 2     | Examine the pattern in,input queries     | Import/Derive | Lookup      | Present       |
 
 Task Summary:
+
 Our visualizations are primarily developed for the “Discover” and “Present” analysis task. From the dataset, we generated features from text such as vectors for the sentences, cosine similarity etc. and used PCA (truncated SVD) to visualize the data in lower dimensions. This would belong to the “Discover” consumption. 
 
-To visualize the results, we have the ROC curves, confusion matrix and the precision-recall curve. Further for any user input question pair, we predict the probability of the question being duplicate. This would belong to the “Present” consumption.
-The primary consumer of our visualization would be Quora developers as it would allow them to search for duplicates or similar questions with some confidence level. 
+Along with detection of duplicacy in the user input question pair, we also want the user to have a better understanding of how our machine learning models can identify the meaning of text rather than just sticking with sementic similarity.
 
-1. Examine the pattern in input queries - 
-2. Discovering pattern in the training data - Along with detection of duplicacy in the user input question pair, we also want the user to have a better understanding of how our machine learning models can identify the meaning of text rather than just sticking with sementic similarity.
+We have a scatterplot where user can see their input questions with respect to points in our training set in 2 Dimensional space. They can then browse through the dataset by choosing the cosine similarity or model probabilities from the bins of histograms present right next to the scatterplot. 
+
+They can then "look up" the top ten questions of each bin of histogram with the help of sankey plot where the width of each node "present" the weight by our models for the selected questions and user input.
+
+We also present the degree of similarity between the top 10 questions with each other using a heatmap to give user a better understanding of the functionality of our ML models. 
+
 
   
 
