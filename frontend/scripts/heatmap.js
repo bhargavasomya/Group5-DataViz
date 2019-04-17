@@ -218,7 +218,7 @@ function getMatrix(questions, model, klass) {
   $.ajax({
     type: "POST",
     contentType: "application/json;charset=utf-8",
-    url: "http://ds5500-backend-4.wd2ywwxp3m.us-east-1.elasticbeanstalk.com/getmatrix",
+    url: "http://ds5500-backend-5.wd2ywwxp3m.us-east-1.elasticbeanstalk.com/getmatrix",
     traditional: "true",
     data: JSON.stringify({ questions: questions, model: model }),
     dataType: "json",
