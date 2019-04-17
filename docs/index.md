@@ -10,7 +10,7 @@ In order to build a high-quality knowledge base, it's important that Q&A platfor
 ***Mathematical formulation***
 
 Our problem of duplicate detection can be defined mathematically as follows: given two questions q1,q2 find a model that learns the function: f(q1, q2) → 0 or 1 where 0 is non-duplicate and 1 is duplicate.
-Along with detection of duplicate questions we want to identify questions/posts similar to the questions the user is viewing and rank these questions.
+Along with detection of duplicacy in the user input question pair, we also want the user to have a better understanding of how our machine learning models can identify the meaning of text rather than just sticking with sementic similarity.
 
 **Data Analysis:**
 
@@ -44,5 +44,5 @@ Here’s an excerpt of the raw data being used:
 Task Summary:
 
 1. Discovering pattern in the training data - 
-2. Examine the pattern in input queries 
+2. Examine the pattern in input queries -  
 
