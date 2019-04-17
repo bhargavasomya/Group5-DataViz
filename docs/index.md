@@ -10,7 +10,6 @@ In order to build a high-quality knowledge base, it's important that Q&A platfor
 ***Mathematical formulation***
 
 Our problem of duplicate detection can be defined mathematically as follows: given two questions q1,q2 find a model that learns the function: f(q1, q2) → 0 or 1 where 0 is non-duplicate and 1 is duplicate.
-Along with detection of duplicacy in the user input question pair, we also want the user to have a better understanding of how our machine learning models can identify the meaning of text rather than just sticking with sementic similarity.
 
 **Data Analysis:**
 
@@ -42,7 +41,13 @@ Here’s an excerpt of the raw data being used:
 | 2     | Examine the pattern in,input queries     | Import/Derive | Lookup      | Present       |
 
 Task Summary:
+Our visualizations are primarily developed for the “Discover” and “Present” analysis task. From the dataset, we generated features from text such as vectors for the sentences, cosine similarity etc. and used PCA (truncated SVD) to visualize the data in lower dimensions. This would belong to the “Discover” consumption. 
 
-1. Discovering pattern in the training data - 
-2. Examine the pattern in input queries -  
+To visualize the results, we have the ROC curves, confusion matrix and the precision-recall curve. Further for any user input question pair, we predict the probability of the question being duplicate. This would belong to the “Present” consumption.
+The primary consumer of our visualization would be Quora developers as it would allow them to search for duplicates or similar questions with some confidence level. 
+
+1. Examine the pattern in input queries - 
+2. Discovering pattern in the training data - Along with detection of duplicacy in the user input question pair, we also want the user to have a better understanding of how our machine learning models can identify the meaning of text rather than just sticking with sementic similarity.
+
+  
 
