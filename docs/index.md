@@ -36,3 +36,13 @@ Here’s an excerpt of the raw data being used:
 
 **Task Analysis**
 
+| Index | Domain Task                              | Analytic Task | Search Task | Analysis Task |
+|-------|------------------------------------------|---------------|-------------|---------------|
+| 1     | Discovering pattern in the training data | Encode        | Browse      | Discover      |
+| 2     | Examine the pattern in,input queries     | Import/Derive | Lookup      | Present       |
+
+Task Summary:
+
+1. Discovering pattern in the training data - 
+2. Examine the pattern in input queries 
+
