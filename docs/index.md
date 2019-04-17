@@ -67,5 +67,39 @@ Since understanding the affect of sementic similarity is one of the goals of our
 
 
 
+# Final Visualization
+
+## Package used
+
+Server: 
+
+```
+nltk==3.3
+numpy==1.15.4
+scipy==1.1.0
+Flask_RESTful==0.3.7
+Keras==2.2.4
+boto3==1.9.47
+Flask_Cors==3.0.7
+Flask==1.0.2
+tqdm==4.28.1
+pandas==0.23.4
+tensorflow==1.13.1
+boto==2.49.0
+scikit_learn==0.20.3
+```
+
+Visualization:
+
+```
+vanilla js
+d3 + (d3-sankey)
+bootstrap
+```
+
+![Link to the final](http://group5-dataviz.herokuapp.com/) _Please note, the link should use http not https_
+
+
+
   
 
