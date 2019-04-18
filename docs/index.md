@@ -1,6 +1,6 @@
 ---
 title: Visualizing Quora Duplicate Question
-layout: post
+layout: default
 author: Group 5
 ---
 
