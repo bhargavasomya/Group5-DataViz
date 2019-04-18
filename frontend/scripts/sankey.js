@@ -76,6 +76,12 @@ function wrap(text, width) {
 
 // load the data
 function createSankey(graph, svg) {
+  console.log("test");
+  console.log(graph["links"]);
+  console.log("test1");
+  console.log(graph["nodes"]);
+  console.log("test2");
+  
   // Constructs a new Sankey generator with the default settings.
   sankey
       .nodes(graph.nodes)
@@ -138,7 +144,7 @@ function createSankey(graph, svg) {
 	node
 	.select('text')
 	.on('mouseover', function(d,i) {
-	    console.log(d.real);
+	    //console.log(d.real);
         $(this).popover({
           'content': d.real
         }).popover("show")
@@ -333,7 +339,7 @@ dispatch.on("createSankey.sankey", function (data, klass) {
   if (sortedData.length >= 10) {
     sortedData = sortedData.slice(0, 10);
   }
-
+  //console.log(sortedData);
   if (cosineHistograms.includes(klass)) {
     var nodes;
     var links;
@@ -352,7 +358,7 @@ dispatch.on("createSankey.sankey", function (data, klass) {
       });
       cosineSankeyData1.nodes = nodes;
       cosineSankeyData1.links = links;
-
+	
       createSankey(cosineSankeyData1, svgCosine1);
     } else {
       cosineSankeyData2 = restoreDefault();
@@ -380,14 +386,18 @@ dispatch.on("createSankey.sankey", function (data, klass) {
 
     if (klass === ".histogram-q11") {
       probabilitySankeyData1 = restoreDefault();
-      nodes = probabilitySankeyData1.nodes;
+	//console.log(sortedData.length);
+        //console.log(probabilitySankeyData1);
+	probabilitySankeyData1["nodes"] = probabilitySankeyData1["nodes"].slice(0,sortedData.length+1);
+	probabilitySankeyData1["links"] = probabilitySankeyData1["links"].slice(0,sortedData.length);
+	nodes = probabilitySankeyData1.nodes;
       links = probabilitySankeyData1.links;
 
       nodes[0].name = $('#q1FormInput').val();
 
       sortedData.forEach(function(g, i) {
         var sliced = (g.question.length > 80) ? g.question.slice(0,80)  + "..." : g.question;
-        console.log(sliced);
+        //console.log(sliced);
         nodes[i + 1].name = sliced;
         nodes[i + 1].real = g.question;
         links[i].value = model === "model1" ? g.model1_probs_1 : g.model2_probs_1;
@@ -395,18 +405,20 @@ dispatch.on("createSankey.sankey", function (data, klass) {
 
       probabilitySankeyData1.nodes = nodes;
       probabilitySankeyData1.links = links;
-
+	
       createSankey(probabilitySankeyData1, svgProbability1);
     } else {
       probabilitySankeyData2 = restoreDefault();
+	probabilitySankeyData2["nodes"] = probabilitySankeyData2["nodes"].slice(0,sortedData.length+1);
+	probabilitySankeyData2["links"] = probabilitySankeyData2["links"].slice(0,sortedData.length);
       nodes = probabilitySankeyData2.nodes;
       links = probabilitySankeyData2.links;
-
+	
       nodes[0].name = $('#q2FormInput').val();
-
+	
       sortedData.forEach(function(g, i) {
         var sliced = (g.question.length > 80) ? g.question.slice(0,80)  + "..." : g.question;
-        console.log(sliced);
+        //console.log(sliced);
         nodes[i + 1].name = sliced;
         nodes[i + 1].real = g.question;
         links[i].value = model === "model1" ? g.model1_probs_2 : g.model2_probs_2;
@@ -414,7 +426,7 @@ dispatch.on("createSankey.sankey", function (data, klass) {
 
       probabilitySankeyData2.nodes = nodes;
       probabilitySankeyData2.links = links;
-
+	
       createSankey(probabilitySankeyData2, svgProbability2);
     }
   }
