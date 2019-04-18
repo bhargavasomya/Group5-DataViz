@@ -68,6 +68,7 @@ Since different words can have different weights in sentences we used normalized
 We split the data in 80-20 ratio and tested the performance of the model on validation set. Even though the accuracy score of a model is a good measure to analyze the model performance, it might not be the best option in our case as the dataset is skewed. So we also chose to calculate the roc_auc_score for the same purpose.
 
 The results are as follows:
+
 | Performance metric | Score  |
 |--------------------|--------|
 | Accuracy           | 74.02% |
