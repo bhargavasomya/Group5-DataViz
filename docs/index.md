@@ -138,7 +138,6 @@ The sankey plot helps view the top similar questions for each input question. Th
 
 The heatmap shows whether questions lying in a particular bucket are similar to each other. We know they are similar to the input question to a degree represented by the scoring bucket they lie in. But are they similar to each other as well? The heatmap helps to analyse this transitivity.
 
-
 ## Package used
 
 Server: 
