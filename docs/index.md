@@ -96,25 +96,25 @@ There are many feedbacks we receive during the iterations, one of them is from o
 
 ![scatter](./scatter.png)
 
-1. We realized that there are occlusions on the scatterplot, therefore we need zoom. This is not the end, after we implement the zoom, we realize that we need to reset the zoom. We when we click this we will reset the zoom back, this will help with the orientation
-2. We realize the point can be small, we add a visual help to guide the user where they hover. In this one, we implement Steven Braun feedback, so when you don't hover anything you will get a hand cursor, and then when you click it will change to grab cursor and if you hover to the point, it will still be default
-3. Out input data: We make it bigger to give an initial clue of where the input is located on the histogram
-4. Histogram of cosine similarity, which we use it for filtering: Once you click, you can filter the points
-5. To address the Lookup task we then show the text when the user hover. We add one feedback from our classmate, where previously the text was hard to notice, therefore now we put it in the box
+1. We realized that there are occlusions on the scatterplot, therefore we need zoom. This is not the end, after we implement the zoom, we realize that we need to reset the zoom. This will help with the orientation.
+2. We realize the point can be small, we add a visual help to guide the user where they hover. In this one, we implement Steven Braun feedback, so when you don't hover anything you will get a hand cursor, and then when you click it will change to grab cursor and if you hover to the point, it will still be default.
+3. Out input data: We make it bigger to give an initial clue of where the input is located on the histogram.
+4. Histogram of cosine similarity, which we use it for filtering: Once you click, you can filter the points.
+5. To address the Lookup task we then show the text when the user hover. We add one feedback from our classmate, where previously the text was hard to notice, therefore now we put it in the box.
 6. We can also change the number of points we want to show, we can change it to something bigger, the bigger the number the slower it gets.
 
 ![sankey](./sankey.png)
 
-1. Here we can also filter based on the model
-2. As the previous visualization, we can also filter based on the dim
-3. his is the highest top 10 text in the bin
-4. The band of the probability
+1. Here we can also filter based on the model.
+2. As the previous visualization, we can also filter based on the bin.
+3. his is the highest top 10 text in the bin.
+4. The band of the probability.
 
 
 ![heatmap](./sankey.png)
 
-1. The color is the probability: like the Sankey it is another way to encode the value
-2. The triangle will move once we hover it, this will help user know where in the range the value falls
+1. The color is the probability: like the Sankey it is another way to encode the value.
+2. The triangle will move once we hover it, this will help user know where in the range the value falls.
 
 The 10 quesitions are from the selected bin as like the sankey.
 
