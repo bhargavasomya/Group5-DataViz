@@ -64,10 +64,10 @@ In case of classic machine learning approaches to reduce dimensionality, we perf
 
 # Model Description
 ## Baseline Approach (Random Forest)
-We chose Random Forest Classifier as our Baseline model. As it initially was used by Quora itself in their system before being replaced by Neural Network model and hence it was a good starting point. The other reason for using it as baseline was that tree-based models are robust and easier to visualize and debug. Visualizing the tree was also a part of our initial proposal. 
+We chose Random Forest Classifier as our Baseline model. As it initially was used by Quora itself in their system before replaced by Neural Network model and hence it was a good starting point. The other reason for using it as baseline was that tree-based models are robust and easier to visualize and debug. Visualizing the tree was also a part of our initial proposal. 
 
 ### Feature Engineering:
-Since we just have two text columns as features, we had to perform feature engineering before training the model. As semantic similarity can be one of the predictors of duplicacy in considerable amount of cases, we used normalized word share, which is the number of common words by the combined length of both the questions, as one of the features.Different words can have different weights in sentences we used normalized tf-idf, which is the total weight of common words by total weight of all the words in question pairs as the other feature.
+Since we just have two text columns as features, we had to perform feature engineering before training the model. As sementic similarity can be one of the predictors of duplicacy in considerable amount of cases, we used normalized word share, which is the number of common words by the combined length of both the questions, as one of the features.Different words can have different weights in sentences we used normalized tf-idf, which is the total weight of common words by total weight of all the words in question pairs as the other feature.
 
 ### Result:
 We split the data in 80-20 ratio and tested the performance of the model on validation set. Even though the accuracy score of a model is a good measure to analyze the model performance, it might not be the best option in our case as the dataset is skewed. So we also chose to calculate the roc_auc_score for the same purpose.
@@ -86,9 +86,8 @@ The results are as follows:
 
 The goal of our deep learning based approach is to use the sequential information present in the words of a questions to understand the meaning of each question and then compare to see whether they are duplicate. For this purpose we use the Stanford NLP GLOVE representations which contain a vectorised representation of 300 dimensions for a vocabulary of words from Wikipedia. Using the keras pre-processing functions we convert the text present in the questions to tokens. We create a word-vector matrix using the unique tokens present in the data and the corresponding Stanford GLOVE representations. We have a total of 96492 unique words that we use in the word-vector matrix. Using the word-vector matrix we convert each question as a sequence of vectors, each of length 300. The result of the pre-processing is a sequence of vectors representing each question in our data. The max length of the sequence is set to 25 for computational purposes.
 ### Model Architecture:
-The network consists of two input layers, one for each question. Using the input layer we convert the sequence of vectors obtained from the pre-processing into a dense time distributed vector by using an embedding layer followed by a time distributed layer. The output of each input layer, gives us a representation for each question. We concatenate the representations of the input questions and then use the combined vector for further steps. The combined representation is then passed through dense layers consisting of Relu activations and eventually a Softmax layer which gives us the final probability. We introduce batch normalization and dropout of 0.1 to prevent the network from overfitting. The network is trained using cross-entropy loss and Adam optimizer with a learning rate of 0.001. We train the network for 25 epochs using a batch size of 32.
+The network consist of two input layers, one for each question. Using the input layer we convert the sequence of vectors obtained from the pre-processing into a dense time distributed vector by using an embedding layer followed by a time distributed layer. The output of each input layer, gives us a representation for each question. We concatenate the representations of the input questions and then use the combined vector for further steps. The combined representation is then passed through dense layers consisting of Relu activations and eventually a Softmax layer which gives us the final probability. We introduce batch normalization and dropout of 0.1 to prevent the network from overfitting. The network is trained using cross-entropy loss and Adam optimizer with a learning rate of 0.001. We train the network for 25 epochs using a batch size of 32.
 We use two architectures each consisting of different number of dense layers. One consists of 4 dense layers and the other consist of 6 dense layers following the time distributed layers.
-![Neural Network Architecture](./neural_network_diagram.png)
 
 ### Results:
 We test the performance of our model on a validation set consisting of 20% of our train set. Our models perform identical to each other. However, each model has their own strengths and perform better on questions that at times the other does not.
@@ -179,6 +178,16 @@ The sankey plot helps view the top similar questions for each input question. Th
 
 The heatmap shows whether questions lying in a particular bucket are similar to each other. We know they are similar to the input question to a degree represented by the scoring bucket they lie in. But are they similar to each other as well? The heatmap helps to analyse this transitivity.
 
+## Conclusion and Contributions
+Neural Network can help detecting questions that looks syntactically the same but different in meaning. Although, they perform well on identifying similar questions they perform poorly in some other cases where both inputs are same. 
+
+## Future Work
+A few things that we can work on in future are:
+
+1. Use traditional document ranking methods like BM25 to supplement our predictions
+2. Cleaning text data thoroughly (mis-spellings and words not encountered before)
+3. POS tagging and entity recognition can be integrated 
+4. Using an ensemble neural network to generate final prediction
 
 ## Package used
 
