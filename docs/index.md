@@ -124,15 +124,15 @@ As like software development process, visualization is also an iterative process
 ## Initial Sketches
 ![Sketches](./sketches.png)
 
-Based on our task analysis, we try to come up with an idea to encode a text classification problem into a data visualization. 
-From here, we select some sketches for the next iteration. The first sketch is very intuitive,  a scatterplot of 2-D representation of the sentence which we reduce it by doing a PCA. We also include the histogram of the probability and the heatmap for the next iteration. All of them are being used to address the task we mention earlier: discovering pattern, examine the pattern in input queries.
+Based on our task analysis, we tried coming up with an idea to encode a text classification problem into a data visualization. 
+From here, we selected some sketches for the next iteration. The first sketch is very intuitive,  a scatterplot of 2-D representation of the sentence which we reduce it by doing a PCA. We also included the histogram of the probability and the heatmap for the next iteration. All of them are being used to address the task we mention earlier: discovering pattern, examine the pattern in input queries.
 
 ## Final Sketches
 ![Final Sketches](./final-sketches.png)
 
-There are many feedbacks we receive during the iterations, one of them is from our instructors. The feedback was to use the histogram to filter the scatterplot. In this one, we also implement one more visual encoding: a sankey diagram. The purpose of the sankey is similar with the heatmap, the difference is the encoding, for example instead of color we use size as a channel.
+We received a few helpful feedbacks on the way, one of them was from our instructors. The feedback was to use the histogram to filter the scatterplot. In this one, we also implemented one more visual encoding: a sankey diagram. The purpose of the sankey is similar with the heatmap, the difference is the encoding, for example instead of color we use size as a channel. With these two visualizations we want the user to discover the underlying pattern in the dataset and how our models are interpreting input with respect to that
 
-The colors used for the visualizations in this report are for representation purpose only. We found out that the color scheme used is not color blind safe and we will change it in the final project. 
+The colors used for the visualizations of these sketches were for representation purpose only. We later realized that the scheme used here is not color blind safe and we changed it in the final project. 
 
 # Final Visualization
 
