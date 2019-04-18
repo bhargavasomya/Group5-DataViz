@@ -145,11 +145,11 @@ All the visualizations have details on demand on hover/click as explained in the
 
 ![scatter](./scatter.png)
 
-1. We realized that there are occlusions on the scatterplot, therefore we need zoom. This is not the end, after we implement the zoom, we realize that we need to reset the zoom. This will help with the orientation.
-2. We realize the point can be small, we add a visual help to guide the user where they hover. In this one, we implement Steven Braun feedback, so when you don't hover anything you will get a hand cursor, and then when you click it will change to grab cursor and if you hover to the point, it will still be default.
-3. Out input data: We make it bigger to give an initial clue of where the input is located on the histogram.
-4. Histogram of cosine similarity, which we use it for filtering: Once you click, you can filter the points.
-5. To address the Lookup task we then show the text when the user hover. We add one feedback from our classmate, where previously the text was hard to notice, therefore now we put it in the box.
+1. We realized that there are occlusions on the scatterplot, therefore we need zoom. This is not the end, after we implemented the zoom, we realized that we need to reset the zoom. This helped with the orientation.
+2. We realized that the points can be small and difficult to navigate, so we added a visual help to guide the user where they hover. In this one, we implemented Mr Steven Braun's feedback, so when the user doesn't hover over anything, they will get a hand cursor, and then when you click it will change to grab cursor and if they hover to the point, it will still be default.
+3. Out input data: We made it bigger to give an initial clue of where the input is located on the histogram.
+4. Histogram of cosine similarity, which we used for filtering: Once you click, you can filter the points.
+5. To address the Lookup task we then showed the text when the user hover. Here we incorporated a feedback we received from our classmate, where previously the hovered text was hard to notice, therefore now we put it in the box with a different background color.
 6. We can also change the number of points we want to show, we can change it to something bigger, the bigger the number the slower it gets.
 
 ![sankey](./sankey.png)
