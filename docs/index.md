@@ -33,6 +33,16 @@ Here’s an excerpt of the raw data being used:
 | 0  | 1    | 2    | What is the step by step guide to invest in share market in india?                     | What is the step by step guide to invest in share market?                                  | 0            |
 | 5  | 11   | 12   | Astrology: I am a Capricorn Sun Cap moon and cap rising...what does that say about me? | I'm a triple Capricorn (Sun, Moon and ascendant in Capricorn) What does this say about me? | 1            |
 
+## Exploratory Data Analysis:
+
+Some of the observations made during EDA were:
+
+We have only 290654 unique questions in question1 and 299364 unique questions in question2 features. The distribution of the labels is skewed with numbers of non duplicate question pairs being in majority. But the ratio was nothing drastic and hence resampling was not required.
+
+Then we wanted to know what is the general distribution of the length of sentences in our dataset. By plotting a simple histogram we found that most of the questions have a length of around 25 words. This helped us decide the size of the padding for the deep learning as we needed uniform length inputs.
+
+Since understanding the affect of sementic similarity is one of the goals of our project, we calculated the ratio of the number of common words by total length of the sentences and then compared them by our target labels. Here, we discovered that the question pairs with lower ratio tend to belong to the not duplicate (or label 0) while the higher ratio belonged to duplicate (or label 1) but there was a considerable amount of overlap in the middle.
+
 # Task Analysis
 
 | Index | Domain Task                              | Analytic Task | Search Task | Analysis Task |
@@ -40,7 +50,8 @@ Here’s an excerpt of the raw data being used:
 | 1     | Discovering pattern in the training data | Encode        | Browse      | Discover      |
 | 2     | Examine the pattern in,input queries     | Import/Derive | Lookup      | Present       |
 
-Task Summary:
+
+## Task Summary
 
 Our visualizations are primarily developed for the “Discover” and “Present” analysis task. From the dataset, we generated features from text such as vectors for the sentences, cosine similarity etc. and used PCA (truncated SVD) to visualize the data in lower dimensions. This would belong to the “Discover” consumption. 
 
@@ -51,18 +62,7 @@ We have a scatterplot where user can see their input questions with respect to p
 They can then "look up" the top ten questions of each bin of histogram with the help of sankey plot where the width of each node "present" the weight by our models for the selected questions and user input.
 
 We also present the degree of similarity between the top 10 questions with each other using a heatmap to give user a better understanding of the functionality of our ML models. 
-
-
-# Exploratory Data Analysis:
-
-Some of the observations made during EDA were:
-
-We have only 290654 unique questions in question1 and 299364 unique questions in question2 features. The distribution of the labels is skewed with numbers of non duplicate question pairs being in majority. But the ratio was nothing drastic and hence resampling was not required.
-
-
-Then we wanted to know what is the general distribution of the length of sentences in our dataset. By plotting a simple histogram we found that most of the questions have a length of around 25 words. This helped us decide the size of the padding for the deep learning as we needed uniform length inputs.
-
-Since understanding the affect of sementic similarity is one of the goals of our project, we calculated the ratio of the number of common words by total length of the sentences and then compared them by our target labels. Here, we discovered that the question pairs with lower ratio tend to belong to the not duplicate (or label 0) while the higher ratio belonged to duplicate (or label 1) but there was a considerable amount of overlap in the middle. 
+ 
 
 # Preprocessing 
 The following steps were taken to preprocess the data:
@@ -74,11 +74,21 @@ The following steps were taken to preprocess the data:
 6. Performed Dimensionality Reduction using truncated SVD to convert our sentence vectors to 2 Dimensional space
 
 # Modeling 
-1. Random Forest Classifier (Baseline):
+## Random Forest Classifier (Baseline)
+## Neural Network
 
+# Design Process
+## Initial Sketches
+![Sketches](./sketches.png)
 
+## Final Sketches
+![Final Sketches](./final-sketches.png)
 
 # Final Visualization
+
+![scatter](./scatter.png)
+![sankey](./sankey.png)
+![heatmap](./sankey.png)
 
 ## Package used
 
@@ -103,7 +113,6 @@ scikit_learn==0.20.3
 Visualization:
 
 ```
-vanilla js
 d3 + (d3-sankey)
 bootstrap
 ```
