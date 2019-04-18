@@ -48,7 +48,7 @@ Then we wanted to know what is the general distribution of the length of sentenc
 
 ![Distribution_of_word_share](./Distribution_of_word_share.png)
 
-Since understanding the affect of sementic similarity is one of the goals of our project, we calculated the ratio of the number of common words by total length of the sentences and then compared them by our target labels. Here, we discovered that the question pairs with lower ratio tend to belong to the not duplicate (or label 0) while the higher ratio belonged to duplicate (or label 1) but there was a considerable amount of overlap in the middle.
+Since understanding the affect of sementic similarity is one of the goals of our project, we calculated the ratio of the number of common words by total length of the sentences and then compared them by our target labels. Here, we discovered that the question pairs with lower ratio tend to belong to the not duplicate (or label 0) while the higher ratio belonged to duplicate (or label 1) but there was a considerable amount of overlap in the middle as we can see in the plot on the right where colors are used as one of the channels. The green represents label 1 while the red represents label 0.
 
 
 # Preprocessing 
