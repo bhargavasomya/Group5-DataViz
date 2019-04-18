@@ -1,6 +1,7 @@
 ---
 title: Visualizing Quora Duplicate Question
 layout: post
+author: Group 5
 ---
 
 # Motivation
@@ -43,6 +44,20 @@ Then we wanted to know what is the general distribution of the length of sentenc
 
 Since understanding the affect of sementic similarity is one of the goals of our project, we calculated the ratio of the number of common words by total length of the sentences and then compared them by our target labels. Here, we discovered that the question pairs with lower ratio tend to belong to the not duplicate (or label 0) while the higher ratio belonged to duplicate (or label 1) but there was a considerable amount of overlap in the middle.
 
+
+# Preprocessing 
+The following steps were taken to preprocess the data:
+1. Removed stop words and every non alphanumeric characters
+2. Normalized text by converting everything to lower case
+3. Converted shorten words to their seperated version for example can't became cannot, she'll became she will and so on
+4. Encoded the text into vectors using Glove model 
+5. Padded the vectors to 25 words for deep learning
+6. Performed Dimensionality Reduction using truncated SVD to convert our sentence vectors to 2 Dimensional space
+
+# Modeling 
+## Random Forest Classifier (Baseline)
+## Neural Network
+
 # Task Analysis
 
 | Index | Domain Task                              | Analytic Task | Search Task | Analysis Task |
@@ -62,33 +77,49 @@ We have a scatterplot where user can see their input questions with respect to p
 They can then "look up" the top ten questions of each bin of histogram with the help of sankey plot where the width of each node "present" the weight by our models for the selected questions and user input.
 
 We also present the degree of similarity between the top 10 questions with each other using a heatmap to give user a better understanding of the functionality of our ML models. 
- 
-
-# Preprocessing 
-The following steps were taken to preprocess the data:
-1. Removed stop words and every non alphanumeric characters
-2. Normalized text by converting everything to lower case
-3. Converted shorten words to their seperated version for example can't became cannot, she'll became she will and so on
-4. Encoded the text into vectors using Glove model 
-5. Padded the vectors to 25 words for deep learning
-6. Performed Dimensionality Reduction using truncated SVD to convert our sentence vectors to 2 Dimensional space
-
-# Modeling 
-## Random Forest Classifier (Baseline)
-## Neural Network
 
 # Design Process
+As like software development process, visualization is also an iterative process, an agile process. Now we can see our top-down approach.
+
 ## Initial Sketches
 ![Sketches](./sketches.png)
+
+Based on our task analysis, we try to come up with an idea to encode a text classification problem into a data visualization. 
+From here, we select some sketches for the next iteration. The first sketch is very intuitive,  a scatterplot of 2-D representation of the sentence which we reduce it by doing a PCA. We also include the histogram of the probability and the heatmap for the next iteration. All of them are being used to address the task we mention earlier: discovering pattern, examine the pattern in input queries.
 
 ## Final Sketches
 ![Final Sketches](./final-sketches.png)
 
+There are many feedbacks we receive during the iterations, one of them is from our instructors. The feedback was to use the histogram to filter the scatterplot. In this one, we also implement one more visual encoding: a sankey diagram. The purpose of the sankey is similar with the heatmap, the difference is the encoding, for example instead of color we use size as a channel
+
 # Final Visualization
 
 ![scatter](./scatter.png)
+
+1. We realized that there are occlusions on the scatterplot, therefore we need zoom. This is not the end, after we implement the zoom, we realize that we need to reset the zoom. We when we click this we will reset the zoom back, this will help with the orientation
+2. We realize the point can be small, we add a visual help to guide the user where they hover. In this one, we implement Steven Braun feedback, so when you don't hover anything you will get a hand cursor, and then when you click it will change to grab cursor and if you hover to the point, it will still be default
+3. Out input data: We make it bigger to give an initial clue of where the input is located on the histogram
+4. Histogram of cosine similarity, which we use it for filtering: Once you click, you can filter the points
+5. To address the Lookup task we then show the text when the user hover. We add one feedback from our classmate, where previously the text was hard to notice, therefore now we put it in the box
+6. We can also change the number of points we want to show, we can change it to something bigger, the bigger the number the slower it gets.
+
 ![sankey](./sankey.png)
+
+1. Here we can also filter based on the model
+2. As the previous visualization, we can also filter based on the dim
+3. his is the highest top 10 text in the bin
+4. The band of the probability
+
+
 ![heatmap](./sankey.png)
+
+1. The color is the probability: like the Sankey it is another way to encode the value
+2. The triangle will move once we hover it, this will help user know where in the range the value falls
+
+The 10 quesitions are from the selected bin as like the sankey.
+
+In the end, we realize that a good clue from a simple Human Computer Interaction will help the user understands the plot better
+
 
 ## Package used
 
