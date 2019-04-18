@@ -60,11 +60,11 @@ In case of classic machine learning approaches to reduce dimensionality, we perf
 ## Baseline Approach (Random Forest)
 We chose Random Forest Classifier as our Baseline model. As it initially was used by Quora itself in their system before replaced by Neural Network model and hence it was a good starting point. The other reason for using it as baseline was that tree-based models are robust and easier to visualize and debug. Visualizing the tree was also a part of our initial proposal. 
 
-**Feature Engineering:**
+### Feature Engineering:
 Since we just have two text columns as features, we had to perform feature engineering before training the model. Since sementic similarity can be one of the predictors of duplicacy in considerable amount of cases, we used normalized word share, which is the number of common words by the combined length of both the questions, as one of the features.
 Since different words can have different weights in sentences we used normalized tf-idf, which is the total weight of common words by total weight of all the words in question pairs as the other feature.
 
-**Result:**
+### Result:
 We split the data in 80-20 ratio and tested the performance of the model on validation set. Even though the accuracy score of a model is a good measure to analyze the model performance, it might not be the best option in our case as the dataset is skewed. So we also chose to calculate the roc_auc_score for the same purpose.
 
 The results are as follows:
