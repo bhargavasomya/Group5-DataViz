@@ -1,6 +1,6 @@
 ---
 title: Visualizing Quora Duplicate Question
-layout: default
+layout: post
 author: Group 5
 ---
 
@@ -46,16 +46,36 @@ Since understanding the affect of sementic similarity is one of the goals of our
 
 
 # Preprocessing 
-The following steps were taken to preprocess the data:
-1. Removed stop words and every non alphanumeric characters
-2. Normalized text by converting everything to lower case
-3. Converted shorten words to their seperated version for example can't became cannot, she'll became she will and so on
-4. Encoded the text into vectors using Glove model 
-5. Padded the vectors to 25 words for deep learning
-6. Performed Dimensionality Reduction using truncated SVD to convert our sentence vectors to 2 Dimensional space
+We used 2 approaches to solve the problem, one is the classic machine learning algorithm, random forest and the other is deep learning network(RNN). For both approaches, we will do the same data cleaning procedures. There is a difference in feature representation for each of the models. Our aim is to represent the textual data present in question pairs in a suitable form to build a classifier. 
+The data cleaning procedures we perform on the textual data is as follows:
+1.	Normalize the case for all textual data present in questions column
+2.	Remove all punctuations and non-alphabetic symbols
+3.	Remove stop words
+4.	Replace the shorten words with the normal words, for example: you'll into you will
 
-# Modeling 
-## Random Forest Classifier (Baseline)
+In case of classic machine learning approaches to reduce dimensionality, we perform lemmatization on the text present in the entire dataset and use tf-idf vectorization. For the Recurrent Neural Network, we convert the words in every question into vectors using Stanford University’s pre-trained glove vectors. So, eventually we will have a dataset where each question in a pair is represented as an array of vectors. Each vector is of size 300, as we are using the 300-d GLOVE vectors. 
+
+
+# Model Description
+## Baseline Approach (Random Forest)
+We chose Random Forest Classifier as our Baseline model. As it initially was used by Quora itself in their system before replaced by Neural Network model and hence it was a good starting point. The other reason for using it as baseline was that tree-based models are robust and easier to visualize and debug. Visualizing the tree was also a part of our initial proposal. 
+
+**Feature Engineering:**
+Since we just have two text columns as features, we had to perform feature engineering before training the model. Since sementic similarity can be one of the predictors of duplicacy in considerable amount of cases, we used normalized word share, which is the number of common words by the combined length of both the questions, as one of the features.
+Since different words can have different weights in sentences we used normalized tf-idf, which is the total weight of common words by total weight of all the words in question pairs as the other feature.
+
+**Result:**
+We split the data in 80-20 ratio and tested the performance of the model on validation set. Even though the accuracy score of a model is a good measure to analyze the model performance, it might not be the best option in our case as the dataset is skewed. So we also chose to calculate the roc_auc_score for the same purpose.
+
+The results are as follows:
+| Performance metric | Score  |
+|--------------------|--------|
+| Accuracy           | 74.02% |
+| roc_auc_score      | 0.82   |
+
+
+
+
 ## Neural Network
 
 # Task Analysis
@@ -137,6 +157,7 @@ These questions are marked as non-duplicate but have overlapping similar questio
 The sankey plot helps view the top similar questions for each input question. The width of the links shows the magnitude of duplication predicted by our model. We display these questions as a way of recommending similar questions to the input question.
 
 The heatmap shows whether questions lying in a particular bucket are similar to each other. We know they are similar to the input question to a degree represented by the scoring bucket they lie in. But are they similar to each other as well? The heatmap helps to analyse this transitivity.
+
 
 ## Package used
 
