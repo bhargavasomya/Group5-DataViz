@@ -90,9 +90,18 @@ From here, we select some sketches for the next iteration. The first sketch is v
 ## Final Sketches
 ![Final Sketches](./final-sketches.png)
 
-There are many feedbacks we receive during the iterations, one of them is from our instructors. The feedback was to use the histogram to filter the scatterplot. In this one, we also implement one more visual encoding: a sankey diagram. The purpose of the sankey is similar with the heatmap, the difference is the encoding, for example instead of color we use size as a channel
+There are many feedbacks we receive during the iterations, one of them is from our instructors. The feedback was to use the histogram to filter the scatterplot. In this one, we also implement one more visual encoding: a sankey diagram. The purpose of the sankey is similar with the heatmap, the difference is the encoding, for example instead of color we use size as a channel.
+
+The colors used for the visualizations in this report are for representation purpose only. We found out that the color scheme used is not color blind safe and we will change it in the final project. 
 
 # Final Visualization
+
+Our visualizations are mainly developed for “Discover” and “Present” consumptions.The visualizations are interactive and linked. We allow our potential user to enter a question pair. We fetch similar questions and allow the user to pick the most similar questions with a range of visualizations all interlinked to one another. The user will also enter a choice amongst 2 neural networks that we developed to predict the similar questions with. 
+Firstly we have a histogram plot to show the distribution of similarity scores (cosine and neural network predicted scores) with the input questions and our dataset. This allows the user to see  the number of similar questions in each bucket and can then visualize the questions of that bucket in a 2D space with the help of PCA. We incorporate the Shneiderman mantra by displaying all points in default state and then enable the user to filter the questions using on click events and view details as per his demand.
+The next step is to see how similar the questions in the bucket chosen are to the input ones. We have added a new sankey plot visualization with input questions on the left and predicted similar questions on the right. The width of the links of the questions give details about the similarity measure by which we predicted them. They would have two different colors as we have two scores viz. cosine similarity and model scores. This involves a hover over functionality that would highlight the question point being hovered once the user hovers over an input question. We use color encoding to differentiate between the two methods used to calculate the similarity. Also, by displaying the list of questions in parallel plots we enable connectivity and proximity principles.
+We then have a heatmap which uses a gradient color scheme to show how similar the picked questions are to each other. This is done not only to help the user pick the most similar question but also to for us to see how the model has performed, as these questions must be somewhat similar to each other. We create heatmaps for analyzing both the cosine similarity predictions as well as the model predictions. This visualization serves the task of analyzing our model performance using the generated outputs (in this case the similar questions of the distribution bucket).
+All the visualizations have details on demand on hover/click as explained in the sketches above. In the very end we will also show the result of our prediction as just a text explaining “duplicate” or “not duplicate”.
+
 
 ![scatter](./scatter.png)
 
@@ -118,7 +127,16 @@ There are many feedbacks we receive during the iterations, one of them is from o
 
 The 10 quesitions are from the selected bin as like the sankey.
 
-In the end, we realize that a good clue from a simple Human Computer Interaction will help the user understands the plot better
+In the end, we realize that a good clue from a simple Human Computer Interaction will help the user understands the plot better.
+
+## Inference from the visualisation
+
+Each visualization answers a hypothesis we formulated. The first part shows how the similar questions and the input questions lie on a 2 dimensional space. If there is an overlap in the higher probability buckets selected for both questions then we can infer that they belong to a similar cluster category. So, this tells us that although two questions have been marked as non duplicate by the ML algorithm, the fact that they overlap indicated they belong to the same cluster. Consider the example: How does the Surface Pro himself 4 compare with iPad Pro? And Why did Microsoft choose core m3 and not core i3 home Surface Pro 4?  As input.
+These questions are marked as non-duplicate but have overlapping similar questions in the scatterplot. We can infer that these questions are related to technology hence the overlap.
+
+The sankey plot helps view the top similar questions for each input question. The width of the links shows the magnitude of duplication predicted by our model. We display these questions as a way of recommending similar questions to the input question.
+
+The heatmap shows whether questions lying in a particular bucket are similar to each other. We know they are similar to the input question to a degree represented by the scoring bucket they lie in. But are they similar to each other as well? The heatmap helps to analyse this transitivity.
 
 
 ## Package used
