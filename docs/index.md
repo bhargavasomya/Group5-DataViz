@@ -77,7 +77,21 @@ The results are as follows:
 
 
 
-## Neural Network
+## Deep Learning Approach 
+
+The goal of our deep learning based approach is to use the sequential information present in the words of a questions to understand the meaning of each question and then compare to see whether they are duplicate. For this purpose we use the Stanford NLP GLOVE representations which contain a vectorised representation of 300 dimensions for a vocabulary of words from Wikipedia. Using the keras pre-processing functions we convert the text present in the questions to tokens. We create a word-vector matrix using the unique tokens present in the data and the corresponding Stanford GLOVE representations. We have a total of 96492 unique words that we use in the word-vector matrix. Using the word-vector matrix we convert each question as a sequence of vectors, each of length 300. The result of the pre-processing is a sequence of vectors representing each question in our data. The max length of the sequence is set to 25 for computational purposes.
+### Model Architecture:
+The network consist of two input layers, one for each question. Using the input layer we convert the sequence of vectors obtained from the pre-processing into a dense time distributed vector by using an embedding layer followed by a time distributed layer. The output of each input layer, gives us a representation for each question. We concatenate the representations of the input questions and then use the combined vector for further steps. The combined representation is then passed through dense layers consisting of Relu activations and eventually a Softmax layer which gives us the final probability. We introduce batch normalization and dropout of 0.1 to prevent the network from overfitting. The network is trained using cross-entropy loss and Adam optimizer with a learning rate of 0.001. We train the network for 25 epochs using a batch size of 32.
+We use two architectures each consisting of different number of dense layers. One consists of 4 dense layers and the other consist of 6 dense layers following the time distributed layers.
+
+### Results:
+We test the performance of our model on a validation set consisting of 20% of our train set. Our models perform identical to each other. However, each model has their own strengths and perform better on questions that at times the other does not.
+
+| Model          | Validation Accuracy |
+|----------------|---------------------|
+| Architecture 1 | 80.86%              |
+| Architecture 2 | 83.86%              |
+
 
 # Task Analysis
 
