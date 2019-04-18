@@ -52,9 +52,8 @@ They can then "look up" the top ten questions of each bin of histogram with the 
 
 We also present the degree of similarity between the top 10 questions with each other using a heatmap to give user a better understanding of the functionality of our ML models. 
 
-Machine Learning Part (Title can be changed):
 
-Exploratory Data Analysis:
+# Exploratory Data Analysis:
 
 Some of the observations made during EDA were:
 
@@ -63,7 +62,19 @@ We have only 290654 unique questions in question1 and 299364 unique questions in
 
 Then we wanted to know what is the general distribution of the length of sentences in our dataset. By plotting a simple histogram we found that most of the questions have a length of around 25 words. This helped us decide the size of the padding for the deep learning as we needed uniform length inputs.
 
-Since understanding the affect of sementic similarity is one of the goals of our project, we calculated the ratio of the number of common words by total length of the sentences and then compared them by our target labels. Here, we discovered that the 
+Since understanding the affect of sementic similarity is one of the goals of our project, we calculated the ratio of the number of common words by total length of the sentences and then compared them by our target labels. Here, we discovered that the question pairs with lower ratio tend to belong to the not duplicate (or label 0) while the higher ratio belonged to duplicate (or label 1) but there was a considerable amount of overlap in the middle. 
+
+# Preprocessing 
+The following steps were taken to preprocess the data:
+1. Removed stop words and every non alphanumeric characters
+2. Normalized text by converting everything to lower case
+3. Converted shorten words to their seperated version for example can't became cannot, she'll became she will and so on
+4. Encoded the text into vectors using Glove model 
+5. Padded the vectors to 25 words for deep learning
+6. Performed Dimensionality Reduction using truncated SVD to convert our sentence vectors to 2 Dimensional space
+
+# Modeling 
+1. Random Forest Classifier (Baseline):
 
 
 
