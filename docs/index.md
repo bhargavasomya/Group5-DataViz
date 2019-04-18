@@ -39,12 +39,15 @@ Here’s an excerpt of the raw data being used:
 Some of the observations made during EDA were:
 
 ![Distribution_of_labels](./Distribution_of_label.png)
+
 We have only 290654 unique questions in question1 and 299364 unique questions in question2 features. The distribution of the labels is skewed with numbers of non duplicate question pairs being in majority. But the ratio was nothing drastic and hence resampling was not required.
 
 ![Distribution_of_word_count](./Distribution_of_word_count.png)
+
 Then we wanted to know what is the general distribution of the length of sentences in our dataset. By plotting a simple histogram we found that most of the questions have a length of around 25 words. This helped us decide the size of the padding for the deep learning as we needed uniform length inputs.
 
 ![Distribution_of_word_share](./Distribution_of_word_share.png)
+
 Since understanding the affect of sementic similarity is one of the goals of our project, we calculated the ratio of the number of common words by total length of the sentences and then compared them by our target labels. Here, we discovered that the question pairs with lower ratio tend to belong to the not duplicate (or label 0) while the higher ratio belonged to duplicate (or label 1) but there was a considerable amount of overlap in the middle.
 
 
