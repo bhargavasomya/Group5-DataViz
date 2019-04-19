@@ -115,7 +115,7 @@ The auc-roc curve -
 ![AUC](./auc-arch1.png)
 <br>
 <br>
-**For model Architecture 2 - **
+**For model Architecture 2 -**
 <br>
 <br>
 The loss curve - 
