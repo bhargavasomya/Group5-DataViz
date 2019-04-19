@@ -202,6 +202,10 @@ The 10 quesitions are from the selected bin as like the sankey.
 
 In the end, we realize that a good clue from a simple Human Computer Interaction will help the user understands the plot better.
 
+
+
+[![Video](https://img.youtube.com/vi/sThgmfpzhAk/1.jpg)](https://www.youtube.com/watch?v=sThgmfpzhAk)
+
 ## Inference from the visualisation
 
 Each visualization answers a hypothesis we formulated. The first part shows how the similar questions and the input questions lie on a 2 dimensional space. If there is an overlap in the higher probability buckets selected for both questions then we can infer that they belong to a similar cluster category. So, this tells us that although two questions have been marked as non duplicate by the ML algorithm, the fact that they overlap indicated they belong to the same cluster. Consider the example: How does the Surface Pro himself 4 compare with iPad Pro? And Why did Microsoft choose core m3 and not core i3 home Surface Pro 4?  As input.
