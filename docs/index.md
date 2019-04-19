@@ -98,10 +98,38 @@ We use two architectures each consisting of different number of dense layers. On
 ### Results:
 We test the performance of our model on a validation set consisting of 20% of our train set. Our models perform identical to each other. However, each model has their own strengths and perform better on questions that at times the other does not.
 
-| Model          | Validation Accuracy |
-|----------------|---------------------|
-| Architecture 1 | 80.86%              |
-| Architecture 2 | 83.86%              |
+| Model          | Test Accuracy       |       AUC           |
+|----------------|---------------------|---------------------|
+| Architecture 1 | 79.98%              |        0.8773       |
+| Architecture 2 | 80.72%              |        0.8791       |
+
+For model Architecture 1 - 
+<br>
+<br>
+The loss curve - 
+<br>
+![Loss](./training-loss-arch1.png)
+<br>
+The auc-roc curve -
+<br>
+![AUC](./auc-arch1.png)
+<br>
+<br>
+For model Architecture 1 - 
+<br>
+<br>
+The loss curve - 
+<br>
+![Loss](./training-loss-arch2.png)
+<br>
+The auc-roc curve - 
+<br>
+![AUC](./auc-arch2.png)
+<br>
+The basic model architecture - 
+<br>
+![Neural Network](./neural_network_diagram.png)
+
 
 
 # Task Analysis
