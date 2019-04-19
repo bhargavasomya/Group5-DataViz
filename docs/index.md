@@ -249,7 +249,10 @@ d3 + (d3-sankey)
 bootstrap
 ```
 
-![Link to the final](http://group5-dataviz.herokuapp.com/) _Please note, the link should use http not https_
+_Please note, the link should use http not https._
+_Tested on Firefox (66.0.3 (64-bit)), Safari, Chrome (68.0.3440.106 (Official Build) (64-bit))_
+_As we are using Heroku free tier for frontent, it takes time initially to load the front page_
+![Link to the final](http://group5-dataviz.herokuapp.com/) 
 
 
 
