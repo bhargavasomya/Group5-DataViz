@@ -203,8 +203,9 @@ The 10 quesitions are from the selected bin as like the sankey.
 In the end, we realize that a good clue from a simple Human Computer Interaction will help the user understands the plot better.
 
 
+## Demo Video
 
-[![Video](https://img.youtube.com/vi/sThgmfpzhAk/1.jpg)](https://www.youtube.com/watch?v=sThgmfpzhAk)
+[![Video](https://img.youtube.com/vi/sThgmfpzhAk/0.jpg)](https://www.youtube.com/watch?v=sThgmfpzhAk)
 
 ## Inference from the visualisation
 
