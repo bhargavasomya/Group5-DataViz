@@ -48,7 +48,7 @@ function setupSankeyHistogram(data, klass) {
     .attr("class", "y label")
     .attr("text-anchor", "middle")
     .attr("x", -height/ 2 )
-    .attr("y", -3)
+    .attr("y", - 5)
     .attr("dy", "1em")
     .attr("transform", "rotate(-90)")
     .text("count")
@@ -82,7 +82,7 @@ function setupSankeyHistogram(data, klass) {
         .range([150-margin.bottom-20, margin.top]);
     svg.append("g")
         .attr("transform", `translate(${margin.left + 4},0)`)
-        .call(d3.axisLeft().ticks(0).scale(yScale));
+        .call(d3.axisLeft().ticks(3).scale(yScale));
 
     var flags = Array(20).fill(0);
 
