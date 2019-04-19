@@ -103,7 +103,7 @@ We test the performance of our model on a validation set consisting of 20% of ou
 | Architecture 1 | 79.98%              |        0.8773       |
 | Architecture 2 | 80.72%              |        0.8791       |
 
-For model Architecture 1 - 
+**For model Architecture 1 -** 
 <br>
 <br>
 The loss curve - 
@@ -115,7 +115,7 @@ The auc-roc curve -
 ![AUC](./auc-arch1.png)
 <br>
 <br>
-For model Architecture 1 - 
+**For model Architecture 2 - **
 <br>
 <br>
 The loss curve - 
@@ -126,9 +126,7 @@ The auc-roc curve -
 <br>
 ![AUC](./auc-arch2.png)
 <br>
-The basic model architecture - 
-<br>
-![Neural Network](./neural_network_diagram.png)
+
 
 
 
