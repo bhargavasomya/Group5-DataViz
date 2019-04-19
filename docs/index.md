@@ -260,7 +260,7 @@ _Tested on Firefox (66.0.3 (64-bit)), Safari, Chrome (68.0.3440.106 (Official Bu
 
 _As we are using Heroku free tier for frontent, it takes time initially to load the front page_
 
-![Link to the final](http://group5-dataviz.herokuapp.com/) 
+[Link to the final](http://group5-dataviz.herokuapp.com/) 
 
 
 
